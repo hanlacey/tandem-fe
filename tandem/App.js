@@ -11,7 +11,6 @@ export default function App() {
 }
 const styles = StyleSheet.create({
   container: {
-    display: 'flexbox',
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
