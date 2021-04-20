@@ -1,23 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import PageHeader from './components/PageHeader'
-
+import ConfigureProfile from './components/ConfigureProfile'
 export default function App() {
   return (
-    <View>
+    <View style={styles.container}>
       <PageHeader />
     </View>);
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  header: {
-    backgroundColor: '#2e2e2e'
   }
 });
