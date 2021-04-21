@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 
 export default class StravaSignup extends Component {
   render() {
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Button>Log in</Button>
       </View>
     );
   }
