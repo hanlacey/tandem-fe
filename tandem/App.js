@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import ConfigureProfile from './components/ConfigureProfile'
 import StravaSignup from './components/StravaSignup';
+import RideCard from './components/RideCard'
 
 const Stack = createStackNavigator()
 // object containing two properties Screen and Navigator
@@ -25,6 +26,8 @@ export default function App() {
         }} />
         <Stack.Screen name="StravaSignup" component={StravaSignup} />
         <Stack.Screen name="ConfigureProfile" component={ConfigureProfile} />
+        <Stack.Screen name="RideCard" component={RideCard} />
+
       </Stack.Navigator>
     </NavigationContainer>
   )
