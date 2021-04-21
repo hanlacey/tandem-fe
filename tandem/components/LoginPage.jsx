@@ -5,7 +5,7 @@ export default class LoginPage extends Component {
   render() {
     return (
       <View>
-        <Text> Login </Text>
+        <Text>Strava Login here</Text>
       </View>
     );
   }
