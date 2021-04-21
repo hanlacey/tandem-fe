@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+=======
+import { View, Text, StyleSheet, Button } from "react-native";
+>>>>>>> 61e00f16e3f83af040846febf40fc2ef5b7ea108
 import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ConfigureProfile() {
+export default function ConfigureProfile({navigation}) {
   const [user, setUser] = useState("Anon");
   const [bikeType, setBikeType] = useState("road");
   const [difficulty, setDifficulty] = useState("casual");
