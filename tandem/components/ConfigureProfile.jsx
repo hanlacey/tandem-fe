@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function ConfigureProfile() {
-  const [user, setUser] = useState("Alan");
+  const [user, setUser] = useState("not logged in");
   return (
     <View style={styles.container}>
-      <Text>The username is {user}</Text>
+      <Text>The user is {user}</Text>
     </View>
   );
 }
