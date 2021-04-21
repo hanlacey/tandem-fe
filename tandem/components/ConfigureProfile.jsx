@@ -1,22 +1,16 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-=======
-import { View, Text, StyleSheet, Button } from "react-native";
->>>>>>> 61e00f16e3f83af040846febf40fc2ef5b7ea108
 import { Picker } from "@react-native-picker/picker";
-import { useNavigation } from "@react-navigation/native";
 
-export default function ConfigureProfile({navigation}) {
-  const [user, setUser] = useState("Anon");
+export default function ConfigureProfile({ navigation }) {
+  const [user, setUser] = useState("hannah1234");
   const [bikeType, setBikeType] = useState("road");
   const [difficulty, setDifficulty] = useState("casual");
-  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       {/* displays updated state */}
-      <Text>The user is {user}</Text>
+      <Text>Logged in as {user}</Text>
       <Text>
         {user}'s bike type is {bikeType}
       </Text>
@@ -45,10 +39,11 @@ export default function ConfigureProfile({navigation}) {
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          navigation.navigate("RideCard", {
+          navigation.navigate("OpenRidesList", {
             user: user,
             userBikeType: bikeType,
             userDifficulty: difficulty,
+            navigation,
           })
         }
         color="#841584"
@@ -62,18 +57,19 @@ export default function ConfigureProfile({navigation}) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "40%",
+    height: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     backgroundColor: "#FFF",
+    paddingTop: "15%",
   },
   button: {
-    width: "10%",
-    height: "10%",
+    width: "35%",
+    height: "8%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#f4511e",
-    margin: "1%",
+    margin: "2%",
     color: "white",
   },
 });

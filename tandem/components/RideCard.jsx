@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 
 export default function RideCard({ route, navigation }) {
-  const [rideTitle, setRideTitle] = useState("hannah12345's ride");
+  const [rideCreator, setRideCreator] = useState("hannah1234");
+  const [rideTitle, setRideTitle] = useState(`${rideCreator}'s ride`);
   const [rideDate, setRideDate] = useState("May 2nd");
   const [rideTime, setRideTime] = useState("12:00");
-
-  const [rideDifficulty, setRideDifficulty] = useState("Casual");
-  const [rideBikeType, setRideBikeType] = useState("Mountain");
+  const [rideDifficulty, setRideDifficulty] = useState("casual");
+  const [rideBikeType, setRideBikeType] = useState("mountain");
   const [rideLength, setRideLength] = useState("10 miles");
   const [rideRoute, setRideRoute] = useState(
     Math.floor(Math.random() * 100000)
@@ -16,22 +16,33 @@ export default function RideCard({ route, navigation }) {
 
   return (
     <View style={styles.card}>
-      <Text>{rideTitle}</Text>
+      <Text>{rideTitle}</Text> {/*link to ride page*/}
       <Text>
-        Taking place on {rideDate} at {rideTime}
+        {rideDate} at {rideTime}
+        {"\n"}
+        Route: {rideRoute} - {rideLength}
+        {"\n"}
+        {rideDifficulty} ride for {rideBikeType} bike users
+        {"\n"}
+        Made by{" "}
+        <TouchableHighlight style={styles.link}>
+          <Text>{rideCreator}</Text>
+        </TouchableHighlight>
       </Text>
-      <Text>Route ID: {rideRoute}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    width: "30%",
-    height: "30",
+    width: "100%",
+    height: "30%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
-    padding: "1%",
+    backgroundColor: "#FFF",
+    textAlign: "center",
+  },
+  link: {
+    color: "#f4511e",
   },
 });

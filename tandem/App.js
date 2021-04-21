@@ -7,15 +7,16 @@ import ConfigureProfile from './components/ConfigureProfile'
 import StravaSignup from './components/StravaSignup';
 import RideCard from './components/RideCard'
 import UserProfile from './components/UserProfile';
+import OpenRidesList from './components/OpenRidesList'
 
 const Stack = createStackNavigator()
 // object containing two properties Screen and Navigator
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={StravaSignup} options={{
+        <Stack.Screen name="Home" component={ConfigureProfile} options={{
           title: 'Tandem',
           headerStyle: {
             backgroundColor: '#f4511e',
@@ -28,14 +29,16 @@ export default function App() {
         <Stack.Screen name="StravaSignup" component={StravaSignup} />
         <Stack.Screen name="ConfigureProfile" component={ConfigureProfile} />
         <Stack.Screen name="RideCard" component={RideCard} />
-
         <Stack.Screen name="UserProfile" component={UserProfile} />
+        <Stack.Screen name="OpenRidesList" component={OpenRidesList} />
       </Stack.Navigator>
     </NavigationContainer>
+
   )
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    color: "red"
   }
 });

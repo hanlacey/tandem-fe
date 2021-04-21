@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.12.67",
@@ -16,6 +17,7 @@
     "expo": "~41.0.0",
     "expo-font": "~9.1.0",
     "expo-status-bar": "~1.0.4",
+    "jest": "^26.6.3",
     "native-base": "^2.15.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
