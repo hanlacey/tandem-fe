@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 // import { useNavigation } from "@react-navigation/native";
 
@@ -51,6 +51,15 @@ export default function ConfigureProfile({navigation}) {
       >
         <Text>Get started</Text>
       </TouchableOpacity>
+
+      <Button
+        title={"View routes"}
+        style={styles.button}
+        onPress={() =>
+          navigation.navigate("MapComponent")
+        }
+        color="#841584"
+      />
     </View>
   );
 }
