@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Button} from "react-native";
 
 export default function RideCard({ route, navigation }) {
   const [rideTitle, setRideTitle] = useState("hannah12345's ride");
@@ -21,7 +21,7 @@ export default function RideCard({ route, navigation }) {
         Taking place on {rideDate} at {rideTime}
       </Text>
       <Text>Route ID: {rideRoute}</Text>
-      <TouchableOpacity
+      <Button
           color="#FF4500"
           title={"User Profile"}
           style={styles.input}

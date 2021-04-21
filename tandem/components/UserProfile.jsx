@@ -1,8 +1,14 @@
-import React, { Component } from "react";
+import React, { useState  } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-export default class UserProfile extends Component {
-  render() {
+export default function UserProfile (){
+  const [name, setName] = useState("Boris Johson");
+  const [age, setAge] = useState("45");
+ 
+  const [rideTitle, setRideTitle] = useState("hannah12345's ride");
+  const [rideBikeType, setRideBikeType] = useState("Mountain");
+  const [rideDifficulty, setRideDifficulty] = useState("Casual")
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -15,27 +21,23 @@ export default class UserProfile extends Component {
               }}
             />
 
-            <Text style={styles.name}>Boris Johnson </Text>
-            <Text style={styles.userInfo}> 45, London </Text>
+            <Text style={styles.name}>{name} </Text>
+            <Text style={styles.userInfo}> {age}, London </Text>
             <Text style={styles.userInfo}>
               {" "}
-              Road Bike - Beginner - Three Past Rides{" "}
+            Bike Type:{rideBikeType}  -  Difficulty:{rideDifficulty} {" "}
             </Text>
           </View>
         </View>
 
         <View style={styles.body}>
-          <Text>Open rides</Text>
+          <Text style={styles.openRide}>Open rides</Text>
           <TouchableOpacity style={styles.buttonContainer}>
-            <Text>Opcion 1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonContainer}>
-            <Text>Opcion 2</Text>
+            <Text style={styles.rideTitle}>{rideTitle}</Text>
           </TouchableOpacity>
         </View>
       </View>
     );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -59,6 +61,16 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontWeight: "600",
   },
+  openRide: {
+    fontSize: 15,
+    color: "#000000",
+    fontWeight: "600",
+  },
+  rideTitle: {
+    fontSize: 15,
+    color: "white",
+    fontWeight: "600",
+  },
   userInfo: {
     fontSize: 16,
     color: "#778899",
@@ -66,31 +78,8 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: "white",
-    height: 800,
+    height: 500,
     alignItems: "center",
-  },
-  item: {
-    flexDirection: "row",
-  },
-  infoContent: {
-    flex: 1,
-    alignItems: "flex-start",
-    paddingLeft: 5,
-  },
-  iconContent: {
-    flex: 1,
-    alignItems: "flex-end",
-    paddingRight: 5,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-    marginTop: 20,
-  },
-  info: {
-    fontSize: 18,
-    marginTop: 20,
-    color: "#FFFFFF",
   },
   buttonContainer: {
     marginTop:10,
