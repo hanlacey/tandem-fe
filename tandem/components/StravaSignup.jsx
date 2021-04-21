@@ -3,12 +3,15 @@ import { Button, Text, View, StyleSheet } from "react-native";
 
 export default class App extends Component {
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={styles.container}>
         <Button
           color="#FF4500"
           title={"Signup with Strava"}
           style={styles.input}
+          onPress={() => navigation.navigate("ConfigureProfile")}
         />
       </View>
     );
