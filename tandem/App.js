@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <PageHeader />
-      <ConfigureProfile/>
+      <ConfigureProfile />
     </View>);
 }
 const styles = StyleSheet.create({

@@ -1,17 +1,5 @@
-// import React, { PureComponent, useState } from "react";
-// import { Text, TextInput, View } from "react-native";
-// import { Picker } from "@react-native-picker/picker";
-
-// export default class ConfigureProfile extends PureComponent {
-//   render() {
-//     return (
-
-//     );
-//   }
-// }
-
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 export default function ConfigureProfile() {
   const [user, setUser] = useState("Alan");
@@ -21,3 +9,13 @@ export default function ConfigureProfile() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#3F3F3F",
+  },
+});
