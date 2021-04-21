@@ -5,7 +5,6 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Tandem</Text>
         <Button
           color="#FF4500"
           title={"Signup with Strava"}
@@ -30,11 +29,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     marginBottom: 10,
-  },
-  header: {
-    fontSize: 21,
-    color: "black",
-    fontWeight: "bold",
-    paddingVertical: 100,
   },
 });
