@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+  Button,
+} from "react-native";
 
 export default function RideCard({ route, navigation }) {
   const [rideCreator, setRideCreator] = useState("hannah1234");
@@ -29,6 +35,13 @@ export default function RideCard({ route, navigation }) {
           <Text>{rideCreator}</Text>
         </TouchableHighlight>
       </Text>
+      <Text>Route ID: {rideRoute}</Text>
+      <Button
+        color="#FF4500"
+        title={"User Profile"}
+        style={styles.input}
+        onPress={() => navigation.navigate("UserProfile")}
+      />
     </View>
   );
 }

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+// import { useNavigation } from "@react-navigation/native";
 
 export default function ConfigureProfile({ navigation }) {
   const [user, setUser] = useState("hannah1234");
   const [bikeType, setBikeType] = useState("road");
   const [difficulty, setDifficulty] = useState("casual");
+  // const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
