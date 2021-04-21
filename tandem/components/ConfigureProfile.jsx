@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
-export default function ConfigureProfile() {
+export default function ConfigureProfile({navigation}) {
   const [user, setUser] = useState("Anon");
   const [bikeType, setBikeType] = useState("not set");
   const [preferredRide, setPreferredRide] = useState("not set");
@@ -36,6 +36,12 @@ export default function ConfigureProfile() {
         <Picker.Item label="Challenging" value="challenging" />
         <Picker.Item label="Hardcore" value="hardcore" />
       </Picker>
+      <Button
+          color="#FF4500"
+          title={"User Profile"}
+          style={styles.input}
+          onPress={() => navigation.navigate("UserProfile")}
+        />
     </View>
   );
 }
