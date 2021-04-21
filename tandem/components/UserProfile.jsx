@@ -25,6 +25,7 @@ export default class UserProfile extends Component {
         </View>
 
         <View style={styles.body}>
+          <Text>Open rides</Text>
           <TouchableOpacity style={styles.buttonContainer}>
             <Text>Opcion 1</Text>
           </TouchableOpacity>

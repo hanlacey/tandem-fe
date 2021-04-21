@@ -28,7 +28,6 @@ export default function App() {
         <Stack.Screen name="StravaSignup" component={StravaSignup} />
         <Stack.Screen name="ConfigureProfile" component={ConfigureProfile} />
         <Stack.Screen name="RideCard" component={RideCard} />
-
         <Stack.Screen name="UserProfile" component={UserProfile} />
       </Stack.Navigator>
     </NavigationContainer>
