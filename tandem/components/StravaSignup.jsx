@@ -13,6 +13,12 @@ export default class App extends Component {
           style={styles.input}
           onPress={() => navigation.navigate("ConfigureProfile")}
         />
+        <Button
+          title={"View routes"}
+          style={styles.button}
+          onPress={() => navigation.navigate("MapComponent")}
+          color="#841584"
+        />
       </View>
     );
   }

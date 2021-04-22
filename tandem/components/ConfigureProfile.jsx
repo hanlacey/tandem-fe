@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
 export default function ConfigureProfile({ navigation }) {
@@ -51,6 +51,8 @@ export default function ConfigureProfile({ navigation }) {
       >
         <Text>Get started</Text>
       </TouchableOpacity>
+
+   
     </View>
   );
 }
