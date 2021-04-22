@@ -1,61 +1,66 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-  Button,
-} from "react-native";
+import React from "react";
+import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
+// import { withNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
-export default function RideCard({ route, navigation }) {
-  const [rideCreator, setRideCreator] = useState("hannah1234");
-  const [rideTitle, setRideTitle] = useState(`${rideCreator}'s ride`);
-  const [rideDate, setRideDate] = useState("May 2nd");
-  const [rideTime, setRideTime] = useState("12:00");
-  const [rideDifficulty, setRideDifficulty] = useState("casual");
-  const [rideBikeType, setRideBikeType] = useState("mountain");
-  const [rideLength, setRideLength] = useState("10 miles");
-  const [rideRoute, setRideRoute] = useState(
-    Math.floor(Math.random() * 100000)
-  );
-  const [rideAttendeeCount, setRideAttendeeCount] = useState("5");
+function RideCard({ ride, route }) {
+  const {
+    rideId,
+    rideCreator,
+    rideDate,
+    rideTime,
+    rideDifficulty,
+    rideBikeType,
+    rideLength,
+    rideRoute,
+    attendeeCount,
+  } = ride;
 
+  const navigation = useNavigation();
   return (
     <View style={styles.card}>
-      <Text>{rideTitle}</Text> {/*link to ride page*/}
-      <Text>
+      <Text style={styles.title}>{rideCreator}'s ride</Text>
+      <Text style={styles.body}>
         {rideDate} at {rideTime}
         {"\n"}
-        Route: {rideRoute} - {rideLength}
+        {rideDifficulty} {" / "} {rideBikeType}
         {"\n"}
-        {rideDifficulty} ride for {rideBikeType} bike users
+        {rideLength}
         {"\n"}
-        Made by{" "}
-        <TouchableHighlight style={styles.link}>
-          <Text>{rideCreator}</Text>
-        </TouchableHighlight>
+        {attendeeCount} attending
       </Text>
-      <Text>Route ID: {rideRoute}</Text>
-      <Button
-        color="#FF4500"
-        title={"User Profile"}
-        style={styles.input}
-        onPress={() => navigation.navigate("UserProfile")}
-      />
+      <TouchableOpacity
+        onPress={() => navigation.navigate("UserProfile", { rideCreator })}
+      >
+        <Text style={styles.link}>ride created by {rideCreator}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("RidePage", { rideId })}
+      >
+        <Text style={styles.link}>join ride</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    width: "100%",
-    height: "30%",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FFF",
+    backgroundColor: "white",
+    marginHorizontal: "2rem",
+    marginVertical: "1rem",
+    paddingBottom: "1rem",
     textAlign: "center",
   },
+  title: {
+    backgroundColor: "#f4511e",
+    paddingVertical: "0.5rem",
+  },
+  body: {
+    paddingVertical: "1rem",
+  },
   link: {
-    color: "#f4511e",
+    color: "red",
   },
 });
+
+export default RideCard;
