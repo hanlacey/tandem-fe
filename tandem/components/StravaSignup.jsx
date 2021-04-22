@@ -7,14 +7,14 @@ export default class App extends Component {
 
     return (
       <View style={styles.container}>
-        <Button
-          color="#FF4500"
-          title={"Signup with Strava"}
-          style={styles.input}
-          onPress={() => navigation.navigate("ConfigureProfile")}
-          //either send strava id to configureProfile then send to db
-          //OR send to db on strava then fetch user id and pass to configureProfile then update db
-        />
+           <Button
+        title={"View routes"}
+        style={styles.button}
+        onPress={() =>
+          navigation.navigate("MapComponent")
+        }
+        color="#841584"
+      />
       </View>
     );
   }

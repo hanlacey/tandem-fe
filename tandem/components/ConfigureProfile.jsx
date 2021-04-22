@@ -52,14 +52,7 @@ export default function ConfigureProfile({navigation}) {
         <Text>Get started</Text>
       </TouchableOpacity>
 
-      <Button
-        title={"View routes"}
-        style={styles.button}
-        onPress={() =>
-          navigation.navigate("MapComponent")
-        }
-        color="#841584"
-      />
+   
     </View>
   );
 }
