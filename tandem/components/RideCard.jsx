@@ -28,17 +28,15 @@ function RideCard({ ride, route }) {
         {rideLength}
         {"\n"}
         {attendeeCount} attending
+        <TouchableOpacity
+          onPress={() => navigation.navigate("UserProfile", { rideCreator })}
+        >
+          <Text style={styles.link}>ride created by {rideCreator}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("RidePage", { rideId })}
+        ></TouchableOpacity>
       </Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("UserProfile", { rideCreator })}
-      >
-        <Text style={styles.link}>ride created by {rideCreator}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("RidePage", { rideId })}
-      >
-        <Text style={styles.link}>join ride</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -46,17 +44,18 @@ function RideCard({ ride, route }) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
-    marginHorizontal: "2rem",
-    marginVertical: "1rem",
-    paddingBottom: "1rem",
+    marginHorizontal: "5%",
+    marginVertical: "5%",
+    paddingBottom: "5%",
     textAlign: "center",
   },
   title: {
     backgroundColor: "#f4511e",
-    paddingVertical: "0.5rem",
+    padding: "5%",
   },
   body: {
-    paddingVertical: "1rem",
+    paddingVertical: "5%",
+    paddingHorizontal: "5%",
   },
   link: {
     color: "red",

@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-// import { useNavigation } from "@react-navigation/native";
 
 export default function ConfigureProfile({ navigation }) {
   const [user, setUser] = useState("hannah1234");
   const [bikeType, setBikeType] = useState("road");
   const [difficulty, setDifficulty] = useState("casual");
-  // const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      {/* displays updated state */}
       <Text>Logged in as {user}</Text>
       <Text>
         {user}'s bike type is {bikeType}
@@ -19,19 +16,21 @@ export default function ConfigureProfile({ navigation }) {
       <Text>
         {user}'s preferred ride difficulty is {difficulty}
       </Text>
-      {/* bike picker */}
-      <br></br> <Text>Choose your bike type:</Text>
+
+      <Text>Choose your bike type:</Text>
       <Picker
+        style={styles.picker}
+        itemStyle={styles.pickerItem}
         selectedValue={bikeType}
         onValueChange={(itemValue, itemIndex) => setBikeType(itemValue)}
       >
         <Picker.Item label="Road" value="road" />
         <Picker.Item label="Mountain" value="mountain" />
       </Picker>
-      {/* experience picker */}
-      <br></br> <Text>Which level of difficulty would you prefer? </Text>
       <Picker
         selectedValue={difficulty}
+        style={styles.picker}
+        itemStyle={styles.pickerItem}
         onValueChange={(itemValue, itemIndex) => setDifficulty(itemValue)}
       >
         <Picker.Item label="Casual" value="casual" />
@@ -71,7 +70,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#f4511e",
-    margin: "2%",
     color: "white",
+  },
+  picker: {
+    width: "70%",
+    height: "20%",
+    backgroundColor: "white",
+    margin: 0,
+  },
+  pickerItem: {
+    fontSize: 14,
   },
 });

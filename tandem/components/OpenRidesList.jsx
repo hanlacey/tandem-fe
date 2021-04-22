@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import sampleRides from "../utils/rideListGenerator";
 import RideCard from "./RideCard";
 
-export default function OpenRidesList({ route, navigation }) {
+export default function OpenRidesList({ route }) {
   const { user, userBikeType, userDifficulty } = route.params;
   const [rides, setRides] = useState([sampleRides]);
   const [rideBikeType, setRideBikeType] = useState(userBikeType);
@@ -23,8 +23,8 @@ export default function OpenRidesList({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: "1",
-    marginTop: "Constants.statusBarHeight",
+    flex: 1,
+    marginTop: "5%",
   },
   item: {
     backgroundColor: "#f9c2ff",
