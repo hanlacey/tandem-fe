@@ -1,41 +1,55 @@
 import React from "react";
 import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
-// import { withNavigation } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 
 function RideCard({ ride, route }) {
   const {
-    rideId,
-    rideCreator,
-    rideDate,
-    rideTime,
-    rideDifficulty,
-    rideBikeType,
-    rideLength,
-    rideRoute,
-    attendeeCount,
+    ride_id,
+    title,
+    author,
+    ride_date,
+    route_data,
+    ride_type,
+    description,
+    experience_level,
+    created_at,
+    attendees,
   } = ride;
+
+  const parseDate = (ride_date) => {
+    const weirdDate = new Date(ride_date);
+
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    const normalDate = weirdDate.toLocaleString("default", options);
+    return normalDate;
+  };
 
   const navigation = useNavigation();
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>{rideCreator}'s ride</Text>
+      <Text style={styles.title}>{title.toLowerCase()}</Text>
+      <Text style={styles.description}> {description}</Text>
       <Text style={styles.body}>
-        {rideDate} at {rideTime}
+        {parseDate(ride_date)}
         {"\n"}
-        {rideDifficulty} {" / "} {rideBikeType}
+        {experience_level} {" / "} {ride_type}
         {"\n"}
-        {rideLength}
+        {route_data}
         {"\n"}
-        {attendeeCount} attending
+        {attendees.length} attending
+        {"\n"}
         <TouchableOpacity
-          onPress={() => navigation.navigate("UserProfile", { rideCreator })}
+          onPress={() =>
+            navigation.navigate("UserProfile", { username: author })
+          }
         >
-          <Text style={styles.link}>ride created by {rideCreator}</Text>
+          <Text style={styles.link}>ride created by {author}</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("RidePage", { rideId })}
-        ></TouchableOpacity>
       </Text>
     </View>
   );
@@ -52,6 +66,12 @@ const styles = StyleSheet.create({
   title: {
     backgroundColor: "#f4511e",
     padding: "5%",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#292929",
+  },
+  description: {
+    backgroundColor: "#e8e8e8",
   },
   body: {
     paddingVertical: "5%",

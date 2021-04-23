@@ -44,15 +44,12 @@ export default function ConfigureProfile({ navigation }) {
             user: user,
             userBikeType: bikeType,
             userDifficulty: difficulty,
-            navigation,
           })
         }
         color="#841584"
       >
         <Text>Get started</Text>
       </TouchableOpacity>
-
-   
     </View>
   );
 }
