@@ -9,6 +9,7 @@ import RideCard from './components/RideCard'
 import UserProfile from './components/UserProfile';
 import OpenRidesList from './components/OpenRidesList'
 import MapComponent from './components/MapComponent';
+import EventAttendees from './components/EventAttendees';
 
 const Stack = createStackNavigator()
 // object containing two properties Screen and Navigator
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="RideCard" component={RideCard} />
         <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="OpenRidesList" component={OpenRidesList} />
+        <Stack.Screen name="Event Attendees" component={EventAttendees} />
       </Stack.Navigator>
     </NavigationContainer>
 
