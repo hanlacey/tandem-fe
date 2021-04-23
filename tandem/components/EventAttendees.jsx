@@ -55,11 +55,11 @@ export default function EventAttendees ({navigation}) {
               }}
               renderItem={({item}) => {
                 return (
-                  <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
+                  <TouchableOpacity onPress={() => navigation.navigate("UserProfile", { username: item.username })}>
                     <View style={styles.box}>
                       <Image style={styles.image} source={{uri: item.avatar_url}}/>
                        <Text style={styles.username}>{item.first_name}</Text>
-                       <TouchableOpacity style={styles.button} color="#FF4500"  title="Add me">Add Friend</TouchableOpacity>
+                       <TouchableOpacity style={styles.button} color="#FF4500"  title="Add me">Add Me</TouchableOpacity>
                     </View>
                   </TouchableOpacity>
                 )
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     shadowColor: 'black',
-    shadowOpacity: .2,
+    shadowOpacity: .6,
     shadowOffset: {
       height:1,
       width:-2
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   },
   container:{
     backgroundColor :"#E6E6FA",
+    height: "100%",
   },
   button:{
     color: "white",
@@ -123,6 +124,13 @@ const styles = StyleSheet.create({
     marginVertical:30,
     borderRadius:30,
     backgroundColor:"#FF4500",
+    shadowColor: 'black',
+    shadowOpacity: .2,
+    shadowOffset: {
+      height:1,
+      width:-2
+    },
+    elevation:2
   }
   
 });
