@@ -21,7 +21,7 @@ export default function MapComponent() {
             { latitude: 37.7948605, longitude: -122.4596065 },
             { latitude: 37.8025259, longitude: -122.4351431 }
           ]}
-          strokeColor="#FF0000" // fallback for when `strokeColors` is not supported by the map-provider
+          strokeColor="#FF0000" 
           strokeWidth={3}
         />
       </MapView>
