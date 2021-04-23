@@ -1,76 +1,59 @@
-import React, { Component } from "react";
-import { Button, Text, View, StyleSheet } from "react-native";
-// import stravaApi from 'strava-v3';
+import * as React from 'react';
+import * as WebBrowser from 'expo-web-browser';
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
+import { Button } from 'react-native';
 
-// import { REACT_NATIVE_STRAVA_CLIENT_ID } from "react-native-dotenv"
+WebBrowser.maybeCompleteAuthSession();
 
-// stravaApi.config({
-//   "access_token": "5c8ed25f992a3db4a0a84e0da18f98f46ba1e90f",
-//   "client_id": "64734",
-//   "client_secret":"1c40a829591afa728f4d54ed7b2408e11b092d9c",
-//   "redirect_uri": "localhost:19006"
-// })
+// Endpoint
+const discovery = {
+  authorizationEndpoint: 'https://www.strava.com/oauth/mobile/authorize',
+  tokenEndpoint: 'https://www.strava.com/oauth/token',
+  revocationEndpoint: 'https://www.strava.com/oauth/deauthorize',
+};
 
-// const strava = new stravaApi.client("5c8ed25f992a3db4a0a84e0da18f98f46ba1e90f")
+export default function App() {
+  const [request, response, promptAsync] = useAuthRequest(
+    {
+      clientId: '64734',
+      scopes: ['activity:read_all'],
+      redirectUri: makeRedirectUri({
+        // For usage in bare and standalone
+        // the "redirect" must match your "Authorization Callback Domain" in the Strava dev console.
+        native: 'localhost:19006/oauthredirect',
+      }),
+    },
+    discovery
+  );
 
-export default class App extends Component {
-  // stravaLogin() {
-  //   console.log("inside stravaLogin")
+  React.useEffect(() => {
+    if (response?.type === 'success') {
+      console.log(response)
+      const { code } = response.params;
+      getActivityData(code)
+      }
+  }, [response]);
 
-  //   strava.athlete.get({id: 29656122},function(err, payload, limits) {
-  //     if(!err) {
-  //         console.log(payload);
-  //     }
-  //     else {
-  //         console.log(err);
-  //     }
-  //   });
-  // }
-  
-    // async stravaLogin() {
-    //   console.log("inside stravaLogin")
-      
-    //   try {
-    //     const payload = await strava.athlete.get()
-    //     // const payload = await strava.oauth.getRequestAccessURL()
-    //     console.log(payload)
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-
-  render() {
-
-    const { navigation } = this.props;
-
-    return (
-      <View style={styles.container}>
-        <Button
-          color="#FF4500"
-          title={"Signup with Strava"}
-          style={styles.input}
-          // onPress={this.stravaLogin}
-          //either send strava id to configureProfile then send to db
-          //OR send to db on strava then fetch user id and pass to configureProfile then update db
-        />
-      </View>
-    );
+  const getActivityData = (code) => {
+    fetch(`https://www.strava.com/oauth/token?client_id=64734&client_secret=1c40a829591afa728f4d54ed7b2408e11b092d9c&code=${code}&grant_type=authorization_code`, { method: "POST"})
+      .then(response => {
+        console.log(response)
+        // const accessToken = response.access_token
+        
+        // fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken}`)
+        //   .then(response => {
+        //     console.log(response)
+        //   })
+      })
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ecf0f1",
-  },
-  input: {
-    width: 200,
-    height: 44,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 10,
-  },
-});
+  return (
+    <Button
+      disabled={!request}
+      title="Login"
+      onPress={() => {
+        promptAsync();
+        }}
+    />
+  );
+}
