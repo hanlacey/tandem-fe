@@ -1,53 +1,63 @@
 import React, { Component, useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import users from "../assets/users";
-
+import rideData from "../assets/rides";
 export default class UserProfile extends Component {
   state = {
     user: {},
+    rides: [],
   };
 
   //atm constructor is only needed for filtering sample data
   constructor(props) {
     super(props);
+    const username = this.props.route.params.username;
     this.getUserInfo = () => {
       const user = users.filter((user) => {
-        return user.username === this.props.route.params.username;
+        return user.username === username;
       });
       return user[0];
+    };
+    this.getUserRides = () => {
+      const rides = rideData.filter((ride) => {
+        return ride.attendees.includes(username);
+      });
+      return rides;
     };
   }
 
   componentDidMount() {
     //make fetch request to db by username instead of getUserInfo()
     this.setState({ user: this.getUserInfo() });
+    this.setState({ rides: this.getUserRides() });
   }
   render() {
-    // const userRideList = () => {
-    //   return userRides.map((ride) => {
-    //     return (
-    //       <View key={ride.rideId} style={styles.openRide}>
-    //         <Text style={styles.ride}>{ride.username}'s ride</Text>
-    //       </View>
-    //     );
-    //   });
-    // };
-    const { user } = this.state;
+    const { rides, user } = this.state;
+
+    const userRideList = () => {
+      return rides.map((ride) => {
+        return (
+          <View>
+            <Text>{ride.author}'s ride / </Text>
+          </View>
+        );
+      });
+    };
     return (
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerContent}>
-            <Image style={styles.avatar} source={user.avatar_url} />
+            <Image style={styles.avatar} source={{ uri: user.avatar_url }} />
             <Text style={styles.name}>{user.username} </Text>
             <Text style={styles.userInfo}>
               {user.bike_type} {"  /  "} {user.experience_level}
             </Text>
           </View>
         </View>
-        {/* <View style={styles.userRides}>
+        <View style={styles.userRides}>
           <Text>Open rides</Text>
-          <Text style={styles.ride}>{userRideList()}</Text>
-        </View> */}
+          <Text style={styles.ride}>{userRideList()} </Text>
+        </View>
       </View>
     );
   }

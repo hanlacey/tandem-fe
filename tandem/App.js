@@ -8,7 +8,7 @@ import StravaSignup from './components/StravaSignup';
 import RideCard from './components/RideCard'
 import UserProfile from './components/UserProfile';
 import OpenRidesList from './components/OpenRidesList'
-import MapComponent from './components/MapComponent';
+// import MapComponent from './components/MapComponent';
 import EventAttendees from './components/EventAttendees';
 
 const Stack = createStackNavigator()
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={ConfigureProfile} options={{
+        <Stack.Screen name="Home" component={StravaSignup} options={{
           title: 'Tandem',
           headerStyle: {
             backgroundColor: '#f4511e',

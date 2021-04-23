@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import rideData from "../assets/rides";
 import RideCard from "./RideCard";
 
@@ -18,7 +18,7 @@ export default function OpenRidesList({ route }) {
       );
     });
   };
-  return <View style={styles.container}>{list()}</View>;
+  return <ScrollView style={styles.container}>{list()}</ScrollView>;
 }
 
 const styles = StyleSheet.create({

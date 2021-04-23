@@ -36,14 +36,13 @@ function RideCard({ ride, route }) {
       <Text style={styles.description}>
         {description}
         {"\n"}
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("UserProfile", { username: author })
-          }
-        >
-          <Text style={styles.authorLink}>{author}</Text>
-        </TouchableOpacity>
       </Text>
+      <TouchableOpacity
+        style={styles.description}
+        onPress={() => navigation.navigate("UserProfile", { username: author })}
+      >
+        <Text style={styles.authorLink}>{author}</Text>
+      </TouchableOpacity>
       <Text style={styles.body}>
         {parseDate(ride_date)}
         {"\n"}
@@ -75,8 +74,9 @@ const styles = StyleSheet.create({
   },
   description: {
     backgroundColor: "#e8e8e8",
-    paddingVertical: "5%",
+    textAlign: "center",
     paddingHorizontal: "5%",
+    paddingVertical: "2%",
   },
   body: {
     paddingVertical: "5%",
@@ -84,6 +84,8 @@ const styles = StyleSheet.create({
   },
   authorLink: {
     color: "red",
+    textAlign: "center",
+    paddingTop: "0%",
   },
 });
 
