@@ -33,7 +33,17 @@ function RideCard({ ride, route }) {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title.toLowerCase()}</Text>
-      <Text style={styles.description}> {description}</Text>
+      <Text style={styles.description}>
+        {description}
+        {"\n"}
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("UserProfile", { username: author })
+          }
+        >
+          <Text style={styles.authorLink}>{author}</Text>
+        </TouchableOpacity>
+      </Text>
       <Text style={styles.body}>
         {parseDate(ride_date)}
         {"\n"}
@@ -43,13 +53,6 @@ function RideCard({ ride, route }) {
         {"\n"}
         {attendees.length} attending
         {"\n"}
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("UserProfile", { username: author })
-          }
-        >
-          <Text style={styles.link}>ride created by {author}</Text>
-        </TouchableOpacity>
       </Text>
     </View>
   );
@@ -72,12 +75,14 @@ const styles = StyleSheet.create({
   },
   description: {
     backgroundColor: "#e8e8e8",
+    paddingVertical: "5%",
+    paddingHorizontal: "5%",
   },
   body: {
     paddingVertical: "5%",
     paddingHorizontal: "5%",
   },
-  link: {
+  authorLink: {
     color: "red",
   },
 });

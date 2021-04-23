@@ -9,7 +9,7 @@ export default rideData = [
         description: "anyone want to join me on a loop from chester to manchester",
         experience_level: "hardcore",
         created_at: 1611324163389,
-        attendees: ['t0gden, nadia200']
+        attendees: ['t0gden', 'nadia200']
     },
     {
         ride_id: "2",
@@ -21,7 +21,7 @@ export default rideData = [
         description: "anyone want to join me on a loop around manchester",
         experience_level: "challenging",
         created_at: 1601324163389,
-        attendees: ['raofRides, nadia200, t0gden']
+        attendees: ['raofRides', 'nadia200', 't0gden']
     },
     {
         ride_id: "3",
@@ -45,7 +45,7 @@ export default rideData = [
         description: "anyone in the sheffield area want to join me on a loop?",
         experience_level: "intermediate",
         created_at: 1601324162389,
-        attendees: ['rollingDan, t0gden']
+        attendees: ['rollingDan', 't0gden']
     },
     {
         ride_id: "5",
@@ -57,7 +57,7 @@ export default rideData = [
         description: "gonna ride around the city",
         experience_level: "casual",
         created_at: 1601324162389,
-        attendees: ['raofRides, nadia200, hannah12345']
+        attendees: ['raofRides', 'nadia200', 'hannah12345']
     },
     {
         ride_id: "6",
@@ -69,6 +69,6 @@ export default rideData = [
         description: "gonna ride around the city",
         experience_level: "challenging",
         created_at: 1601324162389,
-        attendees: ['nadia200, raofRides, hannah12345']
+        attendees: ['nadia200', 'raofRides', 'hannah12345']
     },
 ]
