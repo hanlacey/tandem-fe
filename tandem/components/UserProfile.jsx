@@ -1,59 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import sampleRides from "../utils/rideListGenerator";
+import users from "../assets/users";
 
-export default function UserProfile() {
-  const [name, setName] = useState("Boris Johson");
-  const [age, setAge] = useState("45");
-  const [userBikeType, setUserBikeType] = useState("mountain");
-  const [userDifficulty, setUserDifficulty] = useState("casual");
-  const [userRides, setUserRides] = useState(sampleRides);
-
-  useEffect(() => {
-    setUserRides(
-      sampleRides.filter(
-        (ride) =>
-          ride.rideBikeType === userBikeType &&
-          ride.rideDifficulty === userDifficulty
-      )
-    );
-  }, [sampleRides]);
-
-  const userRideList = () => {
-    return userRides.map((ride) => {
-      return (
-        <View key={ride.rideId} style={styles.openRide}>
-          <Text style={styles.ride}>{ride.rideCreator}'s ride</Text>
-        </View>
-      );
-    });
+export default class UserProfile extends Component {
+  state = {
+    user: {},
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <Image
-            style={styles.avatar}
-            source={{
-              uri: "https://i.imgur.com/wpA5DVi.jpg",
-            }}
-          />
+  //atm constructor is only needed for filtering sample data
+  constructor(props) {
+    super(props);
+    this.getUserInfo = () => {
+      const user = users.filter((user) => {
+        return user.username === this.props.route.params.username;
+      });
+      return user[0];
+    };
+  }
 
-          <Text style={styles.name}>{name} </Text>
-          <Text style={styles.userInfo}> {age}, London </Text>
-          <Text style={styles.userInfo}>
-            {" "}
-            Bike Type:{userBikeType} - Difficulty:{userDifficulty}
-          </Text>
+  componentDidMount() {
+    //make fetch request to db by username instead of getUserInfo()
+    this.setState({ user: this.getUserInfo() });
+  }
+  render() {
+    // const userRideList = () => {
+    //   return userRides.map((ride) => {
+    //     return (
+    //       <View key={ride.rideId} style={styles.openRide}>
+    //         <Text style={styles.ride}>{ride.username}'s ride</Text>
+    //       </View>
+    //     );
+    //   });
+    // };
+    const { user } = this.state;
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.headerContent}>
+            <Image
+              style={styles.avatar}
+              source={"http://clipart-library.com/images/8TEjdRMEc.png"}
+            />
+
+            <Text style={styles.name}>{user.username} </Text>
+            <Text style={styles.userInfo}>
+              {user.bike_type} {"  /  "} {user.experience_level}
+            </Text>
+          </View>
         </View>
+        {/* <View style={styles.userRides}>
+          <Text>Open rides</Text>
+          <Text style={styles.ride}>{userRideList()}</Text>
+        </View> */}
       </View>
-      <View style={styles.userRides}>
-        <Text>Open rides</Text>
-        <Text style={styles.ride}>{userRideList()}</Text>
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#778899",
     fontWeight: "600",
+    textAlign: "center",
   },
   userRides: {
     flexWrap: "wrap",
