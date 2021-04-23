@@ -20,17 +20,19 @@ function RideCard({ ride, route }) {
   const navigation = useNavigation();
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>{title.toLowerCase()}</Text>
-      <Text style={styles.description}>
-        {description}
-        {"\n"}
-      </Text>
-      <TouchableOpacity
-        style={styles.description}
-        onPress={() => navigation.navigate("UserProfile", { username: author })}
-      >
-        <Text style={styles.authorLink}>{author}</Text>
-      </TouchableOpacity>
+      <View style={styles.title}>
+        <Text style={styles.title}>{title.toLowerCase()}</Text>
+      </View>
+      <Text style={styles.description}>{description}</Text>
+      <View>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("UserProfile", { username: author })
+          }
+        >
+          <Text style={styles.authorLink}>{author}</Text>
+        </TouchableOpacity>
+      </View>
       <Text style={styles.body}>
         {parseDate(ride_date)}
         {"\n"}
@@ -50,30 +52,35 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginHorizontal: "5%",
     marginVertical: "5%",
-    paddingBottom: "5%",
     textAlign: "center",
+    borderRadius: 8,
   },
   title: {
     backgroundColor: "#f4511e",
-    padding: "5%",
-    fontSize: 18,
+    padding: "3%",
+    fontSize: 22,
     fontWeight: "bold",
     color: "#292929",
+    textAlign: "center",
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   description: {
     backgroundColor: "#e8e8e8",
     textAlign: "center",
-    paddingHorizontal: "5%",
+    paddingHorizontal: "2%",
     paddingVertical: "2%",
   },
   body: {
-    paddingVertical: "5%",
-    paddingHorizontal: "5%",
+    textAlign: "center",
+    padding: "4%",
+    paddingBottom: "1%",
   },
   authorLink: {
     color: "red",
     textAlign: "center",
-    paddingTop: "0%",
+    backgroundColor: "#e8e8e8",
+    paddingBottom: "2%",
   },
 });
 
