@@ -2,6 +2,8 @@ import React, { Component, useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import users from "../assets/users";
 import rideData from "../assets/rides";
+import parseDate from "../utils/parseDate";
+
 export default class UserProfile extends Component {
   state = {
     user: {},
@@ -31,18 +33,24 @@ export default class UserProfile extends Component {
     this.setState({ user: this.getUserInfo() });
     this.setState({ rides: this.getUserRides() });
   }
+
   render() {
     const { rides, user } = this.state;
 
     const userRideList = () => {
       return rides.map((ride) => {
         return (
-          <View>
-            <Text>{ride.author}'s ride / </Text>
+          <View key={ride.ride_id} style={styles.ride}>
+            <Text style={styles.rideTitle}>{ride.title} </Text>
+            <Text style={styles.rideDescription}>
+              {ride.author} - {parseDate(ride.ride_date)} -{" "}
+              {ride.attendees.length} riders
+            </Text>
           </View>
         );
       });
     };
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -54,9 +62,11 @@ export default class UserProfile extends Component {
             </Text>
           </View>
         </View>
-        <View style={styles.userRides}>
-          <Text>Open rides</Text>
-          <Text style={styles.ride}>{userRideList()} </Text>
+        <View>
+          <Text style={styles.rideListHeader}>
+            {user.username}'s active rides
+          </Text>
+          {userRideList(this.parseDate)}
         </View>
       </View>
     );
@@ -90,15 +100,21 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
   },
-  userRides: {
-    flexWrap: "wrap",
-    fontSize: 15,
-    fontWeight: "600",
+  rideListHeader: {
     textAlign: "center",
-    alignContent: "center",
-    justifyContent: "center",
+    backgroundColor: "#FF4500",
+    padding: "5%",
   },
   ride: {
     backgroundColor: "white",
+    marginHorizontal: "5%",
+    marginVertical: "2%",
+    paddingHorizontal: "5%",
+    paddingVertical: "2%",
+    borderRadius: 3,
   },
+  rideTitle: {
+    color: "red",
+  },
+  rideDescription: {},
 });

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import parseDate from "../utils/parseDate";
 
 function RideCard({ ride, route }) {
   const {
@@ -15,19 +16,6 @@ function RideCard({ ride, route }) {
     created_at,
     attendees,
   } = ride;
-
-  const parseDate = (ride_date) => {
-    const weirdDate = new Date(ride_date);
-
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    };
-    const normalDate = weirdDate.toLocaleString("default", options);
-    return normalDate;
-  };
 
   const navigation = useNavigation();
   return (
