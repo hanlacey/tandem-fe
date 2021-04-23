@@ -41,6 +41,8 @@ function RideCard({ ride, route }) {
         {"\n"}
         {route_data}
         {"\n"}
+        {attendees.length} attending
+        {"\n"}
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("UserProfile", { username: author })

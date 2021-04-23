@@ -6,7 +6,7 @@ export default users = [
         last_name: "Ogden",
         email: "example1@gmail.com",
         password: "abcde1",
-        avatar_url: "http://clipart-library.com/images/8TEjdRMEc.png",
+        avatar_url: "https://media.gettyimages.com/photos/confident-boy-sitting-on-bicycle-picture-id509011871",
         location: "Chester",
         bike_type: "mountain",
         experience_level: "challenging"
@@ -18,7 +18,7 @@ export default users = [
         last_name: "Benaesha",
         email: "example2@gmail.com",
         password: "abcde2",
-        avatar_url: "http://clipart-library.com/images/yckAgeMRi.jpg",
+        avatar_url: "https://daily.jstor.org/wp-content/uploads/2017/08/boy_on_bike_1050x700.jpg",
         location: "Manchester",
         bike_type: "mountain",
         experience_level: "hardcore"
@@ -30,7 +30,7 @@ export default users = [
         last_name: "Stevenson",
         email: "example3@gmail.com",
         password: "abcde3",
-        avatar_url: "http://clipart-library.com/images/pc78gEXRi.jpg",
+        avatar_url: "https://c8.alamy.com/comp/E8GK63/portrait-of-boy-on-bicycle-E8GK63.jpg",
         location: "Sheffield",
         bike_type: "road",
         experience_level: "casual"
@@ -54,7 +54,7 @@ export default users = [
         last_name: "Amir",
         email: "hannah@email.com",
         password: "abcde5",
-        avatar_url: "https://i.imgur.com/ZXVGP.jpg",
+        avatar_url: "https://image.smythstoys.com/original/desktop/191876.jpg",
         location: "Manchester",
         bike_type: "road",
         experience_level: "casual"

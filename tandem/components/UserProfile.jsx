@@ -37,11 +37,7 @@ export default class UserProfile extends Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerContent}>
-            <Image
-              style={styles.avatar}
-              source={"http://clipart-library.com/images/8TEjdRMEc.png"}
-            />
-
+            <Image style={styles.avatar} source={user.avatar_url} />
             <Text style={styles.name}>{user.username} </Text>
             <Text style={styles.userInfo}>
               {user.bike_type} {"  /  "} {user.experience_level}
