@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import sampleRides from "../utils/rideListGenerator";
+import rideData from "../assets/rides";
 import RideCard from "./RideCard";
 
 export default function OpenRidesList({ route }) {
   const { user, userBikeType, userDifficulty } = route.params;
-  const [rides, setRides] = useState([sampleRides]);
+  const [rides, setRides] = useState(rideData);
   const [rideBikeType, setRideBikeType] = useState(userBikeType);
   const [rideDifficulty, setRideDifficulty] = useState(userDifficulty);
 
   const list = () => {
-    return sampleRides.map((ride) => {
+    return rides.map((ride) => {
       return (
-        <View key={ride.rideId}>
+        <View key={ride.ride_id}>
           <RideCard ride={ride} />
         </View>
       );

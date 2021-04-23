@@ -17,7 +17,7 @@ export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={StravaSignup} options={{
+        <Stack.Screen name="Home" component={ConfigureProfile} options={{
           title: 'Tandem',
           headerStyle: {
             backgroundColor: '#f4511e',
@@ -29,7 +29,7 @@ export default function App() {
         }} />
         <Stack.Screen name="StravaSignup" component={StravaSignup} />
         <Stack.Screen name="ConfigureProfile" component={ConfigureProfile} />
-        <Stack.Screen name="MapComponent" component={MapComponent} />
+        {/* <Stack.Screen name="MapComponent" component={MapComponent} /> */}
         <Stack.Screen name="RideCard" component={RideCard} />
         <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="OpenRidesList" component={OpenRidesList} />

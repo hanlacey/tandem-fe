@@ -1,5 +1,6 @@
-[
+export default rideData = [
     {
+        ride_id: "1",
         author: "t0gden",
         ride_date: 1611824163389,
         route_data: "chester to manchester",
@@ -11,6 +12,7 @@
         attendees: ['t0gden']
     },
     {
+        ride_id: "2",
         author: "raofRides",
         ride_date: 1612329163389,
         route_data: "Manchester",
@@ -22,6 +24,7 @@
         attendees: ['raofRides, nadia200, hannah12345, t0gden']
     },
     {
+        ride_id: "3",
         author: "rollingDan",
         ride_date: 1619324193389,
         route_data: "Sheffield hills",
@@ -33,6 +36,7 @@
         attendees: ['rollingDan']
     },
     {
+        ride_id: "4",
         author: "rollingDan",
         ride_date: 1619324195389,
         route_data: "Sheffield roads",
