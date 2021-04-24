@@ -1,56 +1,95 @@
 
 import * as React from 'react';
-import { Avatar, Button, Card, Title, Paragraph, TextInput } from 'react-native-paper';
-import {StyleSheet,Text} from 'react-native';
+import { Button, Card, Title, Paragraph, TextInput } from 'react-native-paper';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import parseDate from "../utils/parseDate";
 const ride =
 {
-  ride_id: "2",
   author: "raofRides",
   ride_date: 1612329163389,
   route_data: "Manchester",
   ride_type: "road",
   title: "Manchester loop",
   description: "anyone want to join me on a loop around manchester",
-  experience_level: "challenging",
+  experience_level: "intermediate",
   created_at: 1601324163389,
-  attendees: ['raofRides', 'nadia200', 't0gden']
+  votes: 0
 }
-
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 export default function SingleRide() {
   const [text, setText] = React.useState('');
   return (
-    <Card style={styles.container}>
-      <Card.Title title={ride.route_data} subtitle={ride.experience_level} subtitle={ride.ride_type}/>
-      <Card.Content>
-        {/* <Title>{ride.route_data}</Title> */}
-      </Card.Content>
-      <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-      <Card.Content>
-        <Paragraph>{ride.description}</Paragraph>
-      </Card.Content>
-      <Card.Actions>
-        <Button>Cancel</Button>
-        <Button>Ok</Button>
-      </Card.Actions>
-      <Text>Make a comment</Text>
-      <TextInput
-        label="write.."
-        value={text}
-        onChangeText={text => setText(text)}
-      />
+    <View>
+      <Card style={styles.container}>
+        <Card.Title title={ride.route_data} subtitle={parseDate(ride.ride_date)} />
+        {/* <Text style={styles.commentContainer}>By {ride.author}</Text> */}
+        <Card.Content>
+          {/* <Title>{ride.route_data}</Title> */}
+        </Card.Content>
+        <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+        <Card.Content>
+          <Paragraph style={styles.rideType}>Ride Type: {ride.ride_type}</Paragraph>
+          <Paragraph style={styles.rideType}>Experience Level: {ride.experience_level}</Paragraph>
+          <Paragraph>{ride.description}</Paragraph>
+        </Card.Content>
+        <Card.Actions>
+          <TouchableOpacity style={styles.button}>
+            <Paragraph>Ok</Paragraph>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Paragraph>Cancel</Paragraph>
+          </TouchableOpacity>
+        </Card.Actions>
 
-    </Card>
+
+      </Card>
+      <View style={styles.commentContainer}>
+        <Text >Make a comment</Text>
+        <TextInput
+          label="write.."
+          value={text}
+          style={styles.commentBox}
+          onChangeText={text => setText(text)}
+        />
+      </View>
+    </View>
 
   )
 };
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     marginHorizontal: 30,
     marginTop: 20,
     marginVeritcal: 10
-    
+
+  },
+  commentContainer: {
+    marginTop: 20,
+    marginHorizontal: 30,
+  },
+  commentBox: {
+    height: 100
+  },
+  button: {
+    color: "white",
+    fontWeight: 'bold',
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 100,
+    marginHorizontal: 30,
+    borderRadius: 30,
+    backgroundColor: "#FF4500",
+    shadowColor: 'black',
+    shadowOpacity: .2,
+    shadowOffset: {
+      height: 1,
+      width: -2
+    },
+    elevation: 2
+  },
+  rideType: {
+    textDecorationLine: 'underline'
   }
 })

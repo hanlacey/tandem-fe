@@ -19,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={StravaSignup} options={{
+        <Stack.Screen name="Home" component={SingleRide} options={{
           title: 'Tandem',
           headerStyle: {
             backgroundColor: '#f4511e',
