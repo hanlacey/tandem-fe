@@ -12,11 +12,11 @@ export default function OpenRidesList({ route }) {
   const list = () => {
     return rides.map((ride) => {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate("SingleRide", { ride: ride })}>
+
         <View key={ride.ride_id}>
           <RideCard ride={ride} />
         </View>
-        </TouchableOpacity>
+
       );
     });
   };

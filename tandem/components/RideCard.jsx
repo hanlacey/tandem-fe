@@ -19,7 +19,9 @@ function RideCard({ ride, route }) {
 
   const navigation = useNavigation();
   return (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={() =>
+      navigation.navigate("SingleRide", { ride: ride })
+    }style={styles.card}>
       <View style={styles.title}>
         <Text style={styles.title}>{title.toLowerCase()}</Text>
       </View>
@@ -43,7 +45,7 @@ function RideCard({ ride, route }) {
         {attendees.length} attending
         {"\n"}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
