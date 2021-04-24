@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Button, Card, Title, Paragraph, TextInput } from 'react-native-paper';
+import { Card, Paragraph, TextInput } from 'react-native-paper';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import parseDate from "../utils/parseDate";
 const ride =
@@ -16,8 +16,9 @@ const ride =
   votes: 0
 }
 
-export default function SingleRide() {
+export default function SingleRide({route}) {
   const [text, setText] = React.useState('');
+  const { ride } = route.params;
   return (
     <View>
       <Card style={styles.container}>
