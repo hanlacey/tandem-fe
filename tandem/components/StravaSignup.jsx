@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
-import { Button } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -31,15 +31,15 @@ export default function App() {
       console.log(response)
       const { code } = response.params;
       getActivityData(code)
-      }
+    }
   }, [response]);
 
   const getActivityData = (code) => {
-    fetch(`https://www.strava.com/oauth/token?client_id=64734&client_secret=1c40a829591afa728f4d54ed7b2408e11b092d9c&code=${code}&grant_type=authorization_code`, { method: "POST"})
+    fetch(`https://www.strava.com/oauth/token?client_id=64734&client_secret=1c40a829591afa728f4d54ed7b2408e11b092d9c&code=${code}&grant_type=authorization_code`, { method: "POST" })
       .then(response => {
         console.log(response)
         // const accessToken = response.access_token
-        
+
         // fetch(`https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken}`)
         //   .then(response => {
         //     console.log(response)
@@ -48,12 +48,33 @@ export default function App() {
   }
 
   return (
+    <View style={styles.container}>
     <Button
+      color="#FF4500"
+      title={"Signup with Strava"}
+      style={styles.input}
       disabled={!request}
-      title="Login"
       onPress={() => {
         promptAsync();
-        }}
+      }}
     />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+  },
+  input: {
+    width: 200,
+    height: 44,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "black",
+    marginBottom: 10,
+  },
+});
