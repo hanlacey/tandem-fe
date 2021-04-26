@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Card, Paragraph, TextInput } from "react-native-paper";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import CommentList from "./CommentList"
 import parseDate from "../utils/parseDate";
 const ride = {
 	author: "raofRides",
@@ -53,6 +54,7 @@ export default function SingleRide({ route }) {
 					style={styles.commentBox}
 					onChangeText={(text) => setText(text)}
 				/>
+				<CommentList/>
 			</View>
 		</View>
 	);
