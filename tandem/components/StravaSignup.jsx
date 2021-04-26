@@ -7,6 +7,8 @@ import axios from 'axios'
 
 import { REACT_APP_STRAVA_CLIENT_ID, REACT_APP_STRAVA_CLIENT_SECRET } from "@env"
 
+import { formatUsersData } from "../utils/formatUsersData"
+
 WebBrowser.maybeCompleteAuthSession();
 
 // Endpoint
@@ -39,7 +41,7 @@ export default function App({ navigation }) {
       }
   }, [response]);
 
-  const getActivityData = (code) => {
+  const getActivityData = async (code) => {
 
     const config = {
       headers: { 
@@ -48,39 +50,26 @@ export default function App({ navigation }) {
       }
     }
 
-    axios.post(`https://www.strava.com/oauth/token?client_id=${REACT_APP_STRAVA_CLIENT_ID}&client_secret=${REACT_APP_STRAVA_CLIENT_SECRET}&code=${code}&grant_type=authorization_code`, {}, config)
-      .then((response) => {
-        console.log(response)
-        const { access_token } = response.data
-        axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`)
-          .then((response) => {
-            console.log(response)
-            navigation.navigate("OpenRidesList")
-        })
-      })
+    const userData = await axios.post(`https://www.strava.com/oauth/token?client_id=${REACT_APP_STRAVA_CLIENT_ID}&client_secret=${REACT_APP_STRAVA_CLIENT_SECRET}&code=${code}&grant_type=authorization_code`, {}, config)
+      
+    const { access_token } = userData.data
+
+    const activityData = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`)
+
+    formatUsersData(userData, activityData)
+
+    navigation.navigate("OpenRidesList")
   }
 
   return (
     <View>
         <Button
           disabled={!request}
+          color="#FF4500"
           title="Login"
           onPress={() => {
             promptAsync();
           }}
-        />
-      
-
-        <Button
-          color="#FF4500"
-          title={"Configure profile"}
-          onPress={() => navigation.navigate("ConfigureProfile")}
-        />
-      
-        <Button
-          title={"View routes"}
-          onPress={() => navigation.navigate("MapComponent")}
-          color="#841584"
         />
       </View>
 
