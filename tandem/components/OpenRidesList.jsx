@@ -8,27 +8,21 @@ import {
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import RideCard from "./RideCard";
-import * as API from "../api/api"
+import * as API from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
 	// const { user, userBikeType, userDifficulty } = route.params;
-<<<<<<< HEAD
 	const [rides, setRides] = useState([]);
-	const [bikeValue, setBikeValue] = useState("mountain");
+	const [bike, setBike] = useState("mountain");
 	const [difficulty, setDifficulty] = useState("casual");
 
-	useEffect(()=>{
+	useEffect(() => {
 		API.getAllRides().then((rides) => {
-			console.log(rides)
-		setRides(rides)})
-		}, [])
-	
-=======
-	const [rides, setRides] = useState(rideData);
-	const [bike, setBikeFilter] = useState("mountain");
-	const [difficulty, setDifficultyFilter] = useState("casual");
+			console.log(rides);
+			setRides(rides);
+		});
+	}, []);
 
->>>>>>> 6531429b43f4ea6153e937bae5389c36831a9f1d
 	const list = () => {
 		return rides.map((ride) => {
 			return (
@@ -39,12 +33,6 @@ export default function OpenRidesList({ route, navigation }) {
 		});
 	};
 
-<<<<<<< HEAD
-=======
-	//onValueChange ->
-	//fetchFilteredRides(bike, difficulty)
-
->>>>>>> 6531429b43f4ea6153e937bae5389c36831a9f1d
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity

@@ -10,11 +10,7 @@ import UserProfile from './components/UserProfile';
 import OpenRidesList from './components/OpenRidesList'
 import EventAttendees from './components/EventAttendees';
 import SingleRide from './components/SingleRide';
-<<<<<<< HEAD
-// import CommentList from './components/CommentList';
-=======
 import PostRide from './components/PostRide'
->>>>>>> 6531429b43f4ea6153e937bae5389c36831a9f1d
 
 const Stack = createStackNavigator()
 // object containing two properties Screen and Navigator

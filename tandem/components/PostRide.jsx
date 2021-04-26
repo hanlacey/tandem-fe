@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { TextInput } from "react-native-paper";
+import { TextInput, RadioButton } from "react-native-paper";
 import { DatePicker } from "./DatePicker";
+
 export default function PostRide() {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-
+	const [route, setRoute] = useState("");
 	return (
 		<View style={styles.input}>
 			<TextInput
@@ -23,6 +24,13 @@ export default function PostRide() {
 				value={description}
 			/>
 			<DatePicker />
+			<TextInput
+				style={styles.text}
+				label="Strava route ID"
+				mode="outlined"
+				onChangeText={(text) => setRoute(text)}
+				value={description}
+			/>
 		</View>
 	);
 }
