@@ -1,14 +1,17 @@
 const parseDate = (ride_date) => {
     const weirdDate = new Date(ride_date);
 
-    const options = {
+    const dateOptions = {
         weekday: "long",
-        year: "numeric",
-        month: "short",
         day: "numeric",
+        month: "long"
     };
-    const normalDate = weirdDate.toLocaleString("default", options);
-    return normalDate;
-};
-
+    const timeOptions = {
+        hour: "2-digit",
+        minute: "2-digit"
+    }
+    const normalDate = weirdDate.toLocaleString("default", dateOptions);
+    const time = weirdDate.toLocaleString("default", timeOptions)
+    return `${normalDate} at ${time}`
+}
 export default parseDate
