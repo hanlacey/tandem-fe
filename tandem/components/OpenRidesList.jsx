@@ -10,8 +10,9 @@ import { RadioButton } from "react-native-paper";
 import RideCard from "./RideCard";
 import * as API from "../api/api"
 
-export default function OpenRidesList({ route }) {
+export default function OpenRidesList({ route, navigation }) {
 	// const { user, userBikeType, userDifficulty } = route.params;
+<<<<<<< HEAD
 	const [rides, setRides] = useState([]);
 	const [bikeValue, setBikeValue] = useState("mountain");
 	const [difficulty, setDifficulty] = useState("casual");
@@ -22,6 +23,12 @@ export default function OpenRidesList({ route }) {
 		setRides(rides)})
 		}, [])
 	
+=======
+	const [rides, setRides] = useState(rideData);
+	const [bike, setBikeFilter] = useState("mountain");
+	const [difficulty, setDifficultyFilter] = useState("casual");
+
+>>>>>>> 6531429b43f4ea6153e937bae5389c36831a9f1d
 	const list = () => {
 		return rides.map((ride) => {
 			return (
@@ -32,15 +39,29 @@ export default function OpenRidesList({ route }) {
 		});
 	};
 
+<<<<<<< HEAD
+=======
+	//onValueChange ->
+	//fetchFilteredRides(bike, difficulty)
+
+>>>>>>> 6531429b43f4ea6153e937bae5389c36831a9f1d
 	return (
 		<View style={styles.container}>
+			<TouchableOpacity
+				style={styles.createRide}
+				onPress={() => {
+					navigation.navigate("PostRide");
+				}}
+			>
+				<Text style={{ textAlign: "center" }}>Create ride</Text>
+			</TouchableOpacity>
 			<View style={styles.filter}>
 				<View>
 					<Text style={styles.filterLabel}>Bike</Text>
 					<RadioButton.Group
 						style={styles.bike}
-						onValueChange={(bikeValue) => setBikeValue(bikeValue)}
-						value={bikeValue}
+						onValueChange={(bike) => setBikeFilter(bike)}
+						value={bike}
 					>
 						<View>
 							<Text>Road</Text>
@@ -60,7 +81,7 @@ export default function OpenRidesList({ route }) {
 					<Text style={styles.filterLabel}>Difficulty</Text>
 
 					<RadioButton.Group
-						onValueChange={(difficulty) => setDifficulty(difficulty)}
+						onValueChange={(difficulty) => setDifficultyFilter(difficulty)}
 						value={difficulty}
 					>
 						<View>
@@ -85,21 +106,28 @@ export default function OpenRidesList({ route }) {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		flex: 7,
 		marginTop: "5%",
 		width: "100%",
 		height: "100%",
 		alignContent: "center",
 		justifyContent: "center",
 	},
-	filterLabel: {
-		fontWeight: "bold",
+	createRide: {
+		backgroundColor: "white",
+		padding: "5%",
+		margin: "5%",
+		marginBottom: "10%",
 	},
 	filter: {
 		flexDirection: "row",
 		width: "100%",
-		justifyContent: "space-evenly",
+		height: "25%",
+		justifyContent: "space-around",
 	},
-	bike: {},
+	filterLabel: {
+		fontWeight: "bold",
+	},
+	bike: { flexDirection: "row" },
 	difficulty: {},
 });
