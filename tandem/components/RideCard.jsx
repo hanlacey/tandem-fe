@@ -5,7 +5,6 @@ import parseDate from "../utils/parseDate";
 import * as API from "../api/api"
 
 function RideCard({ ride, route }) {
-<<<<<<< HEAD
   const [attendees, setAttendees] = useState([])
   // console.log(ride)
   const {
@@ -57,52 +56,6 @@ function RideCard({ ride, route }) {
       </Text>
     </TouchableOpacity>
   );
-=======
-	const {
-		ride_id,
-		title,
-		author,
-		ride_date,
-		route_data,
-		ride_type,
-		description,
-		experience_level,
-		created_at,
-		attendees,
-	} = ride;
-
-	const navigation = useNavigation();
-	return (
-		<TouchableOpacity
-			onPress={() => navigation.navigate("SingleRide", { ride: ride })}
-			style={styles.card}
-		>
-			<View style={styles.title}>
-				<Text style={styles.title}>{title.toLowerCase()}</Text>
-			</View>
-			<Text style={styles.description}>{description}</Text>
-			<View>
-				<TouchableOpacity
-					onPress={() =>
-						navigation.navigate("UserProfile", { username: author })
-					}
-				>
-					<Text style={styles.authorLink}>{author}</Text>
-				</TouchableOpacity>
-			</View>
-			<Text style={styles.body}>
-				{parseDate(ride_date)}
-				{"\n"}
-				{experience_level} {" / "} {ride_type}
-				{"\n"}
-				{route_data}
-				{"\n"}
-				{attendees.length} attending
-				{"\n"}
-			</Text>
-		</TouchableOpacity>
-	);
->>>>>>> 6531429b43f4ea6153e937bae5389c36831a9f1d
 }
 
 const styles = StyleSheet.create({
