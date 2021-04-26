@@ -1,0 +1,22 @@
+{
+  "files": {
+    "app.js": "/tandem-fe/static/js/app.1830eb0b.chunk.js",
+    "app.js.map": "/tandem-fe/static/js/app.1830eb0b.chunk.js.map",
+    "runtime~app.js": "/tandem-fe/static/js/runtime~app.8c2ee1e2.js",
+    "runtime~app.js.map": "/tandem-fe/static/js/runtime~app.8c2ee1e2.js.map",
+    "static/js/2.fb3a63a1.chunk.js": "/tandem-fe/static/js/2.fb3a63a1.chunk.js",
+    "static/js/2.fb3a63a1.chunk.js.map": "/tandem-fe/static/js/2.fb3a63a1.chunk.js.map",
+    "favicon-16.png": "/tandem-fe/favicon-16.png",
+    "favicon-32.png": "/tandem-fe/favicon-32.png",
+    "favicon.ico": "/tandem-fe/favicon.ico",
+    "index.html": "/tandem-fe/index.html",
+    "manifest.json": "/tandem-fe/manifest.json",
+    "serve.json": "/tandem-fe/serve.json",
+    "static/js/2.fb3a63a1.chunk.js.LICENSE.txt": "/tandem-fe/static/js/2.fb3a63a1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.8c2ee1e2.js",
+    "static/js/2.fb3a63a1.chunk.js",
+    "static/js/app.1830eb0b.chunk.js"
+  ]
+}
