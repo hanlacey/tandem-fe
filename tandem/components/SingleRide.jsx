@@ -2,8 +2,10 @@ import * as React from "react";
 import { Card, Paragraph, TextInput } from "react-native-paper";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import CommentList from "./CommentList"
+import * as API from "../api/api"
 import parseDate from "../utils/parseDate";
 const ride = {
+	ride_id: 1,
 	author: "raofRides",
 	ride_date: 1612329163389,
 	route_data: "Manchester",
@@ -14,10 +16,20 @@ const ride = {
 	created_at: 1601324163389,
 	votes: 0,
 };
+//Make call to api for attendees within this component or pass down from ride card
 
 export default function SingleRide({ route }) {
 	const [text, setText] = React.useState("");
+	const [attendees, setAttendees] = React.useState([]);
 	const { ride } = route.params;
+
+
+  useEffect(()=>{
+		API.getAttendeesByRideId(ride_id).then((attendees) => {
+		setAttendees(attendees)})
+		}, [ride_id])
+
+
 	return (
 		<View>
 			<Card style={styles.container}>
@@ -25,8 +37,6 @@ export default function SingleRide({ route }) {
 					title={ride.route_data}
 					subtitle={parseDate(ride.ride_date)}
 				/>
-				{/* <Text style={styles.commentContainer}>By {ride.author}</Text> */}
-				<Card.Content>{/* <Title>{ride.route_data}</Title> */}</Card.Content>
 				<Card.Cover source={{ uri: "https://picsum.photos/700" }} />
 				<Card.Content>
 					<Paragraph style={styles.rideType}>
@@ -39,15 +49,12 @@ export default function SingleRide({ route }) {
 				</Card.Content>
 				<Card.Actions>
 					<TouchableOpacity style={styles.button}>
-						<Paragraph>Ok</Paragraph>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.button}>
-						<Paragraph>Cancel</Paragraph>
+						<Paragraph>Join</Paragraph>
 					</TouchableOpacity>
 				</Card.Actions>
 			</Card>
 			<View style={styles.commentContainer}>
-				<Text>Make a comment</Text>
+				<Text style={{fontWeight: "bold"}}>Make a comment</Text>
 				<TextInput
 					label="write.."
 					value={text}

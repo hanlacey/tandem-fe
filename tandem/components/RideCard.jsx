@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import parseDate from "../utils/parseDate";
+import * as API from "../api/api"
 
 function RideCard({ ride, route }) {
+  const [attendees, setAttendees] = useState([])
+  // console.log(ride)
   const {
     ride_id,
     title,
@@ -14,8 +17,14 @@ function RideCard({ ride, route }) {
     description,
     experience_level,
     created_at,
-    attendees,
+   
   } = ride;
+
+  useEffect(()=>{
+		API.getAttendeesByRideId(ride_id).then((attendees) => {
+      console.log(attendees)
+		setAttendees(attendees)})
+		}, [ride_id])
 
   const navigation = useNavigation();
   return (

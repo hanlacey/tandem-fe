@@ -1,4 +1,4 @@
-import { postUser } from "../api/postUser"
+import { postUser } from "../api/api"
 
 export const formatUsersData = (userData, activityData) => {
     const athleteData = userData.data.athlete

@@ -11,7 +11,7 @@ import OpenRidesList from './components/OpenRidesList'
 // import MapComponent from './components/MapComponent';
 import EventAttendees from './components/EventAttendees';
 import SingleRide from './components/SingleRide';
-import CommentList from './components/CommentList';
+// import CommentList from './components/CommentList';
 
 const Stack = createStackNavigator()
 // object containing two properties Screen and Navigator

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	StyleSheet,
 	View,
@@ -7,14 +7,21 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import { RadioButton } from "react-native-paper";
-import rideData from "../assets/rides";
 import RideCard from "./RideCard";
+import * as API from "../api/api"
 
 export default function OpenRidesList({ route }) {
 	// const { user, userBikeType, userDifficulty } = route.params;
-	const [rides, setRides] = useState(rideData);
+	const [rides, setRides] = useState([]);
 	const [bikeValue, setBikeValue] = useState("mountain");
 	const [difficulty, setDifficulty] = useState("casual");
+
+	useEffect(()=>{
+		API.getAllRides().then((rides) => {
+			console.log(rides)
+		setRides(rides)})
+		}, [])
+	
 	const list = () => {
 		return rides.map((ride) => {
 			return (
@@ -23,10 +30,6 @@ export default function OpenRidesList({ route }) {
 				</View>
 			);
 		});
-	};
-
-	const handlePress = (value) => {
-		console.log(value);
 	};
 
 	return (
