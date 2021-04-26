@@ -64,14 +64,10 @@ const styles = StyleSheet.create({
 	container: {
 		marginHorizontal: 30,
 		marginTop: 20,
-		marginVertical: 10,
 	},
 	commentContainer: {
 		marginTop: 20,
 		marginHorizontal: 30,
-	},
-	commentBox: {
-		height: 100,
 	},
 	button: {
 		color: "white",
