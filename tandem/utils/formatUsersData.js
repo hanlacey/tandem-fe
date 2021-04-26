@@ -2,7 +2,7 @@ import { postUser } from "../api/postUser"
 
 export const formatUsersData = (userData, activityData) => {
     const athleteData = userData.data.athlete
-    const {username, firstname, lastname} = athleteData
+    const {username, firstname, lastname, city, country} = athleteData
     const avatarUrl = athleteData.profile
 
     const allActivities = activityData.data
@@ -21,10 +21,11 @@ export const formatUsersData = (userData, activityData) => {
 
     const formattedUserData = {
         username,
-        firstname,
-        lastname,
-        avatarUrl,
-        routesData
+        first_name: firstname,
+        last_name: lastname,
+        avatar_url: avatarUrl,
+        location: `${city}, ${country}`,
+        routes_data: routesData.toString(),
     }
 
     postUser(formattedUserData)
