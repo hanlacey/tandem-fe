@@ -10,15 +10,16 @@ import { formatPolylineData } from "../utils/formatPolylineData"
 import rides from "../assets/rides"
 
 export default function SingleRide({ route }) {
-	// const [text, setText] = React.useState("");
-	// const [attendees, setAttendees] = React.useState([]);
-	// const { ride } = route.params;
+	const [text, setText] = React.useState("");
+	const [attendees, setAttendees] = React.useState([]);
+	const { ride } = route.params;
 
 
-//  React.useEffect(()=>{
-// 		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
-// 		setAttendees(attendees)})
-// 		}, [ride.ride_id])
+ React.useEffect(()=>{
+		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
+		setAttendees(attendees)})
+		}, [ride.ride_id])
+
 	const formattedMapData = formatPolylineData(ride.route_data)
 
 	const { formattedCoords,
@@ -64,7 +65,7 @@ export default function SingleRide({ route }) {
 						Distance: {ride.distanceInKm}km
 					</Paragraph>
 					<Paragraph style={styles.rideType}>
-						Attendees: {ride.attendees.length}
+						Attendees: {attendees.length}
 					</Paragraph>
 					<Paragraph style={styles.rideType}>
 						Ride Type: {ride.ride_type}

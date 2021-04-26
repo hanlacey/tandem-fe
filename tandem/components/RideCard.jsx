@@ -22,7 +22,6 @@ function RideCard({ ride, route }) {
 
   useEffect(()=>{
 		API.getAttendeesByRideId(ride_id).then((attendees) => {
-      console.log(attendees)
 		setAttendees(attendees)})
 		}, [ride_id])
 
