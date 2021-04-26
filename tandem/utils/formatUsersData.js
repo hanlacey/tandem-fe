@@ -21,11 +21,11 @@ export const formatUsersData = (userData, activityData) => {
 
     const formattedUserData = {
         username,
-        firstname,
-        lastname,
-        avatarUrl,
+        first_name: firstname,
+        last_name: lastname,
+        avatar_url: avatarUrl,
         location: `${city}, ${country}`,
-        routesData
+        routes_data: routesData.toString(),
     }
 
     postUser(formattedUserData)
