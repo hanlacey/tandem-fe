@@ -18,7 +18,6 @@ export default function OpenRidesList({ route, navigation }) {
 
 	useEffect(() => {
 		API.getAllRides().then((rides) => {
-			console.log(rides);
 			setRides(rides);
 		});
 	}, []);
