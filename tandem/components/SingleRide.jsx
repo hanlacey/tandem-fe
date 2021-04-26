@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from "react-native";
+import { StyleSheet, Text, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import { Card, Paragraph, TextInput } from "react-native-paper";
 import CommentList from "./CommentList"
@@ -35,7 +35,7 @@ export default function SingleRide({ route }) {
 
 
 	return (
-		<View>
+		<ScrollView>
 			<MapView
 				style={styles.map}
 				initialRegion={{
@@ -83,7 +83,7 @@ export default function SingleRide({ route }) {
 					</TouchableOpacity>
 				</Card.Actions>
 			</Card>
-			<View style={styles.commentContainer}>
+			<ScrollView style={styles.commentContainer}>
 				<Text>Make a comment</Text>
 				<TextInput
 					label="write.."
@@ -92,8 +92,8 @@ export default function SingleRide({ route }) {
 					onChangeText={(text) => setText(text)}
 				/>
 				<CommentList/>
-			</View>
-		</View>
+			</ScrollView>
+		</ScrollView>
 	);
 }
 
