@@ -82,12 +82,6 @@ export default function App({ navigation }) {
           title={"Configure profile"}
           onPress={() => navigation.navigate("ConfigureProfile")}
         />
-
-        <Button
-          title={"View routes"}
-          onPress={() => navigation.navigate("MapComponent")}
-          color="#841584"
-        />
       </View>
 	);
 }
