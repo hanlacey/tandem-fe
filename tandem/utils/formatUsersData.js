@@ -14,7 +14,8 @@ export const formatUsersData = (userData, activityData) => {
             routesData.push({
                 routeName: activity.name,
                 routePolyline: activity.map.summary_polyline,
-                startLatLng: activity.start_latlng
+                startLatLng: activity.start_latlng,
+                distanceInKm: activity.distance / 1000
             })
         }
     })
