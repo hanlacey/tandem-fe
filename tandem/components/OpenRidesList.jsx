@@ -13,8 +13,8 @@ import * as API from "../api/api";
 export default function OpenRidesList({ route, navigation }) {
 	// const { user, userBikeType, userDifficulty } = route.params;
 	const [rides, setRides] = useState([]);
-	const [bike, setBike] = useState("mountain");
-	const [difficulty, setDifficulty] = useState("casual");
+	const [bike, setBikeFilter] = useState("mountain");
+	const [difficulty, setDifficultyFilter] = useState("casual");
 
 	useEffect(() => {
 		API.getAllRides().then((rides) => {

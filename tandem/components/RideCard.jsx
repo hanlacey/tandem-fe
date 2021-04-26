@@ -55,7 +55,7 @@ function RideCard({ ride, route }) {
 			</Text>
 		</TouchableOpacity>
 	);
-
+}
 const styles = StyleSheet.create({
 	card: {
 		backgroundColor: "white",
