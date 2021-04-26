@@ -40,6 +40,11 @@ export default function SingleRide({ route }) {
 		created_at: 1611324163389,
 		attendees: ["t0gden", "nadia200"],
 	};
+//  React.useEffect(()=>{
+// 		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
+// 		setAttendees(attendees)})
+// 		}, [ride.ride_id])
+	const formattedMapData = formatPolylineData(ride.route_data)
 
 	const formattedMapData = formatPolylineData(ride.route_data);
 
@@ -117,7 +122,11 @@ export default function SingleRide({ route }) {
 					style={styles.commentBox}
 					onChangeText={(text) => setText(text)}
 				/>
+<<<<<<< HEAD
 				<CommentList />
+=======
+				<CommentList ride ={ride}/>
+>>>>>>> 93721c264386459412f7442fe8daffa95762d254
 			</ScrollView>
 		</ScrollView>
 	);
