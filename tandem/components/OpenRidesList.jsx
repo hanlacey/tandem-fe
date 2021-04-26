@@ -7,7 +7,6 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import { RadioButton } from "react-native-paper";
-// import RideFilter from "./RideFilter";
 import rideData from "../assets/rides";
 import RideCard from "./RideCard";
 
