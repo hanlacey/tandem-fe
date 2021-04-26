@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from "react-native";
 import rideData from "../assets/rides";
 import RideCard from "./RideCard";
 
@@ -12,9 +12,11 @@ export default function OpenRidesList({ route }) {
   const list = () => {
     return rides.map((ride) => {
       return (
+
         <View key={ride.ride_id}>
           <RideCard ride={ride} />
         </View>
+
       );
     });
   };
