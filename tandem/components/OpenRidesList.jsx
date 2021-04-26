@@ -12,7 +12,7 @@ import rideData from "../assets/rides";
 import RideCard from "./RideCard";
 
 export default function OpenRidesList({ route }) {
-	const { user, userBikeType, userDifficulty } = route.params;
+	// const { user, userBikeType, userDifficulty } = route.params;
 	const [rides, setRides] = useState(rideData);
 	const [bikeValue, setBikeValue] = useState("mountain");
 	const [difficulty, setDifficulty] = useState("casual");
