@@ -10,10 +10,10 @@ import rideData from "../assets/rides";
 import RideCard from "./RideCard";
 
 export default function OpenRidesList({ route }) {
-	const { user, userBikeType, userDifficulty } = route.params;
+	// const { user, userBikeType, userDifficulty } = route.params;
 	const [rides, setRides] = useState(rideData);
-	const [rideBikeType, setRideBikeType] = useState(userBikeType);
-	const [rideDifficulty, setRideDifficulty] = useState(userDifficulty);
+	// const [rideBikeType, setRideBikeType] = useState(userBikeType);
+	// const [rideDifficulty, setRideDifficulty] = useState(userDifficulty);
 
 	const list = () => {
 		return rides.map((ride) => {

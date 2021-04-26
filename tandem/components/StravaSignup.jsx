@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { View, Button } from 'react-native';
 
 import * as WebBrowser from 'expo-web-browser';
@@ -18,14 +18,15 @@ const discovery = {
 
 
 
-export default function App({navigation}) {
+export default function App({ navigation }) {
   
   const [request, response, promptAsync] = useAuthRequest(
     {
       clientId: REACT_APP_STRAVA_CLIENT_ID,
       scopes: ['activity:read_all'],
       redirectUri: makeRedirectUri({
-        native: 'https://northcoders-tandem.netlify.app',
+        native: 'localhost',
+        // native: 'https://northcoders-tandem.netlify.app',
       }),
     },
     discovery
@@ -54,6 +55,7 @@ export default function App({navigation}) {
         axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`)
           .then((response) => {
             console.log(response)
+            navigation.navigate("OpenRidesList")
         })
       })
   }
