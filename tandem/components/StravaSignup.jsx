@@ -58,6 +58,12 @@ export default function App() {
         promptAsync();
       }}
     />
+     <Button
+          title={"View routes"}
+          style={styles.button}
+          onPress={() => navigation.navigate("MapComponent")}
+          color="#841584"
+        />
     </View>
   );
 }
