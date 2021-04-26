@@ -28,10 +28,10 @@ export default function SingleRide({ route }) {
 	const { ride } = route.params;
 
 
-  useEffect(()=>{
-		API.getAttendeesByRideId(ride_id).then((attendees) => {
+ React.useEffect(()=>{
+		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
 		setAttendees(attendees)})
-		}, [ride_id])
+		}, [ride.ride_id])
 	const formattedMapData = formatPolylineData(ride.route_data)
 
 	const { formattedCoords,
@@ -95,7 +95,7 @@ export default function SingleRide({ route }) {
 					style={styles.commentBox}
 					onChangeText={(text) => setText(text)}
 				/>
-				<CommentList/>
+				<CommentList ride ={ride}/>
 			</ScrollView>
 		</ScrollView>
 	);

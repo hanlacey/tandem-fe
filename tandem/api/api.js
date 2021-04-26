@@ -14,8 +14,8 @@ const thandemApi = axios.create({
       return response.data.attendees
     });
   };
-export const postUser = (newUserData) => {
-    //TODO: create POST request to DB
-    
-    console.log(newUserData)
-}
+    export const getCommentsByRideId = (ride_id) => {
+      return thandemApi.get(`/rides/${ride_id}/comments`).then((response) => {
+        return response.data.comments
+      });
+  };
