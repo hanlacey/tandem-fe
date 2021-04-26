@@ -24,8 +24,6 @@ export default function SingleRide({ route }) {
 	const { ride } = route.params;
 
 	const formattedMapData = formatPolylineData(ride.route_data)
-	
-	console.log(formattedMapData, "formattedMapData")
 
 	const { formattedCoords,
         startLatLng,
