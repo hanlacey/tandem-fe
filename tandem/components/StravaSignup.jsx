@@ -68,20 +68,18 @@ export default function App({ navigation }) {
 
 	return (
 		<View>
-        <Button
-          disabled={!request}
-          title="Login"
-          onPress={() => {
-            promptAsync();
-          }}
-        />
-
-
-        <Button
-          color="#FF4500"
-          title={"Configure profile"}
-          onPress={() => navigation.navigate("ConfigureProfile")}
-        />
-      </View>
+			<Button
+				disabled={!request}
+				title="Login"
+				onPress={() => {
+					promptAsync();
+				}}
+			/>
+			<Button
+				color="#FF4500"
+				title={"Configure profile"}
+				onPress={() => navigation.navigate("ConfigureProfile")}
+			/>
+		</View>
 	);
 }
