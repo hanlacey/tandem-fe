@@ -35,7 +35,6 @@ export default function App() {
         <Stack.Screen name="Event Attendees" component={EventAttendees} />
         <Stack.Screen name="SingleRide" component={SingleRide} />
         <Stack.Screen name="PostRide" component={PostRide} />
-
       </Stack.Navigator>
     </NavigationContainer>
 
