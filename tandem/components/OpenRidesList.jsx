@@ -6,15 +6,14 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from "react-native";
-import { RadioButton } from "react-native-paper";
+import { Switch } from "react-native-paper";
 import RideCard from "./RideCard";
 import * as API from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
-	// const { user, userBikeType, userDifficulty } = route.params;
 	const [rides, setRides] = useState([]);
-	const [bike, setBikeFilter] = useState("mountain");
-	const [difficulty, setDifficultyFilter] = useState("casual");
+	const [showMountainRides, setShowMountainRides] = useState(true);
+	const [showRoadRides, setShowRoadRides] = useState(true);
 
 	useEffect(() => {
 		API.getAllRides().then((rides) => {
@@ -32,6 +31,12 @@ export default function OpenRidesList({ route, navigation }) {
 		});
 	};
 
+	const onToggleSwitch = (filter, setFilter) => {
+		useEffect(() => {
+			setFilter(!filter);
+		}, [filter, setFilter]);
+	};
+
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
@@ -43,47 +48,53 @@ export default function OpenRidesList({ route, navigation }) {
 				<Text style={{ textAlign: "center" }}>Create ride</Text>
 			</TouchableOpacity>
 			<View style={styles.filter}>
-				<View>
-					<Text style={styles.filterLabel}>Bike</Text>
-					<RadioButton.Group
-						style={styles.bike}
-						onValueChange={(bike) => setBikeFilter(bike)}
-						value={bike}
-					>
-						<View>
-							<Text>Road</Text>
-							<RadioButton value="road" />
-						</View>
-						<View>
-							<Text>Mountain</Text>
-							<RadioButton value="mountain" />
-						</View>
-						<View>
-							<Text>All</Text>
-							<RadioButton value="all" />
-						</View>
-					</RadioButton.Group>
+				<View style={styles.toggle}>
+					<Switch
+						color={"#292929"}
+						value={showMountainRides}
+						onValueChange={onToggleSwitch(
+							showMountainRides,
+							setShowMountainRides
+						)}
+					/>
+					<Text>Beginner</Text>
 				</View>
-				<View style={styles.difficulty}>
-					<Text style={styles.filterLabel}>Difficulty</Text>
-
-					<RadioButton.Group
-						onValueChange={(difficulty) => setDifficultyFilter(difficulty)}
-						value={difficulty}
-					>
-						<View>
-							<Text style={styles.difficulty}>Casual</Text>
-							<RadioButton value="casual" />
-						</View>
-						<View>
-							<Text style={styles.difficulty}>Challenging</Text>
-							<RadioButton value="challenging" />
-						</View>
-						<View>
-							<Text style={styles.difficulty}>Hardcore</Text>
-							<RadioButton value="hardcore" />
-						</View>
-					</RadioButton.Group>
+				<View style={styles.toggle}>
+					<Switch
+						color={"#292929"}
+						value={showRoadRides}
+						onValueChange={onToggleSwitch(showRoadRides, setShowRoadRides)}
+					/>
+					<Text>Intermediate</Text>
+				</View>
+				<View style={styles.toggle}>
+					<Switch
+						color={"#292929"}
+						value={showRoadRides}
+						onValueChange={onToggleSwitch(showRoadRides, setShowRoadRides)}
+					/>
+					<Text>Advanced</Text>
+				</View>
+			</View>
+			<View style={styles.filter}>
+				<View style={styles.toggle}>
+					<Switch
+						color={"#FF4500"}
+						value={showMountainRides}
+						onValueChange={onToggleSwitch(
+							showMountainRides,
+							setShowMountainRides
+						)}
+					/>
+					<Text>Mountain bike</Text>
+				</View>
+				<View style={styles.toggle}>
+					<Switch
+						color={"#FF4500"}
+						value={showRoadRides}
+						onValueChange={onToggleSwitch(showRoadRides, setShowRoadRides)}
+					/>
+					<Text>Road bike</Text>
 				</View>
 			</View>
 			<ScrollView style={styles.scrollContainer}>{list()}</ScrollView>
@@ -107,14 +118,12 @@ const styles = StyleSheet.create({
 		marginBottom: "10%",
 	},
 	filter: {
+		backgroundColor: "white",
 		flexDirection: "row",
-		width: "100%",
-		height: "25%",
-		justifyContent: "space-around",
+		alignContent: "center",
+		justifyContent: "space-evenly",
 	},
-	filterLabel: {
-		fontWeight: "bold",
+	toggle: {
+		padding: "3%",
 	},
-	bike: { flexDirection: "row" },
-	difficulty: {},
 });
