@@ -11,7 +11,11 @@ import {
 } from "@env";
 
 import { formatUsersData } from "../utils/formatUsersData";
-
+console.log(
+	REACT_APP_STRAVA_CLIENT_ID,
+	"client",
+	REACT_APP_STRAVA_CLIENT_SECRET
+);
 WebBrowser.maybeCompleteAuthSession();
 
 // Endpoint
@@ -27,7 +31,7 @@ export default function App({ navigation }) {
 			clientId: REACT_APP_STRAVA_CLIENT_ID,
 			scopes: ["activity:read_all"],
 			redirectUri: makeRedirectUri({
-				native: "localhost",
+				native: "192.168.0.27",
 				// native: 'https://northcoders-tandem.netlify.app',
 			}),
 		},
@@ -54,13 +58,13 @@ export default function App({ navigation }) {
 			{},
 			config
 		);
-
+		console.log(userData, "userData");
 		const { access_token } = userData.data;
-
+		console.log(access_token, "access_token");
 		const activityData = await axios.get(
 			`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
 		);
-
+		console.log(activityData, "activityData");
 		formatUsersData(userData, activityData);
 
 		navigation.navigate("OpenRidesList");
@@ -68,20 +72,18 @@ export default function App({ navigation }) {
 
 	return (
 		<View>
-        <Button
-          disabled={!request}
-          title="Login"
-          onPress={() => {
-            promptAsync();
-          }}
-        />
-
-
-        <Button
-          color="#FF4500"
-          title={"Configure profile"}
-          onPress={() => navigation.navigate("ConfigureProfile")}
-        />
-      </View>
+			<Button
+				disabled={!request}
+				title="Login"
+				onPress={() => {
+					promptAsync();
+				}}
+			/>
+			<Button
+				color="#FF4500"
+				title={"Configure profile"}
+				onPress={() => navigation.navigate("ConfigureProfile")}
+			/>
+		</View>
 	);
 }

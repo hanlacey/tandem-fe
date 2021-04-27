@@ -1,7 +1,9 @@
 import axios from "axios"
 
+import { REACT_APP_BACKEND_API_BASE_URL } from "@env"
+
 const thandemApi = axios.create({
-  baseURL: "https://thandem.herokuapp.com/api",
+    baseURL: REACT_APP_BACKEND_API_BASE_URL,
 });
 
 export const getAllRides = () => {
@@ -22,4 +24,12 @@ export const getCommentsByRideId = (ride_id) => {
 
 export const deleteCommentsByCommentId= (comment_id) => {
   return thandemApi.delete(`/comments/${comment_id}`) 
-};
+}
+export const postUser = (newUserData) => {
+    console.log(newUserData, "newUserData")
+    return thandemApi.post("/users", newUserData).then(({ data }) => {
+        console.log(data, "POST request response")
+    }).catch((err) => {
+        console.log(err)
+    })
+}
