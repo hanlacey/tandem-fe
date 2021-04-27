@@ -8,15 +8,14 @@ import {
 	useEffect,
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
-import { Card, Paragraph, TextInput } from "react-native-paper";
-import {TextInput } from "react-native"
+import { Card, Paragraph} from "react-native-paper";
 import CommentList from "./CommentList";
 import * as API from "../api/api";
 import parseDate from "../utils/parseDate";
 import { formatPolylineData } from "../utils/formatPolylineData";
 
 export default function SingleRide({ route }) {
-	const [text, setText] = React.useState("");
+
 	const [attendees, setAttendees] = React.useState([]);
 	const { ride } = route.params;
 	ride.route_data =

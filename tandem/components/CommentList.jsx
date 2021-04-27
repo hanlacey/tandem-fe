@@ -9,12 +9,14 @@ import {
   Image,
   ScrollView,
   FlatList,
-  Button
+  Button,
+  TextInput
 } from 'react-native';
 import parseDate from "../utils/parseDate";
 import * as API from "../api/api"
 
 export default function CommentList({ ride }) {
+  const [text, setText] = React.useState("");
   const [commentsData, setComments] = useState([]);
   const navigation = useNavigation();
 
