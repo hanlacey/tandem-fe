@@ -48,8 +48,6 @@ function RideCard({ ride, route }) {
 				{"\n"}
 				{experience_level} {" / "} {ride_type}
 				{"\n"}
-				{route_data}
-				{"\n"}
 				{attendees.length} attending
 				{"\n"}
 			</Text>

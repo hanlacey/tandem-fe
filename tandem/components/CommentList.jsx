@@ -1,5 +1,6 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
+import Icon from 'react-native-vector-icons/AntDesign';
 import {
   StyleSheet,
   Text,
@@ -7,20 +8,32 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  FlatList
+  FlatList,
+  Button
 } from 'react-native';
 import parseDate from "../utils/parseDate";
 import * as API from "../api/api"
 
-export default function CommentList({ride}) {
+export default function CommentList({ ride }) {
   const [commentsData, setComments] = useState([]);
   const navigation = useNavigation();
 
-  useEffect(()=>{
-		API.getCommentsByRideId(ride.ride_id).then((comments) => {
-		setComments(comments)})
-		}, [ride.ride_id])
-	
+  useEffect(() => {
+    API.getCommentsByRideId(ride.ride_id).then((comments) => {
+      setComments(comments)
+    })
+  }, [ride.ride_id])
+
+
+  deleteComment = (comment_id) => {
+    API.deleteCommentsByCommentId(comment_id).then(() => {
+      const updatedComments = list.filter((item) => item.comment_id !== comment_id);
+      setComments(updatedComments)
+    })
+  }
+  //deletes on refresh 
+
+
 
   return (
     <FlatList
@@ -35,22 +48,25 @@ export default function CommentList({ride}) {
         return item.author;
       }}
       renderItem={(item) => {
-        const User = item.item;
+        const comment = item.item;
         return (
           <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate("UserProfile", { username: item.author })}>
-              {/* <Image style={styles.image} source={{ uri: User.avatar_url }} /> */}
+              {/* <Image style={styles.image} source={{ uri: comment.avatar_url }} /> */}
             </TouchableOpacity>
             <View style={styles.content}>
               <View style={styles.contentHeader}>
-                <Text style={styles.name}>{User.author}</Text>
+                <Text style={styles.name}>{comment.author}</Text>
                 <Text style={styles.time}>
-                {parseDate(User.created_at)}
-                {User.votes}
-                  </Text>
+                  {parseDate(comment.created_at)}
+                  {comment.votes}
+                </Text>
               </View>
-              <Text rkType='primary3 mediumLine'>{User.body}</Text>
-              {/* <Text style={styles.time}> Likes: {User.votes}</Text> */}
+              <Text rkType='primary3 mediumLine'>{comment.body}</Text>
+              {/* <Text style={styles.time}> Likes: {comment.votes}</Text> */}
+              <TouchableOpacity onPress={() => deleteComment(comment.comment_id)}>
+                <Icon name="delete" size={20} color="#e33057" />
+              </TouchableOpacity>
             </View>
           </View>
         );
@@ -83,7 +99,7 @@ const styles = StyleSheet.create({
   separator: {
     height: 10,
     backgroundColor: "#f2f2f2",
-   
+
   },
   image: {
     width: 45,

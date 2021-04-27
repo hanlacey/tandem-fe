@@ -1,0 +1,12 @@
+POST - /api/rides": {
+      "description": "Accepts an object to post a new ride",
+      "example request": {
+        "author": "t0gden",
+        "ride_date": "new Date(1619324193389)",
+        "route_data": "Wales hills",
+        "ride_type": "mountain",
+        "title": "evening ride",
+        "description": "amazing bike adventure in Wales",
+        "experience_level": "advanced",
+        "location": "Chester"
+      },
