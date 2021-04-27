@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import RideCard from "./RideCard";
-import * as API from "../api/api"
+import * as API from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
 	// const { user, userBikeType, userDifficulty } = route.params;
@@ -16,11 +16,11 @@ export default function OpenRidesList({ route, navigation }) {
 	const [bike, setBikeFilter] = useState("mountain");
 	const [difficulty, setDifficultyFilter] = useState("casual");
 
-	useEffect(()=>{
+	useEffect(() => {
 		API.getAllRides().then((rides) => {
-		setRides(rides)})
-		}, [])
-	
+			setRides(rides);
+		});
+	}, []);
 
 	const list = () => {
 		return rides.map((ride) => {
