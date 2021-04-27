@@ -7,7 +7,7 @@ import * as api from "../api/api";
 
 export default function PostRide({ navigation }) {
 	const [user, setUser] = useState({
-		username: "hanlacey",
+		username: "hannah123",
 		password: null,
 		email: null,
 		avatar_url:
