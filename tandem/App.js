@@ -16,7 +16,7 @@ const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    <NavigationContainer style={styles.container}>
+    <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={StravaSignup} options={{
           title: 'Tandem',
@@ -40,9 +40,3 @@ export default function App() {
 
   )
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    color: "red"
-  }
-});

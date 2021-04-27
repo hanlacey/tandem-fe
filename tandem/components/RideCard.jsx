@@ -60,23 +60,20 @@ const styles = StyleSheet.create({
 		marginHorizontal: "5%",
 		marginVertical: "5%",
 		textAlign: "center",
-		borderRadius: 8,
 	},
 	title: {
-		backgroundColor: "#f4511e",
+		backgroundColor: "#e86b3a",
 		padding: "3%",
 		fontSize: 22,
 		fontWeight: "bold",
 		color: "#292929",
 		textAlign: "center",
-		borderTopLeftRadius: 8,
-		borderTopRightRadius: 8,
 	},
 	description: {
-		backgroundColor: "#e8e8e8",
 		textAlign: "center",
 		paddingHorizontal: "2%",
 		paddingVertical: "2%",
+		color: "#292929",
 	},
 	body: {
 		textAlign: "center",
@@ -84,9 +81,8 @@ const styles = StyleSheet.create({
 		paddingBottom: "1%",
 	},
 	authorLink: {
-		color: "red",
+		color: "#bd3500",
 		textAlign: "center",
-		backgroundColor: "#e8e8e8",
 		paddingBottom: "2%",
 	},
 });

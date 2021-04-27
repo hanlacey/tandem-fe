@@ -19,6 +19,7 @@ export default function OpenRidesList({ route, navigation }) {
 	const [advancedRides, showAdvancedRides] = useState(false);
 
 	//build api request
+	API.getAllRides();
 
 	useEffect(() => {
 		API.getAllRides().then((rides) => {
@@ -61,48 +62,51 @@ export default function OpenRidesList({ route, navigation }) {
 			>
 				<Text style={{ textAlign: "center" }}>Create ride</Text>
 			</TouchableOpacity>
-			<View style={styles.filter}>
-				<View style={styles.toggle}>
-					<Switch
-						style={styles.switch}
-						color={"#FF4500"}
-						value={beginnerRides}
-						onValueChange={toggleBeginnerRides}
-					/>
-					<Text>Beginner</Text>
-					<Switch
-						style={styles.switch}
-						color={"#FF4500"}
-						value={intermediateRides}
-						onValueChange={toggleIntermediateRides}
-					/>
-					<Text>Intermediate</Text>
-					<Switch
-						style={styles.switch}
-						color={"#FF4500"}
-						value={advancedRides}
-						onValueChange={toggleAdvancedRides}
-					/>
-					<Text>Advanced</Text>
+
+			<ScrollView style={styles.scrollContainer}>
+				<View style={styles.filter}>
+					<View style={styles.toggle}>
+						<Switch
+							style={styles.switch}
+							color={"#292929"}
+							value={beginnerRides}
+							onValueChange={toggleBeginnerRides}
+						/>
+						<Text>Beginner</Text>
+						<Switch
+							style={styles.switch}
+							color={"#292929"}
+							value={intermediateRides}
+							onValueChange={toggleIntermediateRides}
+						/>
+						<Text>Intermediate</Text>
+						<Switch
+							style={styles.switch}
+							color={"#292929"}
+							value={advancedRides}
+							onValueChange={toggleAdvancedRides}
+						/>
+						<Text>Advanced</Text>
+					</View>
+					<View style={styles.toggle}>
+						<Switch
+							style={styles.switch}
+							color={"#e86b3a"}
+							value={mountainRides}
+							onValueChange={toggleMountainRides}
+						/>
+						<Text>Mountain bike </Text>
+						<Switch
+							style={styles.switch}
+							color={"#e86b3a"}
+							value={roadRides}
+							onValueChange={toggleRoadRides}
+						/>
+						<Text>Road bike </Text>
+					</View>
 				</View>
-				<View style={styles.toggle}>
-					<Switch
-						style={styles.switch}
-						color={"#292929"}
-						value={mountainRides}
-						onValueChange={toggleMountainRides}
-					/>
-					<Text>Mountain bike </Text>
-					<Switch
-						style={styles.switch}
-						color={"#292929"}
-						value={roadRides}
-						onValueChange={toggleRoadRides}
-					/>
-					<Text>Road bike </Text>
-				</View>
-			</View>
-			<ScrollView style={styles.scrollContainer}>{list()}</ScrollView>
+				{list()}
+			</ScrollView>
 		</View>
 	);
 }
@@ -124,11 +128,15 @@ const styles = StyleSheet.create({
 	},
 	filter: {
 		backgroundColor: "white",
-		flexDirection: "row",
 		alignContent: "center",
-		justifyContent: "space-evenly",
 		padding: "5%",
+		textAlign: "center",
 	},
-	toggle: { padding: "3%", justifyContent: "space-evenly" },
-	switch: { margin: "2%" },
+	toggle: {
+		padding: "3%",
+		margin: "3%",
+		flexDirection: "row",
+		justifyContent: "space-evenly",
+		textAlign: "center",
+	},
 });
