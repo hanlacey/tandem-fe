@@ -27,7 +27,7 @@ export default function App({ navigation }) {
 			clientId: REACT_APP_STRAVA_CLIENT_ID,
 			scopes: ["activity:read_all"],
 			redirectUri: makeRedirectUri({
-				native: "localhost",
+				native: "192.168.27.0",
 				// native: 'https://northcoders-tandem.netlify.app',
 			}),
 		},
