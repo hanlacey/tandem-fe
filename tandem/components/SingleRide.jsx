@@ -101,12 +101,6 @@ export default function SingleRide({ route }) {
 			</Card>
 			<ScrollView style={styles.commentContainer}>
 				<Text style={{ fontWeight: "bold" }}>Make a comment</Text>
-				<TextInput
-				 value={text}
-				 placeholder="write..."
-				onChangeText={text => setText(text)}
-				onSubmitEditing={ () => addcomment(text, ride.ride_id) }
-				/>
 				<CommentList ride={ride}/>
 			</ScrollView>
 		</ScrollView>

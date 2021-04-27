@@ -26,10 +26,12 @@ export default function CommentList({ ride }) {
 
 
   deleteComment = (comment_id) => {
-    API.deleteCommentsByCommentId(comment_id).then(() => {
-      const updatedComments = list.filter((item) => item.comment_id !== comment_id);
-      setComments(updatedComments)
-    })
+    useEffect(() => {
+      API.deleteCommentsByCommentId(comment_id).then(() => {
+        const updatedComments = list.filter((item) => item.comment_id !== comment_id);
+        setComments(updatedComments)
+      })
+    }, [comment_id])
   }
   //deletes on refresh 
 
@@ -56,6 +58,12 @@ export default function CommentList({ ride }) {
         const comment = item.item;
         return (
           <View style={styles.container}>
+            <TextInput
+              value={text}
+              placeholder="write..."
+              onChangeText={text => setText(text)}
+              onSubmitEditing={() => addcomment(text, ride.ride_id)}
+            />
             <TouchableOpacity onPress={() => navigation.navigate("UserProfile", { username: item.author })}>
               {/* <Image style={styles.image} source={{ uri: comment.avatar_url }} /> */}
             </TouchableOpacity>
