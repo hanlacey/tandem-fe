@@ -19,3 +19,7 @@ export const getCommentsByRideId = (ride_id) => {
     return response.data.comments
   });
 };
+
+export const deleteCommentsByCommentId= (comment_id) => {
+  return thandemApi.delete(`/comments/${comment_id}`) 
+};
