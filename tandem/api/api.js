@@ -32,6 +32,8 @@ export const postUser = (newUserData) => {
 }
 export const postRide = (newRide) => {
   return thandemApi.post("/rides", newRide).then(({ data }) => {
-    return (data.newRide.ride_id)
+    return (data.newRide)
   })
 }
+
+// export const

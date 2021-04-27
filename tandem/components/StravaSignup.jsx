@@ -81,8 +81,8 @@ export default function App({ navigation }) {
 			/>
 			<Button
 				color="#FF4500"
-				title={"Configure profile"}
-				onPress={() => navigation.navigate("ConfigureProfile")}
+				title={"View open rides"}
+				onPress={() => navigation.navigate("OpenRidesList")}
 			/>
 		</View>
 	);

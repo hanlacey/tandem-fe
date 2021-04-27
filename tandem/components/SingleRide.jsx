@@ -14,32 +14,18 @@ import * as API from "../api/api";
 import parseDate from "../utils/parseDate";
 import { formatPolylineData } from "../utils/formatPolylineData";
 
-import rides from "../assets/rides";
-
 export default function SingleRide({ route }) {
 	const [text, setText] = React.useState("");
 	const [attendees, setAttendees] = React.useState([]);
 	const { ride } = route.params;
+	ride.route_data =
+		"}xxdI~eaHQb@FTNP~@ZX\\M`@{@|ADHXd@bBTTNXp@A\\HVQb@J|@h@r@JZZBRRN\\|@lAh@jAAtBT~Dx@x@`CJb@bAr@dAdAx@fAnAV`@j@`Bp@rCn@zA\\vA`@~@|@z@hApAdApAzA~Bf@zAD?v@fBzB|G`@f@x@`@d@dA@n@TrBj@dDVhGIrCL|@h@xADZC\\L|BGdC]pDk@~EoAtEq@|@gD~DmBrCCJBXUl@]^e@lAAXYZEz@NlAE`AL~DRtCLz@pArF`DhJn@xBv@zDnBbHrB|IrHzSl@z@tD|D~CbMd@fDLhCTvBFjCH|@p@tCbAjCn@pC`@lA|@bFNtCH`DWlD^hDfAhE`@fCBfAGtCFz@Tp@pAjBPv@jBxO@h@KfCAzDOrCB\\E`CGzB^xET`AK|ACvAm@dBGh@GnA@`DPzBhAxEBhAIf@g@vAO^QNe@pAa@nDYrAWj@{@z@o@^Q\\uAnDU|AFtFr@zGNb@`@^r@dAb@jAAb@Ox@Un@wBbDUh@c@tCEnFg@vQIpCYjDEvAOdSYnEUvAGbBPtGHrFT`DNv@Rb@ZIfCgBX{@NeA`@i@J@PDHRPjAHfBd@xB^jAh@z@`BWnFEnASn@[fAIlGfApBj@|BTpCf@p@}@j@mAR}@P}AJqCSeDCoFPcIX_DbBsIlAmCjCsDbAeChByFt@gAx@i@x@@b@Tx@rAT?\\oA^qClBuKbBcIpCyHr@_BjCwE`@qAf@_AP_AFwAM}Co@gHu@ePy@_NgAeX[}CaAeOk@mGkAuV}AwT]kLAoDQyDLcBMuC_@{Gu@qFGaBe@_FEcA]sB]qE_@gBgBkEc@kAAW[eLEyGHkGl@kJ?sBaBoZVoJRmDe@u@yCgBmBwAWg@k@cDYa@{DiBiD_F{@y@aAk@oDuAcBa@gAH_Bj@s@@gTwAmCwAgAw@u@y@y@{Ai@mBcAoNWkBa@aA{@]O[Ae@L}AYsB[i@USu@iCaAsHYmEo@qGAcAgAoFQyAu@kDcA{Da@aCs@_CQcAw@eByAmGe@eC_@}@WgEuAsFqAwCYoAEqCH}@k@wDMkE_@}Cw@iA{AkAMUc@cD]e@?KR[I[i@i@g@iBuA_Dk@iBY]eBzA_BP_B`BcAhBkAfAsCbDMAgA|@{@dAy@^OhAUj@";
 
 	//   useEffect(()=>{
 	// 		API.getAttendeesByRideId(ride_id).then((attendees) => {
 	// 		setAttendees(attendees)})
 	//   		}, [ride_id])
 
-	const ride = {
-		ride_id: "1",
-		author: "t0gden",
-		ride_date: 1611824163389,
-		route_data:
-			"}xxdI~eaHQb@FTNP~@ZX\\M`@{@|ADHXd@bBTTNXp@A\\HVQb@J|@h@r@JZZBRRN\\|@lAh@jAAtBT~Dx@x@`CJb@bAr@dAdAx@fAnAV`@j@`Bp@rCn@zA\\vA`@~@|@z@hApAdApAzA~Bf@zAD?v@fBzB|G`@f@x@`@d@dA@n@TrBj@dDVhGIrCL|@h@xADZC\\L|BGdC]pDk@~EoAtEq@|@gD~DmBrCCJBXUl@]^e@lAAXYZEz@NlAE`AL~DRtCLz@pArF`DhJn@xBv@zDnBbHrB|IrHzSl@z@tD|D~CbMd@fDLhCTvBFjCH|@p@tCbAjCn@pC`@lA|@bFNtCH`DWlD^hDfAhE`@fCBfAGtCFz@Tp@pAjBPv@jBxO@h@KfCAzDOrCB\\E`CGzB^xET`AK|ACvAm@dBGh@GnA@`DPzBhAxEBhAIf@g@vAO^QNe@pAa@nDYrAWj@{@z@o@^Q\\uAnDU|AFtFr@zGNb@`@^r@dAb@jAAb@Ox@Un@wBbDUh@c@tCEnFg@vQIpCYjDEvAOdSYnEUvAGbBPtGHrFT`DNv@Rb@ZIfCgBX{@NeA`@i@J@PDHRPjAHfBd@xB^jAh@z@`BWnFEnASn@[fAIlGfApBj@|BTpCf@p@}@j@mAR}@P}AJqCSeDCoFPcIX_DbBsIlAmCjCsDbAeChByFt@gAx@i@x@@b@Tx@rAT?\\oA^qClBuKbBcIpCyHr@_BjCwE`@qAf@_AP_AFwAM}Co@gHu@ePy@_NgAeX[}CaAeOk@mGkAuV}AwT]kLAoDQyDLcBMuC_@{Gu@qFGaBe@_FEcA]sB]qE_@gBgBkEc@kAAW[eLEyGHkGl@kJ?sBaBoZVoJRmDe@u@yCgBmBwAWg@k@cDYa@{DiBiD_F{@y@aAk@oDuAcBa@gAH_Bj@s@@gTwAmCwAgAw@u@y@y@{Ai@mBcAoNWkBa@aA{@]O[Ae@L}AYsB[i@USu@iCaAsHYmEo@qGAcAgAoFQyAu@kDcA{Da@aCs@_CQcAw@eByAmGe@eC_@}@WgEuAsFqAwCYoAEqCH}@k@wDMkE_@}Cw@iA{AkAMUc@cD]e@?KR[I[i@i@g@iBuA_Dk@iBY]eBzA_BP_B`BcAhBkAfAsCbDMAgA|@{@dAy@^OhAUj@",
-		distanceInKm: 10,
-		ride_type: "Road",
-		title: "Sunny road ride",
-		description: "Anyone want to join me on a loop from Chester to Manchester",
-		experience_level: "Hardcore",
-		created_at: 1611324163389,
-		attendees: ["t0gden", "nadia200"],
-	};
 	//  React.useEffect(()=>{
 	// 		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
 	// 		setAttendees(attendees)})
@@ -58,36 +44,39 @@ export default function SingleRide({ route }) {
 
 	return (
 		<ScrollView>
-			{/* <MapView
-				style={styles.map}
-				initialRegion={{
-				latitude: startLatitude,
-				longitude: startLongitude,
-				latitudeDelta: 0.0822,
-				longitudeDelta: 0.0421,
-				}}
-			>
-				<Marker title="Start" coordinate={startLatLng} pinColor="green" />
-
-				<Marker title="End" coordinate={endLatLng} pinColor="red" />
-
-				<Polyline
-				coordinates={formattedCoords}
-				strokeColor="#FF0000"
-				strokeWidth={3}
-				/>
-			</MapView> */}
-
 			<Card style={styles.container}>
-				<Card.Title title={ride.title} subtitle={parseDate(ride.ride_date)} />
+				<Card.Title
+					style={styles.title}
+					title={ride.title}
+					subtitle={parseDate(ride.ride_date)}
+				/>
 				<Card.Cover source={{ uri: "https://picsum.photos/700" }} />
+				<MapView
+					style={styles.map}
+					initialRegion={{
+						latitude: startLatitude,
+						longitude: startLongitude,
+						latitudeDelta: 0.0822,
+						longitudeDelta: 0.0421,
+					}}
+				>
+					<Marker title="Start" coordinate={startLatLng} pinColor="green" />
+
+					<Marker title="End" coordinate={endLatLng} pinColor="red" />
+
+					<Polyline
+						coordinates={formattedCoords}
+						strokeColor="#FF0000"
+						strokeWidth={3}
+					/>
+				</MapView>
 				<Card.Content>
 					<Paragraph style={styles.rideType}>
 						Distance: {ride.distanceInKm}km
 					</Paragraph>
-					<Paragraph style={styles.rideType}>
+					{/* <Paragraph style={styles.rideType}>
 						Attendees: {attendees.length}
-					</Paragraph>
+					</Paragraph> */}
 					<Paragraph style={styles.rideType}>
 						Ride Type: {ride.ride_type}
 					</Paragraph>
@@ -148,7 +137,7 @@ const styles = StyleSheet.create({
 	},
 
 	map: {
-		width: Dimensions.get("window").width,
-		height: Dimensions.get("window").height / 2,
+		width: "100%",
+		height: "40%",
 	},
 });

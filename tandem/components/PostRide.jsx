@@ -7,17 +7,17 @@ import * as api from "../api/api";
 
 export default function PostRide({ navigation }) {
 	const [user, setUser] = useState({
-		user_id: "1",
-		username: "t0gden",
-		first_name: "Tom",
-		last_name: "Ogden",
-		email: "example1@gmail.com",
-		password: "abcde1",
+		username: "hanlacey",
+		password: null,
+		email: null,
 		avatar_url:
-			"https://media.gettyimages.com/photos/confident-boy-sitting-on-bicycle-picture-id509011871",
-		location: "Chester",
-		bike_type: "mountain",
-		experience_level: "challenging",
+			"https://d3nn82uaxijpm6.cloudfront.net/assets/avatar/athlete/large-800a7033cc92b2a5548399e26b1ef42414dd1a9cb13b99454222d38d58fd28ef.png",
+		first_name: "hannah",
+		last_name: "lacey",
+		location: "Manchester, United Kingdom",
+		routes_data: "",
+		bike_type: null,
+		rider_level: null,
 	});
 
 	const [title, setTitle] = useState("");
@@ -43,9 +43,8 @@ export default function PostRide({ navigation }) {
 		setDate(currentDate);
 	};
 	const handleSubmit = () => {
-		api.postRide(newRide).then((ride_id) => {
-			console.log(ride_id);
-			navigation.navigate("SingleRide", ride_id);
+		api.postRide(newRide).then((newRide) => {
+			navigation.navigate("SingleRide", { ride: newRide });
 		});
 	};
 	return (
