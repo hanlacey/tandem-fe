@@ -34,6 +34,11 @@ export default function CommentList({ ride }) {
   //deletes on refresh 
 
 
+  addComment = (newComment, ride_id) => {
+    API.postCommentByRideId(newComment, ride_id).then(() => {
+      setComments(newComment)
+    })
+  }
 
   return (
     <FlatList

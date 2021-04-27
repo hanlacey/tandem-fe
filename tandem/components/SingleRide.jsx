@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import { Card, Paragraph, TextInput } from "react-native-paper";
+import {TextInput } from "react-native"
 import CommentList from "./CommentList";
 import * as API from "../api/api";
 import parseDate from "../utils/parseDate";
@@ -101,12 +102,12 @@ export default function SingleRide({ route }) {
 			<ScrollView style={styles.commentContainer}>
 				<Text style={{ fontWeight: "bold" }}>Make a comment</Text>
 				<TextInput
-					label="write.."
-					// value={text}
-					style={styles.commentBox}
-					onChangeText={(text) => setText(text)}
+				 value={text}
+				 placeholder="write..."
+				onChangeText={text => setText(text)}
+				onSubmitEditing={ () => addcomment(text, ride.ride_id) }
 				/>
-				<CommentList ride={ride} />
+				<CommentList ride={ride}/>
 			</ScrollView>
 		</ScrollView>
 	);
