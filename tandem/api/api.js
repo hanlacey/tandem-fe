@@ -22,6 +22,9 @@ export const getCommentsByRideId = (ride_id) => {
   });
 };
 
+export const deleteCommentsByCommentId= (comment_id) => {
+  return thandemApi.delete(`/comments/${comment_id}`) 
+}
 export const postUser = (newUserData) => {
   console.log(newUserData, "newUserData")
   return thandemApi.post("/users", newUserData).then(({ data }) => {
@@ -30,10 +33,11 @@ export const postUser = (newUserData) => {
     console.log(err)
   })
 }
+
 export const postRide = (newRide) => {
   return thandemApi.post("/rides", newRide).then(({ data }) => {
     return (data.newRide)
   })
 }
 
-// export const
+
