@@ -22,8 +22,8 @@ export const getCommentsByRideId = (ride_id) => {
   });
 };
 
-export const deleteCommentsByCommentId= (comment_id) => {
-  return thandemApi.delete(`/comments/${comment_id}`) 
+export const deleteCommentsByCommentId = (comment_id) => {
+  return thandemApi.delete(`/comments/${comment_id}`)
 }
 export const postUser = (newUserData) => {
   console.log(newUserData, "newUserData")
@@ -33,18 +33,8 @@ export const postUser = (newUserData) => {
     console.log(err)
   })
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> a1a90fd3d6bbbf99f5b61a2be3162a6422192281
 export const postRide = (newRide) => {
   return thandemApi.post("/rides", newRide).then(({ data }) => {
     return (data.newRide)
   })
 }
-
-<<<<<<< HEAD
-// export const
-=======
-
->>>>>>> a1a90fd3d6bbbf99f5b61a2be3162a6422192281
