@@ -3,7 +3,7 @@ import axios from "axios"
 import { REACT_APP_BACKEND_API_BASE_URL } from "@env"
 
 const thandemApi = axios.create({
-    baseURL: REACT_APP_BACKEND_API_BASE_URL,
+  baseURL: REACT_APP_BACKEND_API_BASE_URL,
 });
 
 export const getAllRides = () => {
@@ -23,10 +23,15 @@ export const getCommentsByRideId = (ride_id) => {
 };
 
 export const postUser = (newUserData) => {
-    console.log(newUserData, "newUserData")
-    return thandemApi.post("/users", newUserData).then(({ data }) => {
-        console.log(data, "POST request response")
-    }).catch((err) => {
-        console.log(err)
-    })
+  console.log(newUserData, "newUserData")
+  return thandemApi.post("/users", newUserData).then(({ data }) => {
+    console.log(data, "POST request response")
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+export const postRide = (newRide) => {
+  return thandemApi.post("/rides", newRide).then(({ data }) => {
+    return (data.newRide.ride_id)
+  })
 }
