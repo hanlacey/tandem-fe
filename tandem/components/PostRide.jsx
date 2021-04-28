@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { TextInput, Button, RadioButton } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
+// import { Dropdown } from "react-native-material-dropdown";
 import * as api from "../api/api";
 
 export default function PostRide({ navigation }) {
@@ -33,6 +34,12 @@ export default function PostRide({ navigation }) {
 	const [ride_type, setRideType] = useState("");
 	const [location, setLocation] = useState("");
 	const [distanceInKm, setDistance] = useState("");
+	const data = [
+		{ value: "London" },
+		{ value: "Manchester" },
+		{ value: "Chester" },
+		{ value: "Sheffield" },
+	];
 
 	const newRide = {
 		author: user.username,
@@ -76,7 +83,7 @@ export default function PostRide({ navigation }) {
 					onChangeText={(text) => setDescription(text)}
 					value={description}
 				/>
-
+				{/* <Dropdown label="Location" data={data} /> */}
 				<Text>{"\n"}Location</Text>
 				<TextInput
 					style={styles.text}

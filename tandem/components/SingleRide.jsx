@@ -7,7 +7,8 @@ import {
 	TextInput,
 	Dimensions,
 	useEffect,
-	Button
+	Button,
+	ScrollView,
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import { Card, Paragraph } from "react-native-paper";
@@ -37,10 +38,8 @@ export default function SingleRide({ route }) {
 	const attendee = {
 		author: user.username,
 		ride_id: ride.ride_id,
-		name: user.first_name
-	}
-
-
+		name: user.first_name,
+	};
 
 	ride.route_data =
 		"}xxdI~eaHQb@FTNP~@ZX\\M`@{@|ADHXd@bBTTNXp@A\\HVQb@J|@h@r@JZZBRRN\\|@lAh@jAAtBT~Dx@x@`CJb@bAr@dAdAx@fAnAV`@j@`Bp@rCn@zA\\vA`@~@|@z@hApAdApAzA~Bf@zAD?v@fBzB|G`@f@x@`@d@dA@n@TrBj@dDVhGIrCL|@h@xADZC\\L|BGdC]pDk@~EoAtEq@|@gD~DmBrCCJBXUl@]^e@lAAXYZEz@NlAE`AL~DRtCLz@pArF`DhJn@xBv@zDnBbHrB|IrHzSl@z@tD|D~CbMd@fDLhCTvBFjCH|@p@tCbAjCn@pC`@lA|@bFNtCH`DWlD^hDfAhE`@fCBfAGtCFz@Tp@pAjBPv@jBxO@h@KfCAzDOrCB\\E`CGzB^xET`AK|ACvAm@dBGh@GnA@`DPzBhAxEBhAIf@g@vAO^QNe@pAa@nDYrAWj@{@z@o@^Q\\uAnDU|AFtFr@zGNb@`@^r@dAb@jAAb@Ox@Un@wBbDUh@c@tCEnFg@vQIpCYjDEvAOdSYnEUvAGbBPtGHrFT`DNv@Rb@ZIfCgBX{@NeA`@i@J@PDHRPjAHfBd@xB^jAh@z@`BWnFEnASn@[fAIlGfApBj@|BTpCf@p@}@j@mAR}@P}AJqCSeDCoFPcIX_DbBsIlAmCjCsDbAeChByFt@gAx@i@x@@b@Tx@rAT?\\oA^qClBuKbBcIpCyHr@_BjCwE`@qAf@_AP_AFwAM}Co@gHu@ePy@_NgAeX[}CaAeOk@mGkAuV}AwT]kLAoDQyDLcBMuC_@{Gu@qFGaBe@_FEcA]sB]qE_@gBgBkEc@kAAW[eLEyGHkGl@kJ?sBaBoZVoJRmDe@u@yCgBmBwAWg@k@cDYa@{DiBiD_F{@y@aAk@oDuAcBa@gAH_Bj@s@@gTwAmCwAgAw@u@y@y@{Ai@mBcAoNWkBa@aA{@]O[Ae@L}AYsB[i@USu@iCaAsHYmEo@qGAcAgAoFQyAu@kDcA{Da@aCs@_CQcAw@eByAmGe@eC_@}@WgEuAsFqAwCYoAEqCH}@k@wDMkE_@}Cw@iA{AkAMUc@cD]e@?KR[I[i@i@g@iBuA_Dk@iBY]eBzA_BP_B`BcAhBkAfAsCbDMAgA|@{@dAy@^OhAUj@";
@@ -63,18 +62,21 @@ export default function SingleRide({ route }) {
 		endLongitude,
 	} = formattedMapData;
 
-
 	const handleSubmit = () => {
-		API.postUserToRideAttendees(attendee, ride.ride_id).then((addedAttendee) => {
-			setAttendees([addedAttendee, ...attendees])
-		});
-	}
+		API.postUserToRideAttendees(attendee, ride.ride_id).then(
+			(addedAttendee) => {
+				setAttendees([addedAttendee, ...attendees]);
+			}
+		);
+	};
 
 	const handleLeaveEvent = () => {
-		API.postUserToRideAttendees(attendee, ride.ride_id).then((addedAttendee) => {
-			setAttendees([addedAttendee, ...attendees])
-		});
-	}
+		API.postUserToRideAttendees(attendee, ride.ride_id).then(
+			(addedAttendee) => {
+				setAttendees([addedAttendee, ...attendees]);
+			}
+		);
+	};
 	const navigation = useNavigation();
 	return (
 		<ScrollView>
@@ -108,11 +110,9 @@ export default function SingleRide({ route }) {
 						Distance: {ride.distanceInKm}km
 					</Paragraph>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("EventAttendees", {ride})}
+						onPress={() => navigation.navigate("EventAttendees", { ride })}
 					>
-						<Text style={styles.rideType}>
-							Attendees: {attendees.length}
-						</Text>
+						<Text style={styles.rideType}>Attendees: {attendees.length}</Text>
 					</TouchableOpacity>
 					<Paragraph style={styles.rideType}>
 						Ride Type: {ride.ride_type}
@@ -123,13 +123,21 @@ export default function SingleRide({ route }) {
 					<Paragraph>{ride.description}</Paragraph>
 				</Card.Content>
 				<Card.Actions>
-					<Button title="Join" style={styles.button} onPress={() => handleSubmit()} />
-					<Button title="Leave" style={styles.button} onPress={() => handleLeaveEvent()} />
+					<Button
+						title="Join"
+						style={styles.button}
+						onPress={() => handleSubmit()}
+					/>
+					<Button
+						title="Leave"
+						style={styles.button}
+						onPress={() => handleLeaveEvent()}
+					/>
 				</Card.Actions>
 			</Card>
 			<View style={styles.commentContainer}>
 				<Text style={{ fontWeight: "bold" }}>Make a comment</Text>
-				<CommentList ride={ride} />
+				<CommentList user={user} ride={ride} />
 			</View>
 		</ScrollView>
 	);

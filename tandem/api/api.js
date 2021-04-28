@@ -33,12 +33,13 @@ export const deleteCommentsByCommentId = (comment_id) => {
   return thandemApi.delete(`/comments/${comment_id}`)
 };
 
-export const postCommentByRideId = (ride_id, newComment) => {
-  console.log(newComment, ride_id)
+export const postCommentByRideId = (ride_id, commentBody, username) => {
+
+  const newComment = { body: commentBody, username }
   return thandemApi
     .post(`/rides/${ride_id}/comments`, newComment)
     .then((response) => {
-      console.log(response)
+      console.log(response.data.newComment)
       return response.data;
     }).catch((err) => {
       console.log(err)
@@ -62,8 +63,8 @@ export const postRide = (newRide) => {
 
 
 export const postUserToRideAttendees = (attendee, ride_id) => {
-console.log(attendee, ride_id)
-  return thandemApi.post(`/rides/${ride_id}/attendees`, attendee).then(({data})=>{
+  console.log(attendee, ride_id)
+  return thandemApi.post(`/rides/${ride_id}/attendees`, attendee).then(({ data }) => {
     console.log(data.newAttendee)
     return data.newAttendee
   })
@@ -71,5 +72,5 @@ console.log(attendee, ride_id)
 
 export const deleteUserFromRideAttendees = (attendee_id) => {
   console.log(attendee_id)
-    return thandemApi.post(`/api/attendees/${attendee_id}`)
-  }
+  return thandemApi.post(`/api/attendees/${attendee_id}`)
+}
