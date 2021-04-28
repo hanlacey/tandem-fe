@@ -30,4 +30,6 @@ export const formatUsersData = (userData, activityData) => {
     }
 
     postUser(formattedUserData)
+
+    return formattedUserData
 }

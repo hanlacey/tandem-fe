@@ -11,6 +11,10 @@ import RideCard from "./RideCard";
 import * as api from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
+	const { userData } = route.params
+
+	// console.log(userData, "*** route.params ***")
+
 	const refHook = useRef(false);
 	const [rides, setRides] = useState([]);
 	const [mountainRides, setMountainRides] = useState(false);
@@ -101,7 +105,7 @@ export default function OpenRidesList({ route, navigation }) {
 			<TouchableOpacity
 				style={styles.createRide}
 				onPress={() => {
-					navigation.navigate("PostRide");
+					navigation.navigate("PostRide", { userData });
 				}}
 			>
 				<Text style={{ textAlign: "center" }}>Create ride</Text>

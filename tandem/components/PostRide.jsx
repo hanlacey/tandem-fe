@@ -10,7 +10,12 @@ import { TextInput, Button, RadioButton } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import * as api from "../api/api";
 
-export default function PostRide({ navigation }) {
+export default function PostRide({ route, navigation }) {
+
+	const { userData } = route.params
+
+	console.log(userData, "*** route.params in PostRide ***")
+
 	const [user, setUser] = useState({
 		username: "hannah123",
 		password: null,
@@ -54,7 +59,7 @@ export default function PostRide({ navigation }) {
 	const handleSubmit = () => {
 		console.log(newRide);
 		api.postRide(newRide).then((newRide) => {
-			navigation.navigate("SingleRide", { ride: newRide });
+			navigation.navigate("SingleRide", { ride: newRide, userData });
 		});
 	};
 	return (

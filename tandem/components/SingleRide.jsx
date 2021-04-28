@@ -88,9 +88,9 @@ export default function SingleRide({ route }) {
 					</TouchableOpacity>
 				</Card.Actions>
 			</Card>
-			<View style={styles.commentContainer}>
+			{/* <View style={styles.commentContainer}>
 				<Text style={{ fontWeight: "bold" }}>Make a comment</Text>
-				<CommentList ride={ride} />
+				<CommentList ride={ride} /> */}
 		</ScrollView>
 	);
 }
