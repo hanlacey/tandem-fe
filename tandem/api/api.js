@@ -33,26 +33,24 @@ export const deleteCommentsByCommentId = (comment_id) => {
   return thandemApi.delete(`/comments/${comment_id}`)
 };
 
-export const postCommentByRideId = (ride_id, comment) => {
+export const postCommentByRideId = (ride_id, newComment) => {
+  console.log(newComment, ride_id)
   return thandemApi
-    .post(`/ride/${ride_id}/${comment}`, {
-      body: comment,
-      ride_id: 1,
-      author: "t0gden",
-      votes: 0,
-      created_at: new Date(),
-    })
+    .post(`/rides/${ride_id}/comments`, newComment)
     .then((response) => {
-      return response.data.comment[0];
+      console.log(response)
+      return response.data;
+    }).catch((err)=>{
+      console.log(err)
     })
 };
 
 export const postUser = (newUserData) => {
-  console.log(newUserData, "newUserData")
+  // console.log(newUserData, "newUserData")
   return thandemApi.post("/users", newUserData).then(({ data }) => {
-    console.log(data, "POST request response")
+    // console.log(data, "POST request response")
   }).catch((err) => {
-    console.log(err)
+    // console.log(err)
   })
 }
 export const postRide = (newRide) => {
