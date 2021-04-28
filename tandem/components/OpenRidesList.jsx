@@ -11,7 +11,7 @@ import RideCard from "./RideCard";
 import * as api from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
-	const { userData } = route.params
+	// const { userData } = route.params
 
 	// console.log(userData, "*** route.params ***")
 

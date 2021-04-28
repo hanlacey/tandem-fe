@@ -12,9 +12,9 @@ import * as api from "../api/api";
 
 export default function PostRide({ route, navigation }) {
 
-	const { userData } = route.params
+	// const { userData } = route.params
 
-	console.log(userData, "*** route.params in PostRide ***")
+	console.log(JSON.parse(userData.routes_data), "*** route.params in PostRide ***")
 
 	const [user, setUser] = useState({
 		username: "hannah123",
