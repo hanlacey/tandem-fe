@@ -66,9 +66,6 @@ export default function CommentList({ ride }) {
               onChangeText={text => setText(text)}
               onSubmitEditing={() => addcomment(text, ride.ride_id)}
             />
-            <TouchableOpacity onPress={() => navigation.navigate("UserProfile", { username: item.author })}>
-              {/* <Image style={styles.image} source={{ uri: comment.avatar_url }} /> */}
-            </TouchableOpacity>
             <View style={styles.content}>
               <View style={styles.contentHeader}>
                 <Text style={styles.name}>{comment.author}</Text>

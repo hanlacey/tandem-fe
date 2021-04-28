@@ -32,7 +32,7 @@ export default function App() {
         <Stack.Screen name="RideCard" component={RideCard} />
         <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="OpenRidesList" component={OpenRidesList} />
-        <Stack.Screen name="Event Attendees" component={EventAttendees} />
+        <Stack.Screen name="EventAttendees" component={EventAttendees} />
         <Stack.Screen name="SingleRide" component={SingleRide} />
         <Stack.Screen name="PostRide" component={PostRide} />
 
