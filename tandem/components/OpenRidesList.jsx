@@ -20,7 +20,7 @@ export default function OpenRidesList({ route, navigation }) {
 
 	useEffect(() => {
 		const allFilters = [
-			{ value: "mountain", active: mountainRides, category: "bike_type" },
+			{ value: "mountain", active: mountainRides, category: "ride_type" },
 			{ value: "road", active: roadRides, category: "ride_type" },
 			{
 				value: "beginner",
