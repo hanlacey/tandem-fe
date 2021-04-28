@@ -11,6 +11,13 @@ export const getAllRides = () => {
     return response.data.rides;
   });
 };
+
+export const getFilteredRides = (query) => {
+  console.log(query)
+  return thandemApi.get(`/rides?${query}`).then(({ data }) => {
+    return data.rides
+  })
+}
 export const getAttendeesByRideId = (ride_id) => {
   return thandemApi.get(`/rides/${ride_id}/attendees`).then((response) => {
     return response.data.attendees
@@ -22,15 +29,14 @@ export const getCommentsByRideId = (ride_id) => {
   });
 };
 
-export const deleteCommentsByCommentId= (comment_id) => {
-  return thandemApi.delete(`/comments/${comment_id}`) 
+export const deleteCommentsByCommentId = (comment_id) => {
+  return thandemApi.delete(`/comments/${comment_id}`)
 };
 
 export const postCommentByRideId = (ride_id, newComment) => {
   console.log(newComment, ride_id)
   return thandemApi
     .post(`/rides/${ride_id}/comments`, newComment)
-
     .then((response) => {
       console.log(response)
       return response.data;
@@ -49,6 +55,10 @@ export const postUser = (newUserData) => {
 }
 export const postRide = (newRide) => {
   return thandemApi.post("/rides", newRide).then(({ data }) => {
-    return (data.newRide)
+    return data.newRide
   })
+}
+
+export const postUserToRideAttendees = (user_id, ride_id) => {
+  return thandemApi.post(`/rides/${ride_id}/attendees`, user)
 }

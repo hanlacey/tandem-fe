@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
 	StyleSheet,
 	View,
@@ -6,21 +6,60 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from "react-native";
-import { RadioButton } from "react-native-paper";
+import { Switch } from "react-native-paper";
 import RideCard from "./RideCard";
-import * as API from "../api/api";
+import * as api from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
-	// const { user, userBikeType, userDifficulty } = route.params;
+	const refHook = useRef(false);
 	const [rides, setRides] = useState([]);
-	const [bike, setBikeFilter] = useState("mountain");
-	const [difficulty, setDifficultyFilter] = useState("casual");
+	const [mountainRides, setMountainRides] = useState(false);
+	const [roadRides, setRoadRides] = useState(false);
+	const [beginnerRides, setBeginnerRides] = useState(false);
+	const [intermediateRides, setIntermediateRides] = useState(false);
+	const [advancedRides, setAdvancedRides] = useState(false);
+	// const [filters, setFilters];
+	//build api request
+	//check status of each toggle
+	//if true add to query
 
 	useEffect(() => {
-		API.getAllRides().then((rides) => {
+		const allFilters = [
+			{ value: "mountain", active: mountainRides, category: "bike_type" },
+			{ value: "road", active: roadRides, category: "ride_type" },
+			{
+				value: "beginner",
+				active: beginnerRides,
+				category: "experience_level",
+			},
+			{
+				value: "intermediate",
+				active: intermediateRides,
+				category: "experience_level",
+			},
+			{
+				value: "advanced",
+				active: advancedRides,
+				category: "experience_level",
+			},
+		];
+		let query = [];
+		allFilters.forEach((filter) => {
+			if (filter.active === true) {
+				query.push(`${filter.category}=${filter.value}`);
+			}
+		});
+		const joinedQuery = query.join("&");
+		api.getFilteredRides(joinedQuery).then((rides) => {
 			setRides(rides);
 		});
-	}, []);
+	}, [
+		mountainRides,
+		roadRides,
+		beginnerRides,
+		intermediateRides,
+		advancedRides,
+	]);
 
 	const list = () => {
 		return rides.map((ride) => {
@@ -30,6 +69,31 @@ export default function OpenRidesList({ route, navigation }) {
 				</View>
 			);
 		});
+	};
+
+	const toggleMountainRides = () => {
+		setMountainRides(!mountainRides);
+		setRoadRides(false);
+	};
+	const toggleRoadRides = () => {
+		setRoadRides(!roadRides);
+		setMountainRides(false);
+	};
+
+	const toggleBeginnerRides = () => {
+		setBeginnerRides(!beginnerRides);
+		setIntermediateRides(false);
+		setAdvancedRides(false);
+	};
+	const toggleIntermediateRides = () => {
+		setIntermediateRides(!intermediateRides);
+		setBeginnerRides(false);
+		setAdvancedRides(false);
+	};
+	const toggleAdvancedRides = () => {
+		setAdvancedRides(!advancedRides);
+		setBeginnerRides(false);
+		setIntermediateRides(false);
 	};
 
 	return (
@@ -42,51 +106,53 @@ export default function OpenRidesList({ route, navigation }) {
 			>
 				<Text style={{ textAlign: "center" }}>Create ride</Text>
 			</TouchableOpacity>
-			<View style={styles.filter}>
-				<View>
-					<Text style={styles.filterLabel}>Bike</Text>
-					<RadioButton.Group
-						style={styles.bike}
-						onValueChange={(bike) => setBikeFilter(bike)}
-						value={bike}
-					>
-						<View>
-							<Text>Road</Text>
-							<RadioButton value="road" />
-						</View>
-						<View>
-							<Text>Mountain</Text>
-							<RadioButton value="mountain" />
-						</View>
-						<View>
-							<Text>All</Text>
-							<RadioButton value="all" />
-						</View>
-					</RadioButton.Group>
-				</View>
-				<View style={styles.difficulty}>
-					<Text style={styles.filterLabel}>Difficulty</Text>
 
-					<RadioButton.Group
-						onValueChange={(difficulty) => setDifficultyFilter(difficulty)}
-						value={difficulty}
-					>
-						<View>
-							<Text style={styles.difficulty}>Casual</Text>
-							<RadioButton value="casual" />
-						</View>
-						<View>
-							<Text style={styles.difficulty}>Challenging</Text>
-							<RadioButton value="challenging" />
-						</View>
-						<View>
-							<Text style={styles.difficulty}>Hardcore</Text>
-							<RadioButton value="hardcore" />
-						</View>
-					</RadioButton.Group>
+			<ScrollView style={styles.scrollContainer}>
+				<View style={styles.filter}>
+					<Text style={{ textAlign: "center" }}>Filter rides</Text>
+					<View style={styles.toggle}>
+						<Switch
+							style={styles.switch}
+							color={"#292929"}
+							value={beginnerRides}
+							onValueChange={toggleBeginnerRides}
+						/>
+						<Text>Beginner</Text>
+
+						<Switch
+							style={styles.switch}
+							color={"#292929"}
+							value={intermediateRides}
+							onValueChange={toggleIntermediateRides}
+						/>
+						<Text>Intermediate</Text>
+						<Switch
+							style={styles.switch}
+							color={"#292929"}
+							value={advancedRides}
+							onValueChange={toggleAdvancedRides}
+						/>
+						<Text>Advanced</Text>
+					</View>
+					<View style={styles.toggle}>
+						<Switch
+							style={styles.switch}
+							color={"#e86b3a"}
+							value={mountainRides}
+							onValueChange={toggleMountainRides}
+						/>
+						<Text>Mountain bike </Text>
+						<Switch
+							style={styles.switch}
+							color={"#e86b3a"}
+							value={roadRides}
+							onValueChange={toggleRoadRides}
+						/>
+						<Text>Road bike </Text>
+					</View>
 				</View>
-			</View>
-			<ScrollView style={styles.scrollContainer}>{list()}</ScrollView>
+				{list()}
+			</ScrollView>
 		</View>
 	);
 }
@@ -107,14 +173,19 @@ const styles = StyleSheet.create({
 		marginBottom: "10%",
 	},
 	filter: {
+		backgroundColor: "white",
+		alignContent: "center",
+		padding: "5%",
+		textAlign: "center",
+		flexGrow: 5,
+		flexShrink: 5,
 		flexDirection: "row",
-		width: "100%",
-		height: "25%",
 		justifyContent: "space-around",
 	},
-	filterLabel: {
-		fontWeight: "bold",
+	toggle: {
+		padding: "3%",
+		margin: "3%",
+		justifyContent: "space-evenly",
+		textAlign: "center",
 	},
-	bike: { flexDirection: "row" },
-	difficulty: {},
 });

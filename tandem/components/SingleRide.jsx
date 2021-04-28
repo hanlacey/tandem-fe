@@ -11,7 +11,7 @@ import {
 	ScrollView,
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
-import { Card, Paragraph} from "react-native-paper";
+import { Card, Paragraph } from "react-native-paper";
 import CommentList from "./CommentList";
 import * as API from "../api/api";
 import parseDate from "../utils/parseDate";
@@ -91,8 +91,7 @@ export default function SingleRide({ route }) {
 			</Card>
 			<View style={styles.commentContainer}>
 				<Text style={{ fontWeight: "bold" }}>Make a comment</Text>
-				<CommentList ride={ride}/>
-			</View>
+				<CommentList ride={ride} />
 		</ScrollView>
 	);
 }
