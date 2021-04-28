@@ -61,7 +61,7 @@ export default function PostRide({ navigation }) {
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 			<ScrollView style={styles.input}>
-				<Text>Route name</Text>
+				<Text>Ride name</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -69,7 +69,7 @@ export default function PostRide({ navigation }) {
 					value={title}
 				/>
 
-				<Text>{"\n"}Route description</Text>
+				<Text>{"\n"}Ride description</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -105,14 +105,14 @@ export default function PostRide({ navigation }) {
 					onChange={onChange}
 				/>
 
-				<Text>{"\n"}Route type</Text>
+				<Text>{"\n"}Bike type</Text>
 
 				<RadioButton.Group
 					onValueChange={(ride_type) => setRideType(ride_type)}
 					value={ride_type}
 				>
-					<RadioButton.Item label="Mountain route" value="Mountain route" />
-					<RadioButton.Item label="Road route" value="Road route" />
+					<RadioButton.Item label="Mountain" value="mountain" />
+					<RadioButton.Item label="Road" value="road" />
 				</RadioButton.Group>
 
 				<Text>{"\n"}Experience level</Text>

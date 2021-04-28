@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
 	StyleSheet,
 	View,
@@ -8,24 +8,58 @@ import {
 } from "react-native";
 import { Switch } from "react-native-paper";
 import RideCard from "./RideCard";
-import * as API from "../api/api";
+import * as api from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
+	const refHook = useRef(false);
 	const [rides, setRides] = useState([]);
-	const [mountainRides, showMountainRides] = useState(true);
-	const [roadRides, showRoadRides] = useState(false);
-	const [beginnerRides, showBeginnerRides] = useState(false);
-	const [intermediateRides, showIntermediateRides] = useState(true);
-	const [advancedRides, showAdvancedRides] = useState(false);
-
+	const [mountainRides, setMountainRides] = useState(false);
+	const [roadRides, setRoadRides] = useState(false);
+	const [beginnerRides, setBeginnerRides] = useState(false);
+	const [intermediateRides, setIntermediateRides] = useState(false);
+	const [advancedRides, setAdvancedRides] = useState(false);
+	// const [filters, setFilters];
 	//build api request
-	API.getAllRides();
+	//check status of each toggle
+	//if true add to query
 
 	useEffect(() => {
-		API.getAllRides().then((rides) => {
+		const allFilters = [
+			{ value: "mountain", active: mountainRides, category: "bike_type" },
+			{ value: "road", active: roadRides, category: "ride_type" },
+			{
+				value: "beginner",
+				active: beginnerRides,
+				category: "experience_level",
+			},
+			{
+				value: "intermediate",
+				active: intermediateRides,
+				category: "experience_level",
+			},
+			{
+				value: "advanced",
+				active: advancedRides,
+				category: "experience_level",
+			},
+		];
+		let query = [];
+		allFilters.forEach((filter) => {
+			if (filter.active === true) {
+				query.push(`${filter.category}=${filter.value}`);
+			}
+		});
+		const joinedQuery = query.join("&");
+		api.getFilteredRides(joinedQuery).then((rides) => {
 			setRides(rides);
 		});
-	}, [rides]);
+	}, [
+		mountainRides,
+		roadRides,
+		beginnerRides,
+		intermediateRides,
+		advancedRides,
+	]);
 
 	const list = () => {
 		return rides.map((ride) => {
@@ -36,22 +70,32 @@ export default function OpenRidesList({ route, navigation }) {
 			);
 		});
 	};
+
 	const toggleMountainRides = () => {
-		showMountainRides(!mountainRides);
+		setMountainRides(!mountainRides);
+		setRoadRides(false);
 	};
 	const toggleRoadRides = () => {
-		showRoadRides(!roadRides);
+		setRoadRides(!roadRides);
+		setMountainRides(false);
 	};
 
 	const toggleBeginnerRides = () => {
-		showBeginnerRides(!beginnerRides);
+		setBeginnerRides(!beginnerRides);
+		setIntermediateRides(false);
+		setAdvancedRides(false);
 	};
 	const toggleIntermediateRides = () => {
-		showIntermediateRides(!intermediateRides);
+		setIntermediateRides(!intermediateRides);
+		setBeginnerRides(false);
+		setAdvancedRides(false);
 	};
 	const toggleAdvancedRides = () => {
-		showAdvancedRides(!advancedRides);
+		setAdvancedRides(!advancedRides);
+		setBeginnerRides(false);
+		setIntermediateRides(false);
 	};
+
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
@@ -65,6 +109,7 @@ export default function OpenRidesList({ route, navigation }) {
 
 			<ScrollView style={styles.scrollContainer}>
 				<View style={styles.filter}>
+					<Text style={{ textAlign: "center" }}>Filter rides</Text>
 					<View style={styles.toggle}>
 						<Switch
 							style={styles.switch}
@@ -73,6 +118,7 @@ export default function OpenRidesList({ route, navigation }) {
 							onValueChange={toggleBeginnerRides}
 						/>
 						<Text>Beginner</Text>
+
 						<Switch
 							style={styles.switch}
 							color={"#292929"}
@@ -131,11 +177,14 @@ const styles = StyleSheet.create({
 		alignContent: "center",
 		padding: "5%",
 		textAlign: "center",
+		flexGrow: 5,
+		flexShrink: 5,
+		flexDirection: "row",
+		justifyContent: "space-around",
 	},
 	toggle: {
 		padding: "3%",
 		margin: "3%",
-		flexDirection: "row",
 		justifyContent: "space-evenly",
 		textAlign: "center",
 	},

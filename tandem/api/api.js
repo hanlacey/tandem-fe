@@ -6,7 +6,6 @@ const thandemApi = axios.create({
   baseURL: REACT_APP_BACKEND_API_BASE_URL,
 });
 
-
 export const getAllRides = () => {
   return thandemApi.get("/rides").then((response) => {
     return response.data.rides;
@@ -14,8 +13,8 @@ export const getAllRides = () => {
 };
 
 export const getFilteredRides = (query) => {
-  console.log('api')
-  return thandemApi.get(`/rides${query}`).then(({ data }) => {
+  console.log(query)
+  return thandemApi.get(`/rides?${query}`).then(({ data }) => {
     return data.rides
   })
 }
@@ -57,9 +56,8 @@ export const postUser = (newUserData) => {
   })
 }
 export const postRide = (newRide) => {
-  console.log(newRide, "*** inside postRide API call ***")
   return thandemApi.post("/rides", newRide).then(({ data }) => {
-    return (data)
+    return data.newRide
   })
 }
 
