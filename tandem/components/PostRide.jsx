@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { TextInput, Button, RadioButton } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
-
 import * as api from "../api/api";
 
 export default function PostRide({ navigation }) {
@@ -78,7 +77,7 @@ export default function PostRide({ navigation }) {
 					value={description}
 				/>
 
-				<Text>{"\n"}Start location</Text>
+				<Text>{"\n"}Location</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -113,6 +112,7 @@ export default function PostRide({ navigation }) {
 				>
 					<RadioButton.Item label="Mountain" value="mountain" />
 					<RadioButton.Item label="Road" value="road" />
+					<RadioButton.Item label="Hybrid" value="hybrid" />
 				</RadioButton.Group>
 
 				<Text>{"\n"}Experience level</Text>
