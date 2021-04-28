@@ -59,6 +59,17 @@ export const postRide = (newRide) => {
   })
 }
 
-export const postUserToRideAttendees = (user_id, ride_id) => {
-  return thandemApi.post(`/rides/${ride_id}/attendees`, user)
+
+
+export const postUserToRideAttendees = (attendee, ride_id) => {
+console.log(attendee, ride_id)
+  return thandemApi.post(`/rides/${ride_id}/attendees`, attendee).then(({data})=>{
+    console.log(data.newAttendee)
+    return data.newAttendee
+  })
 }
+
+export const deleteUserFromRideAttendees = (attendee_id) => {
+  console.log(attendee_id)
+    return thandemApi.post(`/api/attendees/${attendee_id}`)
+  }

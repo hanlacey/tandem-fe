@@ -7,19 +7,43 @@ import {
 	TextInput,
 	Dimensions,
 	useEffect,
-	ScrollView,
+	Button
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import { Card, Paragraph } from "react-native-paper";
 import CommentList from "./CommentList";
 import * as API from "../api/api";
+import { useNavigation } from "@react-navigation/native";
 import parseDate from "../utils/parseDate";
 import { formatPolylineData } from "../utils/formatPolylineData";
 
 export default function SingleRide({ route }) {
-	const [attendees, setAttendees] = React.useState([]);
 	const { ride } = route.params;
-	ride.route_data = "}xxdI~eaHQb@FTNP~@ZX\\M`@{@|ADHXd@bBTTNXp@A\\HVQb@J|@h@r@JZZBRRN\\|@lAh@jAAtBT~Dx@x@`CJb@bAr@dAdAx@fAnAV`@j@`Bp@rCn@zA\\vA`@~@|@z@hApAdApAzA~Bf@zAD?v@fBzB|G`@f@x@`@d@dA@n@TrBj@dDVhGIrCL|@h@xADZC\\L|BGdC]pDk@~EoAtEq@|@gD~DmBrCCJBXUl@]^e@lAAXYZEz@NlAE`AL~DRtCLz@pArF`DhJn@xBv@zDnBbHrB|IrHzSl@z@tD|D~CbMd@fDLhCTvBFjCH|@p@tCbAjCn@pC`@lA|@bFNtCH`DWlD^hDfAhE`@fCBfAGtCFz@Tp@pAjBPv@jBxO@h@KfCAzDOrCB\\E`CGzB^xET`AK|ACvAm@dBGh@GnA@`DPzBhAxEBhAIf@g@vAO^QNe@pAa@nDYrAWj@{@z@o@^Q\\uAnDU|AFtFr@zGNb@`@^r@dAb@jAAb@Ox@Un@wBbDUh@c@tCEnFg@vQIpCYjDEvAOdSYnEUvAGbBPtGHrFT`DNv@Rb@ZIfCgBX{@NeA`@i@J@PDHRPjAHfBd@xB^jAh@z@`BWnFEnASn@[fAIlGfApBj@|BTpCf@p@}@j@mAR}@P}AJqCSeDCoFPcIX_DbBsIlAmCjCsDbAeChByFt@gAx@i@x@@b@Tx@rAT?\\oA^qClBuKbBcIpCyHr@_BjCwE`@qAf@_AP_AFwAM}Co@gHu@ePy@_NgAeX[}CaAeOk@mGkAuV}AwT]kLAoDQyDLcBMuC_@{Gu@qFGaBe@_FEcA]sB]qE_@gBgBkEc@kAAW[eLEyGHkGl@kJ?sBaBoZVoJRmDe@u@yCgBmBwAWg@k@cDYa@{DiBiD_F{@y@aAk@oDuAcBa@gAH_Bj@s@@gTwAmCwAgAw@u@y@y@{Ai@mBcAoNWkBa@aA{@]O[Ae@L}AYsB[i@USu@iCaAsHYmEo@qGAcAgAoFQyAu@kDcA{Da@aCs@_CQcAw@eByAmGe@eC_@}@WgEuAsFqAwCYoAEqCH}@k@wDMkE_@}Cw@iA{AkAMUc@cD]e@?KR[I[i@i@g@iBuA_Dk@iBY]eBzA_BP_B`BcAhBkAfAsCbDMAgA|@{@dAy@^OhAUj@"
+	const [attendees, setAttendees] = React.useState([]);
+	const [user, setUser] = React.useState({
+		username: "hannah123",
+		password: null,
+		email: null,
+		avatar_url:
+			"https://d3nn82uaxijpm6.cloudfront.net/assets/avatar/athlete/large-800a7033cc92b2a5548399e26b1ef42414dd1a9cb13b99454222d38d58fd28ef.png",
+		first_name: "hannah",
+		last_name: "lacey",
+		location: "Manchester, United Kingdom",
+		routes_data: "",
+		bike_type: null,
+		rider_level: null,
+	});
+
+	const attendee = {
+		author: user.username,
+		ride_id: ride.ride_id,
+		name: user.first_name
+	}
+
+
+
+	ride.route_data =
+		"}xxdI~eaHQb@FTNP~@ZX\\M`@{@|ADHXd@bBTTNXp@A\\HVQb@J|@h@r@JZZBRRN\\|@lAh@jAAtBT~Dx@x@`CJb@bAr@dAdAx@fAnAV`@j@`Bp@rCn@zA\\vA`@~@|@z@hApAdApAzA~Bf@zAD?v@fBzB|G`@f@x@`@d@dA@n@TrBj@dDVhGIrCL|@h@xADZC\\L|BGdC]pDk@~EoAtEq@|@gD~DmBrCCJBXUl@]^e@lAAXYZEz@NlAE`AL~DRtCLz@pArF`DhJn@xBv@zDnBbHrB|IrHzSl@z@tD|D~CbMd@fDLhCTvBFjCH|@p@tCbAjCn@pC`@lA|@bFNtCH`DWlD^hDfAhE`@fCBfAGtCFz@Tp@pAjBPv@jBxO@h@KfCAzDOrCB\\E`CGzB^xET`AK|ACvAm@dBGh@GnA@`DPzBhAxEBhAIf@g@vAO^QNe@pAa@nDYrAWj@{@z@o@^Q\\uAnDU|AFtFr@zGNb@`@^r@dAb@jAAb@Ox@Un@wBbDUh@c@tCEnFg@vQIpCYjDEvAOdSYnEUvAGbBPtGHrFT`DNv@Rb@ZIfCgBX{@NeA`@i@J@PDHRPjAHfBd@xB^jAh@z@`BWnFEnASn@[fAIlGfApBj@|BTpCf@p@}@j@mAR}@P}AJqCSeDCoFPcIX_DbBsIlAmCjCsDbAeChByFt@gAx@i@x@@b@Tx@rAT?\\oA^qClBuKbBcIpCyHr@_BjCwE`@qAf@_AP_AFwAM}Co@gHu@ePy@_NgAeX[}CaAeOk@mGkAuV}AwT]kLAoDQyDLcBMuC_@{Gu@qFGaBe@_FEcA]sB]qE_@gBgBkEc@kAAW[eLEyGHkGl@kJ?sBaBoZVoJRmDe@u@yCgBmBwAWg@k@cDYa@{DiBiD_F{@y@aAk@oDuAcBa@gAH_Bj@s@@gTwAmCwAgAw@u@y@y@{Ai@mBcAoNWkBa@aA{@]O[Ae@L}AYsB[i@USu@iCaAsHYmEo@qGAcAgAoFQyAu@kDcA{Da@aCs@_CQcAw@eByAmGe@eC_@}@WgEuAsFqAwCYoAEqCH}@k@wDMkE_@}Cw@iA{AkAMUc@cD]e@?KR[I[i@i@g@iBuA_Dk@iBY]eBzA_BP_B`BcAhBkAfAsCbDMAgA|@{@dAy@^OhAUj@";
 
 	React.useEffect(() => {
 		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
@@ -39,6 +63,19 @@ export default function SingleRide({ route }) {
 		endLongitude,
 	} = formattedMapData;
 
+
+	const handleSubmit = () => {
+		API.postUserToRideAttendees(attendee, ride.ride_id).then((addedAttendee) => {
+			setAttendees([addedAttendee, ...attendees])
+		});
+	}
+
+	const handleLeaveEvent = () => {
+		API.postUserToRideAttendees(attendee, ride.ride_id).then((addedAttendee) => {
+			setAttendees([addedAttendee, ...attendees])
+		});
+	}
+	const navigation = useNavigation();
 	return (
 		<ScrollView>
 			<Card style={styles.container}>
@@ -70,9 +107,13 @@ export default function SingleRide({ route }) {
 					<Paragraph style={styles.rideType}>
 						Distance: {ride.distanceInKm}km
 					</Paragraph>
-					<Paragraph style={styles.rideType}>
-						Attendees: {attendees.length}
-					</Paragraph>
+					<TouchableOpacity
+						onPress={() => navigation.navigate("EventAttendees", {ride})}
+					>
+						<Text style={styles.rideType}>
+							Attendees: {attendees.length}
+						</Text>
+					</TouchableOpacity>
 					<Paragraph style={styles.rideType}>
 						Ride Type: {ride.ride_type}
 					</Paragraph>
@@ -82,9 +123,8 @@ export default function SingleRide({ route }) {
 					<Paragraph>{ride.description}</Paragraph>
 				</Card.Content>
 				<Card.Actions>
-					<TouchableOpacity style={styles.button}>
-						<Paragraph>Join</Paragraph>
-					</TouchableOpacity>
+					<Button title="Join" style={styles.button} onPress={() => handleSubmit()} />
+					<Button title="Leave" style={styles.button} onPress={() => handleLeaveEvent()} />
 				</Card.Actions>
 			</Card>
 			<View style={styles.commentContainer}>
