@@ -110,7 +110,7 @@ export default function SingleRide({ route }) {
 						Distance: {ride.distanceInKm}km
 					</Paragraph>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("EventAttendees", { ride })}
+						onPress={() => navigation.navigate("EventAttendees", { ride, attendees })}
 					>
 						<Text style={styles.rideType}>Attendees: {attendees.length}</Text>
 					</TouchableOpacity>
