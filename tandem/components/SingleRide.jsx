@@ -1,10 +1,9 @@
-
 import * as React from "react";
 import {
 	StyleSheet,
 	Text,
 	View,
-	TouchableOpacity ,
+	TouchableOpacity,
 	TextInput,
 	Dimensions,
 	useEffect,
@@ -32,12 +31,12 @@ export default function SingleRide({ route }) {
 
 	const {
 		formattedCoords,
-		startLatLng ,
+		startLatLng,
 		startLatitude,
 		startLongitude,
-		endLatLng ,
-		endLatitude ,
-		endLongitude ,
+		endLatLng,
+		endLatitude,
+		endLongitude,
 	} = formattedMapData;
 
 	return (
@@ -53,8 +52,8 @@ export default function SingleRide({ route }) {
 					initialRegion={{
 						latitude: startLatitude,
 						longitude: startLongitude,
-						latitudeDelta : 0.0822 ,
-						longitudeDelta : 0.0421 ,
+						latitudeDelta: 0.0822,
+						longitudeDelta: 0.0421,
 					}}
 				>
 					<Marker title="Start" coordinate={startLatLng} pinColor="green" />
@@ -97,12 +96,12 @@ export default function SingleRide({ route }) {
 
 const styles = StyleSheet.create({
 	container: {
-		marginHorizontal : 30 ,
+		marginHorizontal: 30,
 		marginTop: 20,
 	},
-	commentContainer : {
+	commentContainer: {
 		marginTop: 20,
-		marginHorizontal : 30 ,
+		marginHorizontal: 30,
 	},
 	button: {
 		color: "white",
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		width: 100,
-		marginHorizontal : 30 ,
+		marginHorizontal: 30,
 		borderRadius: 30,
 		backgroundColor: "#FF4500",
 		shadowColor: "black",

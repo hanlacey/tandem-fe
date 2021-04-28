@@ -40,7 +40,7 @@ export const postCommentByRideId = (ride_id, newComment) => {
     .then((response) => {
       console.log(response)
       return response.data;
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err)
     })
 };
