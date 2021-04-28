@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";;
 import { Card } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
@@ -30,16 +30,17 @@ export default function CommentList({ ride, user }) {
 		console.log(text);
 	}, [ride_id, text]);
 
+
 	deleteComment = (comment_id) => {
 		API.deleteCommentsByCommentId(comment_id).then(() => {
-			const updatedComments = list.filter(
+			const updatedComments = comments.filter(
 				(item) => item.comment_id !== comment_id
 			);
-			setComments(updatedComments);
+			setComment(updatedComments);
 		});
 	};
 
-	handleChange = (event) => {
+	handleChange = () => {
 		API.postCommentByRideId(ride_id, text, username).then((newComment) => {
 			setComment([newComment, ...comments]);
 		});

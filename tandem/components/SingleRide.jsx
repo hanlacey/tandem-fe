@@ -63,7 +63,7 @@ export default function SingleRide({ route }) {
 	} = formattedMapData;
 
 	const handleSubmit = () => {
-		API.postUserToRideAttendees(attendee, ride.ride_id).then(
+		API.postUserToRideAttendees(attendee, ride.ride_id, user).then(
 			(addedAttendee) => {
 				setAttendees([addedAttendee, ...attendees]);
 			}
