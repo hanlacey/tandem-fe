@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { ScrollView, Text, StyleSheet, TouchableWithoutFeedback, Keyboard } from "react-native";
+import {
+	ScrollView,
+	Text,
+	StyleSheet,
+	TouchableWithoutFeedback,
+	Keyboard,
+} from "react-native";
 import { TextInput, Button, RadioButton } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
@@ -45,96 +51,88 @@ export default function PostRide({ navigation }) {
 		const currentDate = selectedDate || date;
 		setDate(currentDate);
 	};
-	
+
 	const handleSubmit = () => {
-		console.log(newRide)
+		console.log(newRide);
 		api.postRide(newRide).then((newRide) => {
 			navigation.navigate("SingleRide", { ride: newRide });
 		});
 	};
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-		<ScrollView style={styles.input}>
-			
-			<Text>
-				Route name
-			</Text>	
-			<TextInput
-				style={styles.text}
-				mode="outlined"
-				onChangeText={(text) => setTitle(text)}
-				value={title}
-				/>
-				
-			<Text>
-				{"\n"}Route description
-			</Text>
-			<TextInput
-				style={styles.text}
-				mode="outlined"
-				multiline={true}
-				onChangeText={(text) => setDescription(text)}
-				value={description}
+			<ScrollView style={styles.input}>
+				<Text>Route name</Text>
+				<TextInput
+					style={styles.text}
+					mode="outlined"
+					onChangeText={(text) => setTitle(text)}
+					value={title}
 				/>
 
-			<Text>
-				{"\n"}Start location
-			</Text>
-			<TextInput
-				style={styles.text}
-				mode="outlined"
-				onChangeText={(text) => setLocation(text)}
-				value={location}
+				<Text>{"\n"}Route description</Text>
+				<TextInput
+					style={styles.text}
+					mode="outlined"
+					multiline={true}
+					onChangeText={(text) => setDescription(text)}
+					value={description}
 				/>
 
-			<Text>
-				{"\n"}Estimated distance (in km)
-			</Text>
-			<TextInput
-				style={styles.text}
-				mode="outlined"
-				onChangeText={(text) => setDistance(text)}
-				value={distanceInKm}
+				<Text>{"\n"}Start location</Text>
+				<TextInput
+					style={styles.text}
+					mode="outlined"
+					onChangeText={(text) => setLocation(text)}
+					value={location}
 				/>
 
-			<Text>
-				{"\n"}Start date and time{"\n"}
-			</Text>
+				<Text>{"\n"}Estimated distance (in km)</Text>
+				<TextInput
+					style={styles.text}
+					mode="outlined"
+					onChangeText={(text) => setDistance(text)}
+					value={distanceInKm}
+				/>
+
+				<Text>
+					{"\n"}Start date and time{"\n"}
+				</Text>
 				<DateTimePicker
-				style={styles.container}
-				value={date}
-				mode={"datetime"}
-				display="default"
-				onChange={onChange}
+					style={styles.container}
+					value={date}
+					mode={"datetime"}
+					display="default"
+					onChange={onChange}
 				/>
 
-			<Text>
-				{"\n"}Route type
-			</Text>
-				
-			<RadioButton.Group onValueChange={ride_type => setRideType(ride_type)} value={ride_type}>
-				<RadioButton.Item label="Mountain route" value="Mountain route" />
-				<RadioButton.Item label="Road route" value="Road route" />
-			</RadioButton.Group>
-				
+				<Text>{"\n"}Route type</Text>
 
-			<Text>
-				{"\n"}Experience level
-			</Text>
-				
-			<RadioButton.Group onValueChange={experience_level => setExperienceLevel(experience_level)} value={experience_level}>
-				<RadioButton.Item label="Easy" value="Easy" />
-				<RadioButton.Item label="Medium" value="Medium" />
-				<RadioButton.Item label="Hard" value="Hard" />
-			</RadioButton.Group>
-		
-			<Button onPress={handleSubmit}>
-				<Text>Create ride</Text>
+				<RadioButton.Group
+					onValueChange={(ride_type) => setRideType(ride_type)}
+					value={ride_type}
+				>
+					<RadioButton.Item label="Mountain route" value="Mountain route" />
+					<RadioButton.Item label="Road route" value="Road route" />
+				</RadioButton.Group>
+
+				<Text>{"\n"}Experience level</Text>
+
+				<RadioButton.Group
+					onValueChange={(experience_level) =>
+						setExperienceLevel(experience_level)
+					}
+					value={experience_level}
+				>
+					<RadioButton.Item label="Beginner" value="beginner" />
+					<RadioButton.Item label="Intermediate" value="intermediate" />
+					<RadioButton.Item label="Advanced" value="advanced" />
+				</RadioButton.Group>
+
+				<Button onPress={handleSubmit}>
+					<Text>Create ride</Text>
 				</Button>
-				
-			<Text>
-				{"\n\n\n\n"} 
-			</Text>
+
+				<Text>{"\n\n\n\n"}</Text>
 			</ScrollView>
 		</TouchableWithoutFeedback>
 	);

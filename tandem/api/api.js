@@ -6,11 +6,19 @@ const thandemApi = axios.create({
   baseURL: REACT_APP_BACKEND_API_BASE_URL,
 });
 
+
 export const getAllRides = () => {
   return thandemApi.get("/rides").then((response) => {
     return response.data.rides;
   });
 };
+
+export const getFilteredRides = (query) => {
+  console.log('api')
+  return thandemApi.get(`/rides${query}`).then(({ data }) => {
+    return data.rides
+  })
+}
 export const getAttendeesByRideId = (ride_id) => {
   return thandemApi.get(`/rides/${ride_id}/attendees`).then((response) => {
     return response.data.attendees
@@ -22,18 +30,18 @@ export const getCommentsByRideId = (ride_id) => {
   });
 };
 
-export const deleteCommentsByCommentId= (comment_id) => {
-  return thandemApi.delete(`/comments/${comment_id}`) 
+export const deleteCommentsByCommentId = (comment_id) => {
+  return thandemApi.delete(`/comments/${comment_id}`)
 };
 
 export const postCommentByRideId = (ride_id, comment) => {
   return thandemApi
     .post(`/ride/${ride_id}/${comment}`, {
       body: comment,
-				ride_id: 1,
-				author: "t0gden",
-				votes: 0,
-				created_at: new Date(),
+      ride_id: 1,
+      author: "t0gden",
+      votes: 0,
+      created_at: new Date(),
     })
     .then((response) => {
       return response.data.comment[0];
@@ -53,4 +61,8 @@ export const postRide = (newRide) => {
   return thandemApi.post("/rides", newRide).then(({ data }) => {
     return (data)
   })
+}
+
+export const postUserToRideAttendees = (user_id, ride_id) => {
+  return thandemApi.post(`/rides/${ride_id}/attendees`, user)
 }

@@ -8,14 +8,13 @@ import {
 	useEffect,
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
-import { Card, Paragraph} from "react-native-paper";
+import { Card, Paragraph } from "react-native-paper";
 import CommentList from "./CommentList";
 import * as API from "../api/api";
 import parseDate from "../utils/parseDate";
 import { formatPolylineData } from "../utils/formatPolylineData";
 
 export default function SingleRide({ route }) {
-
 	const [attendees, setAttendees] = React.useState([]);
 	const { ride } = route.params;
 	ride.route_data =
@@ -47,7 +46,6 @@ export default function SingleRide({ route }) {
 					title={ride.title}
 					subtitle={parseDate(ride.ride_date)}
 				/>
-				<Card.Cover source={{ uri: "https://picsum.photos/700" }} />
 				<MapView
 					style={styles.map}
 					initialRegion={{
@@ -90,7 +88,7 @@ export default function SingleRide({ route }) {
 			</Card>
 			<ScrollView style={styles.commentContainer}>
 				<Text style={{ fontWeight: "bold" }}>Make a comment</Text>
-				<CommentList ride={ride}/>
+				<CommentList ride={ride} />
 			</ScrollView>
 		</ScrollView>
 	);
