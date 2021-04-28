@@ -58,10 +58,13 @@ export default function App({ navigation }) {
 			{},
 			config
 		);
+
 		const { access_token } = userData.data;
+
 		const activityData = await axios.get(
 			`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
 		);
+
 		formatUsersData(userData, activityData);
 
 		navigation.navigate("OpenRidesList");
@@ -71,10 +74,8 @@ export default function App({ navigation }) {
 		<View>
 			<Button
 				disabled={!request}
-				title="Login"
-				onPress={() => {
-					promptAsync();
-				}}
+				title="Signup or login with Strava"
+				onPress={() => {promptAsync()}}
 			/>
 			<Button
 				color="#FF4500"
