@@ -5,10 +5,7 @@ import * as WebBrowser from "expo-web-browser";
 import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
 import axios from "axios";
 
-import {
-	REACT_APP_STRAVA_CLIENT_ID,
-	REACT_APP_STRAVA_CLIENT_SECRET,
-} from "@env";
+import { REACT_APP_STRAVA_CLIENT_ID,REACT_APP_STRAVA_CLIENT_SECRET } from "@env";
 
 import { formatUsersData } from "../utils/formatUsersData";
 console.log(
@@ -65,9 +62,9 @@ export default function App({ navigation }) {
 			`https://www.strava.com/api/v3/athlete/activities?access_token=${access_token}`
 		);
 
-		formatUsersData(userData, activityData);
+		const newUserData = await formatUsersData(userData, activityData);
 
-		navigation.navigate("OpenRidesList");
+		navigation.navigate("OpenRidesList", {userData: newUserData});
 	};
 
 	return (
