@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { TextInput, Button } from "react-native-paper";
-import RNPickerSelect from "react-native-picker-select";
+import { ScrollView, Text, StyleSheet, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { TextInput, Button, RadioButton } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
+
 import * as api from "../api/api";
 
 export default function PostRide({ navigation }) {
@@ -15,7 +15,7 @@ export default function PostRide({ navigation }) {
 		first_name: "hannah",
 		last_name: "lacey",
 		location: "Manchester, United Kingdom",
-		routes_data: "",
+		route_data: "Route data not available",
 		bike_type: null,
 		rider_level: null,
 	});
@@ -27,86 +27,116 @@ export default function PostRide({ navigation }) {
 	const [experience_level, setExperienceLevel] = useState("");
 	const [ride_type, setRideType] = useState("");
 	const [location, setLocation] = useState("");
+	const [distanceInKm, setDistance] = useState("");
 
 	const newRide = {
 		author: user.username,
 		ride_date: date,
-		route_data,
+		route_data: user.route_data,
 		ride_type,
 		title,
 		description,
 		experience_level,
 		location,
+		distanceInKm,
 	};
+
 	const onChange = (event, selectedDate) => {
 		const currentDate = selectedDate || date;
 		setDate(currentDate);
 	};
+	
 	const handleSubmit = () => {
+		console.log(newRide)
 		api.postRide(newRide).then((newRide) => {
 			navigation.navigate("SingleRide", { ride: newRide });
 		});
 	};
 	return (
-		<View style={styles.input}>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+		<ScrollView style={styles.input}>
+			
+			<Text>
+				Route name
+			</Text>	
 			<TextInput
 				style={styles.text}
-				label="Enter a title"
 				mode="outlined"
 				onChangeText={(text) => setTitle(text)}
 				value={title}
-			/>
+				/>
+				
+			<Text>
+				{"\n"}Route description
+			</Text>
 			<TextInput
 				style={styles.text}
-				label="Enter a description"
 				mode="outlined"
+				multiline={true}
 				onChangeText={(text) => setDescription(text)}
 				value={description}
-			/>
-			<DateTimePicker
+				/>
+
+			<Text>
+				{"\n"}Start location
+			</Text>
+			<TextInput
+				style={styles.text}
+				mode="outlined"
+				onChangeText={(text) => setLocation(text)}
+				value={location}
+				/>
+
+			<Text>
+				{"\n"}Estimated distance (in km)
+			</Text>
+			<TextInput
+				style={styles.text}
+				mode="outlined"
+				onChangeText={(text) => setDistance(text)}
+				value={distanceInKm}
+				/>
+
+			<Text>
+				{"\n"}Start date and time{"\n"}
+			</Text>
+				<DateTimePicker
 				style={styles.container}
 				value={date}
 				mode={"datetime"}
-				is24Hour={true}
-				display="compact"
+				display="default"
 				onChange={onChange}
-			/>
-			<TextInput
-				style={styles.text}
-				label="Strava route ID"
-				mode="outlined"
-				onChangeText={(text) => setRouteData(text)}
-				value={route_data}
-			/>
-			<RNPickerSelect
-				onValueChange={(value) => setRideType(value)}
-				items={[
-					{ label: "Mountain", value: "mountain" },
-					{ label: "Road", value: "road" },
-					{ label: "Any", value: "any" },
-				]}
-			/>
-			<RNPickerSelect
-				onValueChange={(value) => setExperienceLevel(value)}
-				items={[
-					{ label: "Beginner", value: "beginner" },
-					{ label: "Intermediate", value: "intermediate" },
-					{ label: "Advanced", value: "advanced" },
-				]}
-			/>
-			<RNPickerSelect
-				onValueChange={(value) => setLocation(value)}
-				items={[
-					{ label: "Manchester", value: "Manchester" },
-					{ label: "London", value: "London" },
-					{ label: "Chester", value: "Chester" },
-					{ label: "Sheffield", value: "Sheffield" },
-				]}
-			/>
+				/>
+
+			<Text>
+				{"\n"}Route type
+			</Text>
+				
+			<RadioButton.Group onValueChange={ride_type => setRideType(ride_type)} value={ride_type}>
+				<RadioButton.Item label="Mountain route" value="Mountain route" />
+				<RadioButton.Item label="Road route" value="Road route" />
+			</RadioButton.Group>
+				
+
+			<Text>
+				{"\n"}Experience level
+			</Text>
+				
+			<RadioButton.Group onValueChange={experience_level => setExperienceLevel(experience_level)} value={experience_level}>
+				<RadioButton.Item label="Easy" value="Easy" />
+				<RadioButton.Item label="Medium" value="Medium" />
+				<RadioButton.Item label="Hard" value="Hard" />
+			</RadioButton.Group>
+		
 			<Button onPress={handleSubmit}>
-				<Text>Submit</Text>
-			</Button>
-		</View>
+				<Text>Create ride</Text>
+				</Button>
+				
+			<Text>
+				{"\n\n\n\n"} 
+			</Text>
+			</ScrollView>
+		</TouchableWithoutFeedback>
 	);
 }
 
