@@ -35,8 +35,9 @@ export const postUser = (newUserData) => {
 }
 
 export const postRide = (newRide) => {
+  console.log(newRide, "*** inside postRide API call ***")
   return thandemApi.post("/rides", newRide).then(({ data }) => {
-    return (data.newRide)
+    return (data)
   })
 }
 
