@@ -27,8 +27,8 @@ export default function SingleRide({ route }) {
 		email: null,
 		avatar_url:
 			"https://d3nn82uaxijpm6.cloudfront.net/assets/avatar/athlete/large-800a7033cc92b2a5548399e26b1ef42414dd1a9cb13b99454222d38d58fd28ef.png",
-		first_name: "hannah",
-		last_name: "lacey",
+		first_name: "Hannah",
+		last_name: "Lacey",
 		location: "Manchester, United Kingdom",
 		routes_data: "",
 		bike_type: null,
@@ -48,7 +48,7 @@ export default function SingleRide({ route }) {
 		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
 			setAttendees(attendees);
 		});
-	}, [ride.ride_id]);
+	}, [ride.ride_id, attendees]);
 
 	const formattedMapData = formatPolylineData(ride.route_data);
 
@@ -77,6 +77,7 @@ export default function SingleRide({ route }) {
 			}
 		);
 	};
+
 	const navigation = useNavigation();
 	return (
 		<ScrollView>
