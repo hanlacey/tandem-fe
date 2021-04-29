@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 	container: {
 		marginHorizontal: 20,
 		marginTop: "90%",
-		borderRadius: 15,
+		borderRadius: 10,
 	},
 	button: {
 		//color: "white",
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
 		padding: "5%",
 		margin: "5%",
 		borderRadius: 25,
-		backgroundColor: "#FF4500",
+		backgroundColor: "#e86b3a",
 		shadowColor: "black",
 		shadowOpacity: 0.2,
 		shadowOffset: {
