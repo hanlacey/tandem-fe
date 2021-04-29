@@ -81,11 +81,11 @@ export default function SingleRide({ route }) {
 
 	const navigation = useNavigation();
 	return (
-		<View>
+		<ScrollView>
 			<Card style={styles.container}>
 				<Card.Title
 					style={styles.title}
-					title={ride.title}
+					title={ride.title ? ride.title : `${ride.author}'s ride`}
 					subtitle={parseDate(ride.ride_date)}
 				/>
 				<MapView
@@ -107,47 +107,52 @@ export default function SingleRide({ route }) {
 						strokeWidth={3}
 					/>
 				</MapView>
-				<Card.Content>
-					<Paragraph style={styles.rideType}>
+				<Card.Content style={styles.body}>
+					<Paragraph style={{ textAlign: "center" }}>
+						{ride.description}
+					</Paragraph>
+
+					<Paragraph style={styles.info}>
 						Distance: {ride.distanceInKm}km
 					</Paragraph>
 
-					<Paragraph style={styles.rideType}>
-						Ride Type: {ride.ride_type}
-					</Paragraph>
-					<Paragraph style={styles.rideType}>
+					<Paragraph style={styles.info}>Ride Type: {ride.ride_type}</Paragraph>
+					<Paragraph style={styles.info}>
 						Experience Level: {ride.experience_level}
 					</Paragraph>
-					<Paragraph>{ride.description}</Paragraph>
 				</Card.Content>
-				<View style={styles.button}>
-					<Button
-						title="Join"
-						color="#FF4500"
-						onPress={() => handleSubmit()}
-						disabled={disabled}
-					/>
-					<Button
-						title="Leave"
-						color={"#FF4500"}
-						onPress={() => handleLeaveEvent()}
-					/>
-				</View>
+
 				<TouchableOpacity
+					style={styles.button}
 					onPress={() =>
 						navigation.navigate("EventAttendees", { ride, attendees })
 					}
 				>
-					<Paragraph style={styles.viewAttendees}>
-						ATTENDEES: {attendees.length}
+					<Paragraph style={{ fontSize: 16 }}>
+						Attending: {attendees.length}
 					</Paragraph>
 				</TouchableOpacity>
+				<View style={styles.joinOrLeave}>
+					<View style={styles.button}>
+						<Button
+							title="Join"
+							color="#FF4500"
+							onPress={() => handleSubmit()}
+							disabled={disabled}
+						/>
+						<Button
+							title="Leave"
+							color={"#FF4500"}
+							onPress={() => handleLeaveEvent()}
+						/>
+					</View>
+				</View>
 			</Card>
 			<ScrollView style={styles.commentContainer}>
-				<Text style={{ fontWeight: "bold" }}>Comment</Text>
+				<Text style={{ fontWeight: "bold" }}>Add a comment:</Text>
 				<CommentList user={user} ride={ride} />
 			</ScrollView>
-		</View>
+		</ScrollView>
 	);
 }
 
@@ -155,7 +160,7 @@ const styles = StyleSheet.create({
 	container: {
 		marginHorizontal: 20,
 		marginTop: "15%",
-		height: 500,
+		height: 550,
 		borderRadius: 5,
 		backgroundColor: "#f5f5f5",
 	},
@@ -168,56 +173,34 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		borderRadius: 5,
 	},
+	body: {
+		padding: "5%",
+	},
 	commentContainer: {
 		marginHorizontal: 20,
 		marginTop: "2%",
 		height: 230,
 		borderRadius: 5,
-		backgroundColor: "#f5f5f5",
+		padding: "3%",
+		backgroundColor: "white",
 	},
 	button: {
 		color: "white",
 		fontWeight: "bold",
 		height: 35,
-		//justifyContent: "center",
-		//alignItems: "center",
-		//marginVertical: "1%",
-		//width: 100,
 		marginHorizontal: 50,
-		//backgroundColor: "#FF4500",
-		// shadowColor: "black",
-		// shadowOpacity: 0.2,
-		// shadowOffset: {
-		// 	height: 1,
-		// 	width: -2,
-		// },
-		// elevation: 2,
 		flexDirection: "row",
-		justifyContent: "space-around",
+		justifyContent: "space-evenly",
 	},
-	rideType: {
+	info: {
 		textDecorationLine: "underline",
 		marginVertical: 5,
+		fontSize: 15,
 	},
 	viewAttendees: {
-		color: "white",
-		// fontWeight: "bold",
-		height: 35,
-		// justifyContent: "center",
-		// alignItems: "center",
-		// alignContent: "center",
-		width: 117,
-		padding: 6,
-		marginVertical: "2%",
-		marginHorizontal: "33%",
+		color: "#292929",
+		width: "30%",
 		borderRadius: 2,
-		backgroundColor: "#708090",
-		shadowColor: "black",
-		shadowOpacity: 0.2,
-		shadowOffset: {
-			height: 1,
-			width: -2,
-		},
 		elevation: 2,
 	},
 
