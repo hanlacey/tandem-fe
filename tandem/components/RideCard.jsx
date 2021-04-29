@@ -22,7 +22,7 @@ function RideCard({ ride, route }) {
 		API.getAttendeesByRideId(ride_id).then((attendees) => {
 			setAttendees(attendees);
 		});
-	}, [ride_id]);
+	}, [ride_id, attendees]);
 
 	const navigation = useNavigation();
 	return (

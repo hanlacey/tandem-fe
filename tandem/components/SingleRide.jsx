@@ -9,31 +9,31 @@ import {
 	useEffect,
 	Button,
 	ScrollView,
-} from "react-native"
-import MapView, {Marker, Polyline} from "react-native-maps"
-import {Card, Paragraph} from "react-native-paper"
-import CommentList from "./CommentList"
-import * as API from "../api/api"
-import {useNavigation} from "@react-navigation/native"
-import parseDate from "../utils/parseDate"
-import {formatPolylineData} from "../utils/formatPolylineData"
+	KeyboardAvoidingView,
+} from "react-native";
+import MapView, { Marker, Polyline } from "react-native-maps";
+import { Card, Paragraph } from "react-native-paper";
+import CommentList from "./CommentList";
+import * as API from "../api/api";
+import { useNavigation } from "@react-navigation/native";
+import parseDate from "../utils/parseDate";
+import { formatPolylineData } from "../utils/formatPolylineData";
 
 export default function SingleRide({route}) {
 	const {ride} = route.params
 	const [attendees, setAttendees] = React.useState([])
 	const [user, setUser] = React.useState({
-		username: "hannah123",
-		password: null,
-		email: null,
-		avatar_url:
-			"https://d3nn82uaxijpm6.cloudfront.net/assets/avatar/athlete/large-800a7033cc92b2a5548399e26b1ef42414dd1a9cb13b99454222d38d58fd28ef.png",
-		first_name: "Hannah",
-		last_name: "Lacey",
-		location: "Manchester, United Kingdom",
-		routes_data: "",
-		bike_type: null,
-		rider_level: null,
-	})
+		username: "raofRides",
+		password: "abcde2",
+		email: "example2@gmail.com",
+		avatar_url: "http://clipart-library.com/images/yckAgeMRi.jpg",
+		first_name: "Raof",
+		last_name: "Benaesha",
+		location: "Manchester",
+		routes_data: "routes",
+		bike_type: "Road",
+		rider_level: "Beginner",
+	});
 
 	const attendee = {
 		attendee: user.username,
@@ -71,12 +71,10 @@ export default function SingleRide({route}) {
 	}
 
 	const handleLeaveEvent = () => {
-		API.postUserToRideAttendees(attendee, ride.ride_id).then(
-			(addedAttendee) => {
-				setAttendees([addedAttendee, ...attendees])
-			}
-		)
-	}
+		API.deleteAttendeeByRideId(user.username, ride.ride_id).then(() => {
+			console.log("deleted", user.username);
+		});
+	};
 
 	const navigation = useNavigation()
 	return (

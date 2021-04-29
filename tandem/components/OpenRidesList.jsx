@@ -5,19 +5,20 @@ import {
 	Text,
 	ScrollView,
 	TouchableOpacity,
-} from "react-native"
-import {Switch} from "react-native-paper"
-import RideCard from "./RideCard"
-import * as api from "../api/api"
+} from "react-native";
+import { Switch } from "react-native-paper";
+import { Picker } from "@react-native-picker/picker";
+import RideCard from "./RideCard";
+import * as api from "../api/api";
 
-export default function OpenRidesList({route, navigation}) {
-	const [rides, setRides] = useState([])
-	const [mountainRides, setMountainRides] = useState(false)
-	const [roadRides, setRoadRides] = useState(false)
-	const [beginnerRides, setBeginnerRides] = useState(false)
-	const [intermediateRides, setIntermediateRides] = useState(false)
-	const [advancedRides, setAdvancedRides] = useState(false)
-
+export default function OpenRidesList({ route, navigation }) {
+	const [rides, setRides] = useState([]);
+	const [mountainRides, setMountainRides] = useState(false);
+	const [roadRides, setRoadRides] = useState(false);
+	const [beginnerRides, setBeginnerRides] = useState(false);
+	const [intermediateRides, setIntermediateRides] = useState(false);
+	const [advancedRides, setAdvancedRides] = useState(false);
+	const [location, setLocation] = useState("");
 	useEffect(() => {
 		const allFilters = [
 			{value: "mountain", active: mountainRides, category: "ride_type"},
@@ -43,8 +44,12 @@ export default function OpenRidesList({route, navigation}) {
 			if (filter.active === true) {
 				query.push(`${filter.category}=${filter.value}`)
 			}
-		})
-		const joinedQuery = query.join("&")
+		});
+		if (location) {
+			query.push(`location=${location}`);
+		}
+		const joinedQuery = query.join("&");
+		console.log(joinedQuery);
 		api.getFilteredRides(joinedQuery).then((rides) => {
 			setRides(rides)
 		})
@@ -54,7 +59,8 @@ export default function OpenRidesList({route, navigation}) {
 		beginnerRides,
 		intermediateRides,
 		advancedRides,
-	])
+		location,
+	]);
 
 	const list = () => {
 		return rides.map((ride) => {
@@ -102,6 +108,17 @@ export default function OpenRidesList({route, navigation}) {
 			</TouchableOpacity>
 
 			<ScrollView style={styles.scrollContainer}>
+				<Picker
+					selectedValue={location}
+					onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
+					mode="dropdown"
+				>
+					<Picker.Item label="All" value="" />
+					<Picker.Item label="London" value="London" />
+					<Picker.Item label="Manchester" value="Manchester" />
+					<Picker.Item label="Sheffield" value="Sheffield" />
+					<Picker.Item label="Chester" value="Chester" />
+				</Picker>
 				<View style={styles.filter}>
 					<Text style={{textAlign: "center"}}>Filter Rides</Text>
 					<View style={styles.toggle}>
@@ -204,36 +221,3 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 	},
 })
-
-// const styles = StyleSheet.create({
-// 	container: {
-// 		flex: 7,
-// 		marginTop: "5%",
-// 		width: "100%",
-// 		height: "100%",
-// 		alignContent: "center",
-// 		justifyContent: "center",
-// 	},
-// 	createRide: {
-// 		backgroundColor: "white",
-// 		padding: "5%",
-// 		margin: "5%",
-// 		marginBottom: "10%",
-// 	},
-// 	filter: {
-// 		backgroundColor: "white",
-// 		alignContent: "center",
-// 		padding: "5%",
-// 		textAlign: "center",
-// 		flexGrow: 5,
-// 		flexShrink: 5,
-// 		flexDirection: "row",
-// 		justifyContent: "space-around",
-// 	},
-// 	toggle: {
-// 		padding: "3%",
-// 		margin: "3%",
-// 		justifyContent: "space-evenly",
-// 		textAlign: "center",
-// 	},
-// });
