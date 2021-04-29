@@ -7,6 +7,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import { Switch } from "react-native-paper";
+import { Picker } from "@react-native-picker/picker";
 import RideCard from "./RideCard";
 import * as api from "../api/api";
 
@@ -17,7 +18,7 @@ export default function OpenRidesList({ route, navigation }) {
 	const [beginnerRides, setBeginnerRides] = useState(false);
 	const [intermediateRides, setIntermediateRides] = useState(false);
 	const [advancedRides, setAdvancedRides] = useState(false);
-
+	const [location, setLocation] = useState("");
 	useEffect(() => {
 		const allFilters = [
 			{ value: "mountain", active: mountainRides, category: "ride_type" },
@@ -44,7 +45,11 @@ export default function OpenRidesList({ route, navigation }) {
 				query.push(`${filter.category}=${filter.value}`);
 			}
 		});
+		if (location) {
+			query.push(`location=${location}`);
+		}
 		const joinedQuery = query.join("&");
+		console.log(joinedQuery);
 		api.getFilteredRides(joinedQuery).then((rides) => {
 			setRides(rides);
 		});
@@ -54,6 +59,7 @@ export default function OpenRidesList({ route, navigation }) {
 		beginnerRides,
 		intermediateRides,
 		advancedRides,
+		location,
 	]);
 
 	const list = () => {
@@ -103,6 +109,17 @@ export default function OpenRidesList({ route, navigation }) {
 			</TouchableOpacity>
 
 			<ScrollView style={styles.scrollContainer}>
+				<Picker
+					selectedValue={location}
+					onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
+					mode="dropdown"
+				>
+					<Picker.Item label="All" value="" />
+					<Picker.Item label="London" value="London" />
+					<Picker.Item label="Manchester" value="Manchester" />
+					<Picker.Item label="Sheffield" value="Sheffield" />
+					<Picker.Item label="Chester" value="Chester" />
+				</Picker>
 				<View style={styles.filter}>
 					<Text style={{ textAlign: "center" }}>Filter rides</Text>
 					<View style={styles.toggle}>

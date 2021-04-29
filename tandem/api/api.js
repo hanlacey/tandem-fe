@@ -23,6 +23,12 @@ export const getAttendeesByRideId = (ride_id) => {
     return response.data.attendees
   });
 };
+
+export const deleteAttendeeByRideId = (attendee, ride_id) => {
+  console.log(attendee, 'api attendee')
+  return thandemApi.delete(`/rides/${ride_id}/attendees/${attendee}`)
+}
+
 export const getCommentsByRideId = (ride_id) => {
   return thandemApi.get(`/rides/${ride_id}/comments`).then((response) => {
     return response.data.comments
@@ -65,7 +71,7 @@ export const postRide = (newRide) => {
 export const postUserToRideAttendees = (attendee, ride_id) => {
   console.log(attendee, ride_id)
   return thandemApi.post(`/rides/${ride_id}/attendees`, attendee).then(({ data }) => {
-    console.log(data.newAttendee)
+    console.log(data)
     return data.newAttendee
   })
 }

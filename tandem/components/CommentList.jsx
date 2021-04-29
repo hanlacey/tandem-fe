@@ -32,10 +32,10 @@ export default function CommentList({ ride, user }) {
 
 	deleteComment = (comment_id) => {
 		API.deleteCommentsByCommentId(comment_id).then(() => {
-			const updatedComments = list.filter(
+			const updatedComments = comments.filter(
 				(item) => item.comment_id !== comment_id
 			);
-			setComments(updatedComments);
+			setComment(updatedComments);
 		});
 	};
 

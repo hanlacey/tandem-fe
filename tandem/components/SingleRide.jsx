@@ -9,6 +9,7 @@ import {
 	useEffect,
 	Button,
 	ScrollView,
+	KeyboardAvoidingView,
 } from "react-native";
 import MapView, { Marker, Polyline } from "react-native-maps";
 import { Card, Paragraph } from "react-native-paper";
@@ -22,21 +23,20 @@ export default function SingleRide({ route }) {
 	const { ride } = route.params;
 	const [attendees, setAttendees] = React.useState([]);
 	const [user, setUser] = React.useState({
-		username: "hannah123",
-		password: null,
-		email: null,
-		avatar_url:
-			"https://d3nn82uaxijpm6.cloudfront.net/assets/avatar/athlete/large-800a7033cc92b2a5548399e26b1ef42414dd1a9cb13b99454222d38d58fd28ef.png",
-		first_name: "Hannah",
-		last_name: "Lacey",
-		location: "Manchester, United Kingdom",
-		routes_data: "",
-		bike_type: null,
-		rider_level: null,
+		username: "raofRides",
+		password: "abcde2",
+		email: "example2@gmail.com",
+		avatar_url: "http://clipart-library.com/images/yckAgeMRi.jpg",
+		first_name: "Raof",
+		last_name: "Benaesha",
+		location: "Manchester",
+		routes_data: "routes",
+		bike_type: "Road",
+		rider_level: "Beginner",
 	});
 
 	const attendee = {
-		author: user.username,
+		attendee: user.username,
 		ride_id: ride.ride_id,
 		name: user.first_name,
 	};
@@ -71,11 +71,9 @@ export default function SingleRide({ route }) {
 	};
 
 	const handleLeaveEvent = () => {
-		API.postUserToRideAttendees(attendee, ride.ride_id).then(
-			(addedAttendee) => {
-				setAttendees([addedAttendee, ...attendees]);
-			}
-		);
+		API.deleteAttendeeByRideId(user.username, ride.ride_id).then(() => {
+			console.log("deleted", user.username);
+		});
 	};
 
 	const navigation = useNavigation();
