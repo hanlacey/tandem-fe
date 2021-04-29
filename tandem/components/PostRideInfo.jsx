@@ -10,8 +10,6 @@ import { TextInput, Button, RadioButton } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import MapView, { Marker, Polyline } from "react-native-maps";
 
-import {formatPolylineData} from "../utils/formatPolylineData"
-
 import * as api from "../api/api";
 
 import userData from "../assets/userData"
@@ -22,7 +20,7 @@ export default function PostRideInfo({ route, navigation }) {
 	const { routeSelected, mapData } = route.params
 	
 	// console.log(routeSelected, "in PostRideInfo")
-	// console.log(routeSelected, "routeSelected in PostRideInfo")
+	// console.log(mapData.routePolyline, "routeSelected in PostRideInfo")
 
 	const [user, setUser] = useState({
 		username: "hannah123",
@@ -66,8 +64,7 @@ export default function PostRideInfo({ route, navigation }) {
 	const newRide = {
 		author: user.username,
 		ride_date: date,
-		// route_data: JSON.stringify(mapData),
-		route_data: "Route data not available",
+		route_data: mapData.routePolyline,
 		ride_type,
 		title,
 		description,
@@ -82,7 +79,7 @@ export default function PostRideInfo({ route, navigation }) {
 	};
 
 	const handleSubmit = () => {
-		console.log("Data to POST ---->", newRide);
+		// console.log("Data to POST ---->", newRide);
 		api.postRide(newRide).then((newRide) => {
 			navigation.navigate("SingleRide", { ride: newRide, userData });
 		});

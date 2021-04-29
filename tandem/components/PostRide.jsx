@@ -30,6 +30,7 @@ export default function PostRide({ route, navigation }) {
 			endLatitude: "",
 			endLongitude: "",	
 			distanceInKm: 0,
+			routePolyline: "",
 		})
 
 	const handleNextButtonPress = () => {
@@ -71,6 +72,7 @@ export default function PostRide({ route, navigation }) {
 				endLatitude,
 				endLongitude,
 				distanceInKm: routeData.distanceInKm.toFixed(0).toString(),
+				routePolyline: routeData.routePolyline
 			})
 		} else {
 			setRouteData("")
