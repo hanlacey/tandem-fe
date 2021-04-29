@@ -49,6 +49,7 @@ export default function CommentList({ ride, user }) {
 	return (
 		<View>
 			<TextInput
+				style={styles.input}
 				value={text}
 				placeholder="write a comment ..."
 				onChangeText={(text) => {
@@ -104,11 +105,12 @@ const styles = StyleSheet.create({
 		//marginTop: "15%",
 		//height: 140,
 		borderRadius: 5,
-		backgroundColor: "#f5f5f5",
 	},
 	content: {
 		//marginLeft: 16,
 		//flex: 1,
+		width: "80%",
+		padding: "2%",
 	},
 	contentHeader: {
 		flexDirection: "column",
@@ -135,5 +137,10 @@ const styles = StyleSheet.create({
 	name: {
 		fontSize: 16,
 		fontWeight: "bold",
+	},
+	input: {
+		padding: "5%",
+		margin: "2%",
+		backgroundColor: "#f5f5f5",
 	},
 });
