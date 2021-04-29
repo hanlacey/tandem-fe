@@ -50,7 +50,7 @@ export default function CommentList({ ride, user }) {
 		<View>
 			<TextInput
 				value={text}
-				placeholder="write..."
+				placeholder="write a comment ..."
 				onChangeText={(text) => {
 					setText(text);
 				}}
@@ -72,6 +72,7 @@ export default function CommentList({ ride, user }) {
 						<View style={styles.content}>
 							<View style={styles.contentHeader}>
 								<Text style={styles.name}>{comment.author}</Text>
+								
 								<Text style={styles.time}>{parseDate(comment.created_at)}</Text>
 							</View>
 							<Text rkType="primary3 mediumLine">{comment.body}</Text>
@@ -94,24 +95,32 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 	},
 	container: {
-		paddingLeft: 19,
-		paddingRight: 16,
-		paddingVertical: 12,
+		marginLeft: -60,
+		padding: 6,
+		//paddingVertical: 12,
 		flexDirection: "row",
 		alignItems: "flex-start",
+		//marginHorizontal: 20,
+		//marginTop: "15%",
+		//height: 140,
+		borderRadius: 5,
+		backgroundColor: "#f5f5f5",
 	},
 	content: {
-		marginLeft: 16,
-		flex: 1,
+		//marginLeft: 16,
+		//flex: 1,
 	},
 	contentHeader: {
-		flexDirection: "row",
-		justifyContent: "space-between",
+		flexDirection: "column",
+		//justifyContent: "center",
 		marginBottom: 6,
+		//marginTop: 20,
 	},
 	separator: {
-		height: 1,
-		backgroundColor: "#CCCCCC",
+		// height: 6,
+		marginVertical: 8,
+		borderBottomColor: "#CCCCCC",
+		borderBottomWidth: 5,
 	},
 	image: {
 		width: 45,

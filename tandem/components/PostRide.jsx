@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	TouchableWithoutFeedback,
 	Keyboard,
+	View,
 } from "react-native";
 import { TextInput, Button, RadioButton } from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -65,18 +66,21 @@ export default function PostRide({ navigation }) {
 		});
 	};
 	return (
+		<View style={styles.container}>
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 			<ScrollView style={styles.input}>
-				<Text>Ride name</Text>
-				<TextInput
+				<Text style={styles.bold}>Ride Title</Text>
+					<TextInput
+					placeholder="write a title ..."
 					style={styles.text}
 					mode="outlined"
 					onChangeText={(text) => setTitle(text)}
 					value={title}
 				/>
 
-				<Text>{"\n"}Ride description</Text>
-				<TextInput
+				<Text style={styles.bold}>{"\n"}Ride description</Text>
+					<TextInput
+					placeholder="describe your ride ..."
 					style={styles.text}
 					mode="outlined"
 					multiline={true}
@@ -84,23 +88,25 @@ export default function PostRide({ navigation }) {
 					value={description}
 				/>
 				{/* <Dropdown label="Location" data={data} /> */}
-				<Text>{"\n"}Location</Text>
-				<TextInput
+				<Text style={styles.bold}>{"\n"}Location</Text>
+					<TextInput
+					placeholder="ride location ..."
 					style={styles.text}
 					mode="outlined"
 					onChangeText={(text) => setLocation(text)}
 					value={location}
 				/>
 
-				<Text>{"\n"}Estimated distance (in km)</Text>
-				<TextInput
+				<Text style={styles.bold}>{"\n"}Estimated distance (in km)</Text>
+					<TextInput
+					placeholder="ride distance ..."
 					style={styles.text}
 					mode="outlined"
 					onChangeText={(text) => setDistance(text)}
 					value={distanceInKm}
 				/>
 
-				<Text>
+				<Text style={styles.bold}>
 					{"\n"}Start date and time{"\n"}
 				</Text>
 				<DateTimePicker
@@ -111,7 +117,7 @@ export default function PostRide({ navigation }) {
 					onChange={onChange}
 				/>
 
-				<Text>{"\n"}Bike type</Text>
+				<Text style={styles.bold}>{"\n"}Bike Type:</Text>
 
 				<RadioButton.Group
 					onValueChange={(ride_type) => setRideType(ride_type)}
@@ -122,7 +128,7 @@ export default function PostRide({ navigation }) {
 					<RadioButton.Item label="Hybrid" value="hybrid" />
 				</RadioButton.Group>
 
-				<Text>{"\n"}Experience level</Text>
+				<Text style={styles.bold}>{"\n"}Experience Level:</Text>
 
 				<RadioButton.Group
 					onValueChange={(experience_level) =>
@@ -136,24 +142,37 @@ export default function PostRide({ navigation }) {
 				</RadioButton.Group>
 
 				<Button onPress={handleSubmit}>
-					<Text>Create ride</Text>
-				</Button>
-
-				<Text>{"\n\n\n\n"}</Text>
+					<Text>Create Ride</Text>
+					</Button>
 			</ScrollView>
 		</TouchableWithoutFeedback>
+		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
+		//flex: 7,
+		marginTop: "20%",
+		marginBottom: "19%",
+		width: "98%",
+		//height: "9%",
+		alignContent: "center",
 		justifyContent: "center",
+		// marginHorizontal: 20,
+		// marginTop: "15%",
+		// height: 700,
+		// borderRadius: 5,
+		// backgroundColor: "#f5f5f5",
 	},
 	input: {
 		paddingHorizontal: "5%",
-		paddingVertical: "5%",
+		paddingVertical: "0%",
 	},
 	text: {
-		marginVertical: "2%",
+		marginVertical: "0%",
 	},
+	bold: {
+		fontWeight: "bold"
+	}
 });
