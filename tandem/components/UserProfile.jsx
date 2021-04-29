@@ -15,7 +15,9 @@ export default class UserProfile extends Component {
 	//atm constructor is only needed for filtering sample data
 	constructor(props) {
 		super(props);
-		const username = this.props.route.params.username;
+
+		const username = this.props.username;
+
 		this.getUserInfo = () => {
 			const user = users.filter((user) => {
 				return user.username === username;
@@ -76,6 +78,7 @@ export default class UserProfile extends Component {
 }
 
 const styles = StyleSheet.create({
+	container: { paddingTop: "15%" },
 	header: {
 		backgroundColor: "#f2f3f4",
 	},
@@ -106,6 +109,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		backgroundColor: "#FF4500",
 		padding: "5%",
+		marginBottom: "5%",
 	},
 	ride: {
 		backgroundColor: "white",
