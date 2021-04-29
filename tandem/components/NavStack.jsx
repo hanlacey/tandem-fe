@@ -19,6 +19,7 @@ const profileNav = () => {
 	return (
 		<Stack.Navigator screenOptions={screenOptionStyle}>
 			<Stack.Screen name="UserProfile" component={UserProfile} />
+			<Stack.Screen name="SingleRide" component={SingleRide} />
 		</Stack.Navigator>
 	);
 };

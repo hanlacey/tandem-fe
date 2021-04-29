@@ -1,6 +1,14 @@
 import React, { Component, useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	Image,
+	TouchableOpacity,
+	TouchableHighlight,
+} from "react-native";
 import { Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 import users from "../assets/users";
 import rideData from "../assets/rides";
@@ -40,12 +48,15 @@ export default class UserProfile extends Component {
 
 	render() {
 		const { rides, user } = this.state;
+		const { navigation } = this.props;
 
 		const userRideList = () => {
 			return rides.map((ride) => {
 				return (
 					<View key={ride.ride_id} style={styles.ride}>
-						<Text style={styles.rideTitle}>{ride.title} </Text>
+						{/* <TouchableHighlight>
+							<Text>Hi</Text>
+						</TouchableHighlight> */}
 						<Text style={styles.rideDescription}>
 							{ride.author} - {parseDate(ride.ride_date)} -{" "}
 							{ride.attendees.length} riders
