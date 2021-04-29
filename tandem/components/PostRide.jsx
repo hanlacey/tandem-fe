@@ -114,7 +114,7 @@ export default function PostRide({ route, navigation }) {
 			<ScrollView style={styles.input}>
 
 			
-				<Text>{"\n"}Select one from your Strava routes or create a new route</Text>
+					<Text style={styles.select}>Select one from your Strava routes or create a new route</Text>
 
 				<RadioButton.Group
 					onValueChange={(routeSelected) => handleRouteSelection(routeSelected)}
@@ -142,20 +142,32 @@ export default function PostRide({ route, navigation }) {
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: "20%",
-		marginBottom: "19%",
-		width: "98%",
+		marginTop: "40%",
+		padding: 2,
+		width: "95%",
 		alignContent: "center",
 		justifyContent: "center",
+		backgroundColor: "#ffffff",
+		marginLeft: 10,
 	},
 	input: {
 		paddingHorizontal: "5%",
-		paddingVertical: "0%",
+		paddingVertical: "5%",
 	},
 	text: {
 		marginVertical: "0%",
 	},
 	bold: {
 		fontWeight: "bold"
+	},
+	select: {
+		backgroundColor: "#CCCCCC",
+		padding: "3%",
+		fontSize: 22,
+		color: "#292929",
+		textAlign: "center",
+		borderRadius: 10,
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 	}
 });

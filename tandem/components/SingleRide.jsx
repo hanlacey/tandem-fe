@@ -158,11 +158,13 @@ export default function SingleRide({ route }) {
 
 const styles = StyleSheet.create({
 	container: {
-		marginHorizontal: 20,
-		marginTop: "15%",
-		height: 550,
+		marginHorizontal: 15,
+		marginTop: "3%",
+		height: 490,
 		borderRadius: 5,
 		backgroundColor: "#f5f5f5",
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 	},
 	title: {
 		backgroundColor: "#e86b3a",
@@ -172,17 +174,21 @@ const styles = StyleSheet.create({
 		color: "#292929",
 		textAlign: "center",
 		borderRadius: 5,
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 	},
 	body: {
-		padding: "5%",
+		padding: "0%",
 	},
 	commentContainer: {
-		marginHorizontal: 20,
+		marginHorizontal: 15,
 		marginTop: "2%",
-		height: 230,
+		height: 215,
 		borderRadius: 5,
 		padding: "3%",
 		backgroundColor: "white",
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 	},
 	button: {
 		color: "white",
@@ -194,7 +200,7 @@ const styles = StyleSheet.create({
 	},
 	info: {
 		textDecorationLine: "underline",
-		marginVertical: 5,
+		marginVertical: 3,
 		fontSize: 15,
 	},
 	viewAttendees: {
