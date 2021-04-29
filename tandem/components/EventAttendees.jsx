@@ -25,7 +25,7 @@ export default function EventAttendees({ navigation, route }) {
 					enableEmptySections={true}
 					data={attendees}
 					keyExtractor={(item, index) => {
-						return item.username;
+						return item.attendee_id.toString();
 					}}
 					renderItem={({ item }) => {
 						return (
