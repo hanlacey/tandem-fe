@@ -66,7 +66,8 @@ export default function PostRideInfo({ route, navigation }) {
 	const newRide = {
 		author: user.username,
 		ride_date: date,
-		route_data: JSON.stringify(mapData) || "Route data unavailable",
+		// route_data: JSON.stringify(mapData),
+		route_data: "Route data not available",
 		ride_type,
 		title,
 		description,
