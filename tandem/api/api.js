@@ -53,11 +53,11 @@ export const postCommentByRideId = (ride_id, commentBody, username) => {
 };
 
 export const postUser = (newUserData) => {
-  // console.log(newUserData, "newUserData")
+  console.log(newUserData, "newUserData")
   return thandemApi.post("/users", newUserData).then(({ data }) => {
     // console.log(data, "POST request response")
   }).catch((err) => {
-    // console.log(err)
+    console.log(err)
   })
 }
 export const postRide = (newRide) => {

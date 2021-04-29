@@ -20,14 +20,18 @@ export const formatUsersData = (userData, activityData) => {
         }
     })
 
+    const stringifiedRoutesData = JSON.stringify(routesData)
+
     const formattedUserData = {
         username,
         first_name: firstname,
         last_name: lastname,
         avatar_url: avatarUrl,
         location: `${city}, ${country}`,
-        routes_data: routesData.toString(),
+        routes_data: stringifiedRoutesData,
     }
 
     postUser(formattedUserData)
+
+    return formattedUserData
 }
