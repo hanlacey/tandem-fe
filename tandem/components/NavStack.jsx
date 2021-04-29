@@ -5,6 +5,7 @@ import OpenRidesList from "./OpenRidesList";
 import EventAttendees from "./EventAttendees";
 import SingleRide from "./SingleRide";
 import PostRide from "./PostRide";
+import PostRideInfo from "./PostRideInfo";
 import RideCard from "./RideCard";
 import StravaSignup from "./StravaSignup";
 const Stack = createStackNavigator();
@@ -31,6 +32,7 @@ const rideStack = () => {
 		>
 			<Stack.Screen name="OpenRidesList" component={OpenRidesList} />
 			<Stack.Screen name="PostRide" component={PostRide} />
+			<Stack.Screen name="PostRideInfo" component={PostRideInfo} />
 			<Stack.Screen name="RideCard" component={RideCard} />
 			<Stack.Screen name="SingleRide" component={SingleRide} />
 			<Stack.Screen name="EventAttendees" component={EventAttendees} />

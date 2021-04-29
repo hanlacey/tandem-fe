@@ -24,7 +24,6 @@ export default function PostRide({ route, navigation }) {
 
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [route_data, setRouteData] = useState("");
 	const [date, setDate] = useState(new Date());
 	const [experience_level, setExperienceLevel] = useState("");
 	const [ride_type, setRideType] = useState("");
@@ -117,7 +116,7 @@ export default function PostRide({ route, navigation }) {
 			
 				<Text>{"\n"}Select one from your Strava routes or create a new route</Text>
 
-				<Text style={styles.bold}>Ride Title</Text>
+				{/* <Text style={styles.bold}>Ride Title</Text>
 					<TextInput
 					placeholder="write a title ..."
 					style={styles.text}
@@ -167,7 +166,7 @@ export default function PostRide({ route, navigation }) {
 					onChange={onChange}
 				/>
 
-				<Text style={styles.bold}>{"\n"}Bike Type:</Text>
+				<Text style={styles.bold}>{"\n"}Bike Type:</Text> */}
 
 				<RadioButton.Group
 					onValueChange={(routeSelected) => handleRouteSelection(routeSelected)}
@@ -187,10 +186,11 @@ export default function PostRide({ route, navigation }) {
 					<Text>Next</Text>
 				</Button>
 
-				<Text>{"\n\n\n\n"}</Text>
+				{/* <Text>{"\n\n\n\n"}</Text>
+				<RadioButton.Group>
 					<RadioButton.Item label="Mountain" value="mountain" />
 					<RadioButton.Item label="Road" value="road" />
-					{/* <RadioButton.Item label="Hybrid" value="hybrid" /> */}
+					<RadioButton.Item label="Hybrid" value="hybrid" />
 				</RadioButton.Group>
 
 				<Text style={styles.bold}>{"\n"}Experience Level:</Text>
@@ -208,7 +208,7 @@ export default function PostRide({ route, navigation }) {
 
 				<Button onPress={handleSubmit}>
 					<Text>Create Ride</Text>
-					</Button>
+					</Button> */}
 			</ScrollView>
 		</TouchableWithoutFeedback>
 		</View>

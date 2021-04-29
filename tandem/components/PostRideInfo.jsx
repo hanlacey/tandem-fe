@@ -186,7 +186,7 @@ export default function PostRideInfo({ route, navigation }) {
 					<Text>Create ride</Text>
 				</Button>
 
-				<Text>{"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}</Text>
+				<Text>{"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}</Text>
 			</ScrollView>
 		</TouchableWithoutFeedback>
 	);
