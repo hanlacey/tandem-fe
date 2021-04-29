@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { View, Button } from "react-native";
-
+import { StyleSheet, View, Button } from "react-native";
+import { Paragraph } from "react-native-paper";
 import * as WebBrowser from "expo-web-browser";
 import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
 import axios from "axios";
 
-import { REACT_APP_STRAVA_CLIENT_ID,REACT_APP_STRAVA_CLIENT_SECRET } from "@env";
+import {
+	REACT_APP_STRAVA_CLIENT_ID,
+	REACT_APP_STRAVA_CLIENT_SECRET,
+} from "@env";
 
 import { formatUsersData } from "../utils/formatUsersData";
 console.log(
@@ -28,7 +31,7 @@ export default function App({ navigation }) {
 			clientId: REACT_APP_STRAVA_CLIENT_ID,
 			scopes: ["activity:read_all"],
 			redirectUri: makeRedirectUri({
-				native: "192.168.0.27",
+				native: "192.168.1.2",
 				// native: 'https://northcoders-tandem.netlify.app',
 			}),
 		},
@@ -64,21 +67,79 @@ export default function App({ navigation }) {
 
 		const newUserData = await formatUsersData(userData, activityData);
 
-		navigation.navigate("OpenRidesList", {userData: newUserData});
+		navigation.navigate("OpenRidesList", { userData: newUserData });
 	};
 
 	return (
-		<View>
-			<Button
-				disabled={!request}
-				title="Signup or login with Strava"
-				onPress={() => {promptAsync()}}
-			/>
-			<Button
-				color="#FF4500"
-				title={"View open rides"}
-				onPress={() => navigation.navigate("OpenRidesList")}
-			/>
+		<View style={styles.container}>
+			<View style={styles.button}>
+				<Paragraph
+					disabled={!request}
+					title={"Sign up"}
+					onPress={() => {
+						promptAsync();
+					}}
+				>
+					Sign up
+				</Paragraph>
+			</View>
+			<View style={styles.button}>
+				<Paragraph
+					title={"View open rides"}
+					onPress={() => navigation.navigate("OpenRidesList")}
+				>
+					View open rides
+				</Paragraph>
+			</View>
+			{/* <Button
+		color="#FF4500"
+		margin="50%"
+		title={"View open rides"}
+		onPress={() => navigation.navigate("OpenRidesList")}
+		/> */}
 		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		marginHorizontal: 20,
+		marginTop: "90%",
+		borderRadius: 10,
+	},
+	button: {
+		//color: "white",
+		//fontWeight: "bold",
+		height: 55,
+		justifyContent: "center",
+		alignItems: "center",
+		width: 300,
+		padding: "5%",
+		margin: "5%",
+		borderRadius: 25,
+		backgroundColor: "#e86b3a",
+		shadowColor: "black",
+		shadowOpacity: 0.2,
+		shadowOffset: {
+			height: 1,
+			width: -2,
+		},
+		elevation: 5,
+	},
+});
+
+// 	return (
+// 		<View>
+// 			<Button
+// 				disabled={!request}
+// 				title="Signup or login with Strava"
+// 				onPress={() => {promptAsync()}}
+// 			/>
+// 			<Button
+// 				color="#FF4500"
+// 				title={"View open rides"}
+// 				onPress={() => navigation.navigate("OpenRidesList")}
+// 			/>
+// 		</View>
+// 	);
+// }

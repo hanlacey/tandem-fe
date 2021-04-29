@@ -1,6 +1,14 @@
 import React, { Component, useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	Image,
+	TouchableOpacity,
+	TouchableHighlight,
+} from "react-native";
 import { Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 import users from "../assets/users";
 import rideData from "../assets/rides";
@@ -15,7 +23,9 @@ export default class UserProfile extends Component {
 	//atm constructor is only needed for filtering sample data
 	constructor(props) {
 		super(props);
-		const username = this.props.route.params.username;
+
+		const username = this.props.username;
+
 		this.getUserInfo = () => {
 			const user = users.filter((user) => {
 				return user.username === username;
@@ -38,12 +48,15 @@ export default class UserProfile extends Component {
 
 	render() {
 		const { rides, user } = this.state;
+		const { navigation } = this.props;
 
 		const userRideList = () => {
 			return rides.map((ride) => {
 				return (
 					<View key={ride.ride_id} style={styles.ride}>
-						<Text style={styles.rideTitle}>{ride.title} </Text>
+						{/* <TouchableHighlight>
+							<Text>Hi</Text>
+						</TouchableHighlight> */}
 						<Text style={styles.rideDescription}>
 							{ride.author} - {parseDate(ride.ride_date)} -{" "}
 							{ride.attendees.length} riders
@@ -76,6 +89,7 @@ export default class UserProfile extends Component {
 }
 
 const styles = StyleSheet.create({
+	container: { paddingTop: "15%" },
 	header: {
 		backgroundColor: "#f2f3f4",
 	},
@@ -88,7 +102,7 @@ const styles = StyleSheet.create({
 		height: 130,
 		borderRadius: 63,
 		borderWidth: 4,
-		borderColor: "#FF4500",
+		borderColor: "#e86b3a",
 		marginBottom: 10,
 	},
 	name: {
@@ -104,8 +118,9 @@ const styles = StyleSheet.create({
 	},
 	rideListHeader: {
 		textAlign: "center",
-		backgroundColor: "#FF4500",
+		backgroundColor: "#e86b3a",
 		padding: "5%",
+		marginBottom: "5%",
 	},
 	ride: {
 		backgroundColor: "white",

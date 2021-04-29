@@ -22,7 +22,7 @@ function RideCard({ ride, route }) {
 		API.getAttendeesByRideId(ride_id).then((attendees) => {
 			setAttendees(attendees);
 		});
-	}, [ride_id]);
+	}, [ride_id, attendees]);
 
 	const navigation = useNavigation();
 	return (
@@ -31,7 +31,9 @@ function RideCard({ ride, route }) {
 			style={styles.card}
 		>
 			<View style={styles.title}>
-				<Text style={styles.title}>{title.toLowerCase()}</Text>
+				<Text style={styles.title}>
+					{title ? title.toLowerCase() : `${author}'s ride`}
+				</Text>
 			</View>
 			<Text style={styles.description}>{description}</Text>
 			<View>
@@ -40,15 +42,15 @@ function RideCard({ ride, route }) {
 						navigation.navigate("UserProfile", { username: author })
 					}
 				>
-					<Text style={styles.authorLink}>{author}</Text>
+					<Text style={styles.authorLink}>Posted by: {author}</Text>
 				</TouchableOpacity>
 			</View>
 			<Text style={styles.body}>
 				{parseDate(ride_date)}
 				{"\n"}
-				{experience_level} {" / "} {ride_type}
+				Ride Type {"&"} Level: {ride_type} {" / "} {experience_level}
 				{"\n"}
-				{attendees.length} attending
+				{attendees.length} Attending
 				{"\n"}
 			</Text>
 		</TouchableOpacity>
@@ -56,18 +58,28 @@ function RideCard({ ride, route }) {
 }
 const styles = StyleSheet.create({
 	card: {
-		backgroundColor: "white",
-		marginHorizontal: "5%",
-		marginVertical: "5%",
+		backgroundColor: "#fffafa",
+		// marginHorizontal: "5%",
+		marginBottom: "5%",
 		textAlign: "center",
+		borderRadius: 10,
+		shadowColor: "black",
+		shadowOpacity: 0.2,
+		shadowOffset: {
+			height: 1,
+			width: -2,
+		},
+		elevation: 2,
 	},
 	title: {
 		backgroundColor: "#e86b3a",
-		padding: "3%",
+		padding: "2%",
 		fontSize: 22,
-		fontWeight: "bold",
 		color: "#292929",
 		textAlign: "center",
+		borderRadius: 10,
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 	},
 	description: {
 		textAlign: "center",

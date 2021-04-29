@@ -7,29 +7,24 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import { Switch } from "react-native-paper";
+import { Picker } from "@react-native-picker/picker";
 import RideCard from "./RideCard";
 import * as api from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
-	// const { userData } = route.params
-
-	// console.log(userData, "*** route.params ***")
 
 	const refHook = useRef(false);
+
 	const [rides, setRides] = useState([]);
 	const [mountainRides, setMountainRides] = useState(false);
 	const [roadRides, setRoadRides] = useState(false);
 	const [beginnerRides, setBeginnerRides] = useState(false);
 	const [intermediateRides, setIntermediateRides] = useState(false);
 	const [advancedRides, setAdvancedRides] = useState(false);
-	// const [filters, setFilters];
-	//build api request
-	//check status of each toggle
-	//if true add to query
-
+	const [location, setLocation] = useState("");
 	useEffect(() => {
 		const allFilters = [
-			{ value: "mountain", active: mountainRides, category: "bike_type" },
+			{ value: "mountain", active: mountainRides, category: "ride_type" },
 			{ value: "road", active: roadRides, category: "ride_type" },
 			{
 				value: "beginner",
@@ -53,7 +48,11 @@ export default function OpenRidesList({ route, navigation }) {
 				query.push(`${filter.category}=${filter.value}`);
 			}
 		});
+		if (location) {
+			query.push(`location=${location}`);
+		}
 		const joinedQuery = query.join("&");
+		console.log(joinedQuery);
 		api.getFilteredRides(joinedQuery).then((rides) => {
 			setRides(rides);
 		});
@@ -63,6 +62,7 @@ export default function OpenRidesList({ route, navigation }) {
 		beginnerRides,
 		intermediateRides,
 		advancedRides,
+		location,
 	]);
 
 	const list = () => {
@@ -108,12 +108,22 @@ export default function OpenRidesList({ route, navigation }) {
 					navigation.navigate("PostRide", { userData });
 				}}
 			>
-				<Text style={{ textAlign: "center" }}>Create ride</Text>
+				<Text style={{ textAlign: "center" }}>Create Ride</Text>
 			</TouchableOpacity>
 
 			<ScrollView style={styles.scrollContainer}>
+				<Picker
+					selectedValue={location}
+					onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
+					mode="dropdown"
+				>
+					<Picker.Item label="All" value="" />
+					<Picker.Item label="London" value="London" />
+					<Picker.Item label="Manchester" value="Manchester" />
+					<Picker.Item label="Sheffield" value="Sheffield" />
+					<Picker.Item label="Chester" value="Chester" />
+				</Picker>
 				<View style={styles.filter}>
-					<Text style={{ textAlign: "center" }}>Filter rides</Text>
 					<View style={styles.toggle}>
 						<Switch
 							style={styles.switch}
@@ -155,7 +165,7 @@ export default function OpenRidesList({ route, navigation }) {
 						<Text>Road bike </Text>
 					</View>
 				</View>
-				{list()}
+				<View style={styles.rides}>{list()}</View>
 			</ScrollView>
 		</View>
 	);
@@ -164,17 +174,26 @@ export default function OpenRidesList({ route, navigation }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 7,
-		marginTop: "5%",
+		marginTop: "7%",
+		marginBottom: "19%",
 		width: "100%",
 		height: "100%",
 		alignContent: "center",
 		justifyContent: "center",
 	},
 	createRide: {
-		backgroundColor: "white",
+		backgroundColor: "snow",
 		padding: "5%",
 		margin: "5%",
-		marginBottom: "10%",
+		marginBottom: "3%",
+		borderRadius: 15,
+		shadowColor: "black",
+		shadowOpacity: 0.2,
+		shadowOffset: {
+			height: 1,
+			width: -2,
+		},
+		elevation: 2,
 	},
 	filter: {
 		backgroundColor: "white",
@@ -183,13 +202,20 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		flexGrow: 5,
 		flexShrink: 5,
+		marginHorizontal: "5%",
 		flexDirection: "row",
 		justifyContent: "space-around",
+		borderRadius: 15,
 	},
-	toggle: {
-		padding: "3%",
-		margin: "3%",
-		justifyContent: "space-evenly",
-		textAlign: "center",
+	filterLabel: {
+		color: "black",
+		fontWeight: "bold",
+	},
+	bike: { flexDirection: "row" },
+	difficulty: {},
+	rides: {
+		margin: "5%",
+		marginBottom: "3%",
+		borderRadius: 15,
 	},
 });
