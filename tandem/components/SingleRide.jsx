@@ -22,6 +22,7 @@ import { formatPolylineData } from "../utils/formatPolylineData";
 export default function SingleRide({ route }) {
 	const { ride } = route.params;
 	const [attendees, setAttendees] = React.useState([]);
+	const [disabled, setDisabled] = React.useState(false);
 	const [user, setUser] = React.useState({
 		username: "raofRides",
 		password: "abcde2",
@@ -66,6 +67,7 @@ export default function SingleRide({ route }) {
 		API.postUserToRideAttendees(attendee, ride.ride_id, user).then(
 			(addedAttendee) => {
 				setAttendees([addedAttendee, ...attendees]);
+				setDisabled(true);
 			}
 		);
 	};
@@ -73,6 +75,7 @@ export default function SingleRide({ route }) {
 	const handleLeaveEvent = () => {
 		API.deleteAttendeeByRideId(user.username, ride.ride_id).then(() => {
 			console.log("deleted", user.username);
+			setDisabled(false);
 		});
 	};
 
@@ -118,7 +121,12 @@ export default function SingleRide({ route }) {
 					<Paragraph>{ride.description}</Paragraph>
 				</Card.Content>
 				<View style={styles.button}>
-					<Button title="Join" color="#FF4500" onPress={() => handleSubmit()} />
+					<Button
+						title="Join"
+						color="#FF4500"
+						onPress={() => handleSubmit()}
+						disabled={disabled}
+					/>
 					<Button
 						title="Leave"
 						color={"#FF4500"}
