@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Button } from "react-native";
-import {Paragraph} from "react-native-paper";
+import { Paragraph } from "react-native-paper";
 import * as WebBrowser from "expo-web-browser";
 import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
 import axios from "axios";
 
-import { REACT_APP_STRAVA_CLIENT_ID,REACT_APP_STRAVA_CLIENT_SECRET } from "@env";
+import {
+	REACT_APP_STRAVA_CLIENT_ID,
+	REACT_APP_STRAVA_CLIENT_SECRET,
+} from "@env";
 
 import { formatUsersData } from "../utils/formatUsersData";
 console.log(
@@ -64,50 +67,52 @@ export default function App({ navigation }) {
 
 		const newUserData = await formatUsersData(userData, activityData);
 
-		navigation.navigate("OpenRidesList", {userData: newUserData});
+		navigation.navigate("OpenRidesList", { userData: newUserData });
 	};
-
 
 	return (
 		<View style={styles.container}>
-		<View style={styles.button}>
-		<Paragraph
-		disabled={!request}
-		title={"Sign up"}
-		onPress={() => {
-		promptAsync()
-		}}
-		>Sign Up</Paragraph>
-		</View>
-		<View style={styles.button}>
-		<Paragraph
-		title={"View open rides"}
-		onPress={() => navigation.navigate("OpenRidesList")}
-		>VIEW OPEN RIDES</Paragraph>
-		</View>
-		{/* <Button
+			<View style={styles.button}>
+				<Paragraph
+					disabled={!request}
+					title={"Sign up"}
+					onPress={() => {
+						promptAsync();
+					}}
+				>
+					Sign up
+				</Paragraph>
+			</View>
+			<View style={styles.button}>
+				<Paragraph
+					title={"View open rides"}
+					onPress={() => navigation.navigate("OpenRidesList")}
+				>
+					View open rides
+				</Paragraph>
+			</View>
+			{/* <Button
 		color="#FF4500"
 		margin="50%"
 		title={"View open rides"}
 		onPress={() => navigation.navigate("OpenRidesList")}
 		/> */}
 		</View>
-		);
-		}
-		
-		const styles = StyleSheet.create( {
-		container: {
+	);
+}
+
+const styles = StyleSheet.create({
+	container: {
 		marginHorizontal: 20,
 		marginTop: "90%",
 		borderRadius: 15,
-		},
-		button: {
+	},
+	button: {
 		//color: "white",
 		//fontWeight: "bold",
 		height: 55,
 		justifyContent: "center",
 		alignItems: "center",
-		marginHorizontal: 35,
 		width: 300,
 		padding: "5%",
 		margin: "5%",
@@ -116,13 +121,13 @@ export default function App({ navigation }) {
 		shadowColor: "black",
 		shadowOpacity: 0.2,
 		shadowOffset: {
-		height: 1,
-		width: -2,
+			height: 1,
+			width: -2,
 		},
 		elevation: 5,
-		}
-		})
-		
+	},
+});
+
 // 	return (
 // 		<View>
 // 			<Button

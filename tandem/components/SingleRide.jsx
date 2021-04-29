@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import {
 	StyleSheet,
 	Text,
@@ -19,9 +19,9 @@ import { useNavigation } from "@react-navigation/native";
 import parseDate from "../utils/parseDate";
 import { formatPolylineData } from "../utils/formatPolylineData";
 
-export default function SingleRide({route}) {
-	const {ride} = route.params
-	const [attendees, setAttendees] = React.useState([])
+export default function SingleRide({ route }) {
+	const { ride } = route.params;
+	const [attendees, setAttendees] = React.useState([]);
 	const [user, setUser] = React.useState({
 		username: "raofRides",
 		password: "abcde2",
@@ -39,18 +39,18 @@ export default function SingleRide({route}) {
 		attendee: user.username,
 		ride_id: ride.ride_id,
 		name: user.first_name,
-	}
+	};
 
 	ride.route_data =
-		"}xxdI~eaHQb@FTNP~@ZX\\M`@{@|ADHXd@bBTTNXp@A\\HVQb@J|@h@r@JZZBRRN\\|@lAh@jAAtBT~Dx@x@`CJb@bAr@dAdAx@fAnAV`@j@`Bp@rCn@zA\\vA`@~@|@z@hApAdApAzA~Bf@zAD?v@fBzB|G`@f@x@`@d@dA@n@TrBj@dDVhGIrCL|@h@xADZC\\L|BGdC]pDk@~EoAtEq@|@gD~DmBrCCJBXUl@]^e@lAAXYZEz@NlAE`AL~DRtCLz@pArF`DhJn@xBv@zDnBbHrB|IrHzSl@z@tD|D~CbMd@fDLhCTvBFjCH|@p@tCbAjCn@pC`@lA|@bFNtCH`DWlD^hDfAhE`@fCBfAGtCFz@Tp@pAjBPv@jBxO@h@KfCAzDOrCB\\E`CGzB^xET`AK|ACvAm@dBGh@GnA@`DPzBhAxEBhAIf@g@vAO^QNe@pAa@nDYrAWj@{@z@o@^Q\\uAnDU|AFtFr@zGNb@`@^r@dAb@jAAb@Ox@Un@wBbDUh@c@tCEnFg@vQIpCYjDEvAOdSYnEUvAGbBPtGHrFT`DNv@Rb@ZIfCgBX{@NeA`@i@J@PDHRPjAHfBd@xB^jAh@z@`BWnFEnASn@[fAIlGfApBj@|BTpCf@p@}@j@mAR}@P}AJqCSeDCoFPcIX_DbBsIlAmCjCsDbAeChByFt@gAx@i@x@@b@Tx@rAT?\\oA^qClBuKbBcIpCyHr@_BjCwE`@qAf@_AP_AFwAM}Co@gHu@ePy@_NgAeX[}CaAeOk@mGkAuV}AwT]kLAoDQyDLcBMuC_@{Gu@qFGaBe@_FEcA]sB]qE_@gBgBkEc@kAAW[eLEyGHkGl@kJ?sBaBoZVoJRmDe@u@yCgBmBwAWg@k@cDYa@{DiBiD_F{@y@aAk@oDuAcBa@gAH_Bj@s@@gTwAmCwAgAw@u@y@y@{Ai@mBcAoNWkBa@aA{@]O[Ae@L}AYsB[i@USu@iCaAsHYmEo@qGAcAgAoFQyAu@kDcA{Da@aCs@_CQcAw@eByAmGe@eC_@}@WgEuAsFqAwCYoAEqCH}@k@wDMkE_@}Cw@iA{AkAMUc@cD]e@?KR[I[i@i@g@iBuA_Dk@iBY]eBzA_BP_B`BcAhBkAfAsCbDMAgA|@{@dAy@^OhAUj@"
+		"}xxdI~eaHQb@FTNP~@ZX\\M`@{@|ADHXd@bBTTNXp@A\\HVQb@J|@h@r@JZZBRRN\\|@lAh@jAAtBT~Dx@x@`CJb@bAr@dAdAx@fAnAV`@j@`Bp@rCn@zA\\vA`@~@|@z@hApAdApAzA~Bf@zAD?v@fBzB|G`@f@x@`@d@dA@n@TrBj@dDVhGIrCL|@h@xADZC\\L|BGdC]pDk@~EoAtEq@|@gD~DmBrCCJBXUl@]^e@lAAXYZEz@NlAE`AL~DRtCLz@pArF`DhJn@xBv@zDnBbHrB|IrHzSl@z@tD|D~CbMd@fDLhCTvBFjCH|@p@tCbAjCn@pC`@lA|@bFNtCH`DWlD^hDfAhE`@fCBfAGtCFz@Tp@pAjBPv@jBxO@h@KfCAzDOrCB\\E`CGzB^xET`AK|ACvAm@dBGh@GnA@`DPzBhAxEBhAIf@g@vAO^QNe@pAa@nDYrAWj@{@z@o@^Q\\uAnDU|AFtFr@zGNb@`@^r@dAb@jAAb@Ox@Un@wBbDUh@c@tCEnFg@vQIpCYjDEvAOdSYnEUvAGbBPtGHrFT`DNv@Rb@ZIfCgBX{@NeA`@i@J@PDHRPjAHfBd@xB^jAh@z@`BWnFEnASn@[fAIlGfApBj@|BTpCf@p@}@j@mAR}@P}AJqCSeDCoFPcIX_DbBsIlAmCjCsDbAeChByFt@gAx@i@x@@b@Tx@rAT?\\oA^qClBuKbBcIpCyHr@_BjCwE`@qAf@_AP_AFwAM}Co@gHu@ePy@_NgAeX[}CaAeOk@mGkAuV}AwT]kLAoDQyDLcBMuC_@{Gu@qFGaBe@_FEcA]sB]qE_@gBgBkEc@kAAW[eLEyGHkGl@kJ?sBaBoZVoJRmDe@u@yCgBmBwAWg@k@cDYa@{DiBiD_F{@y@aAk@oDuAcBa@gAH_Bj@s@@gTwAmCwAgAw@u@y@y@{Ai@mBcAoNWkBa@aA{@]O[Ae@L}AYsB[i@USu@iCaAsHYmEo@qGAcAgAoFQyAu@kDcA{Da@aCs@_CQcAw@eByAmGe@eC_@}@WgEuAsFqAwCYoAEqCH}@k@wDMkE_@}Cw@iA{AkAMUc@cD]e@?KR[I[i@i@g@iBuA_Dk@iBY]eBzA_BP_B`BcAhBkAfAsCbDMAgA|@{@dAy@^OhAUj@";
 
 	React.useEffect(() => {
 		API.getAttendeesByRideId(ride.ride_id).then((attendees) => {
-			setAttendees(attendees)
-		})
-	}, [ride.ride_id, attendees])
+			setAttendees(attendees);
+		});
+	}, [ride.ride_id, attendees]);
 
-	const formattedMapData = formatPolylineData(ride.route_data)
+	const formattedMapData = formatPolylineData(ride.route_data);
 
 	const {
 		formattedCoords,
@@ -60,15 +60,15 @@ export default function SingleRide({route}) {
 		endLatLng,
 		endLatitude,
 		endLongitude,
-	} = formattedMapData
+	} = formattedMapData;
 
 	const handleSubmit = () => {
 		API.postUserToRideAttendees(attendee, ride.ride_id, user).then(
 			(addedAttendee) => {
-				setAttendees([addedAttendee, ...attendees])
+				setAttendees([addedAttendee, ...attendees]);
 			}
-		)
-	}
+		);
+	};
 
 	const handleLeaveEvent = () => {
 		API.deleteAttendeeByRideId(user.username, ride.ride_id).then(() => {
@@ -76,7 +76,7 @@ export default function SingleRide({route}) {
 		});
 	};
 
-	const navigation = useNavigation()
+	const navigation = useNavigation();
 	return (
 		<View>
 			<Card style={styles.container}>
@@ -92,7 +92,8 @@ export default function SingleRide({route}) {
 						longitude: startLongitude,
 						latitudeDelta: 0.0822,
 						longitudeDelta: 0.0421,
-					}}>
+					}}
+				>
 					<Marker title="Start" coordinate={startLatLng} pinColor="green" />
 
 					<Marker title="End" coordinate={endLatLng} pinColor="red" />
@@ -126,19 +127,20 @@ export default function SingleRide({route}) {
 				</View>
 				<TouchableOpacity
 					onPress={() =>
-						navigation.navigate("EventAttendees", {ride, attendees})
-					}>
+						navigation.navigate("EventAttendees", { ride, attendees })
+					}
+				>
 					<Paragraph style={styles.viewAttendees}>
 						ATTENDEES: {attendees.length}
 					</Paragraph>
 				</TouchableOpacity>
 			</Card>
 			<ScrollView style={styles.commentContainer}>
-				<Text style={{fontWeight: "bold"}}>Comment</Text>
+				<Text style={{ fontWeight: "bold" }}>Comment</Text>
 				<CommentList user={user} ride={ride} />
 			</ScrollView>
 		</View>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -216,4 +218,4 @@ const styles = StyleSheet.create({
 		height: "40%",
 		marginVertical: 1,
 	},
-})
+});
