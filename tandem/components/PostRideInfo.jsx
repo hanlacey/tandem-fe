@@ -12,25 +12,23 @@ import MapView, { Marker, Polyline } from "react-native-maps";
 
 import * as api from "../api/api";
 
-import userData from "../assets/userData"
-
+import userData from "../assets/userData";
 
 export default function PostRideInfo({ route, navigation }) {
-	
-	const { routeSelected, mapData } = route.params
-	
+	const { routeSelected, mapData } = route.params;
+
 	// console.log(routeSelected, "in PostRideInfo")
 	// console.log(mapData.routePolyline, "routeSelected in PostRideInfo")
 
 	const [user, setUser] = useState({
-		username: "hannah123",
+		username: "rollingDan",
 		password: null,
 		email: null,
 		avatar_url:
 			"https://d3nn82uaxijpm6.cloudfront.net/assets/avatar/athlete/large-800a7033cc92b2a5548399e26b1ef42414dd1a9cb13b99454222d38d58fd28ef.png",
-		first_name: "hannah",
-		last_name: "lacey",
-		location: "Manchester, United Kingdom",
+		first_name: "Dan",
+		last_name: "Stevenson",
+		location: "Sheffield",
 		route_data: "",
 		bike_type: null,
 		rider_level: null,
@@ -50,16 +48,15 @@ export default function PostRideInfo({ route, navigation }) {
 		// set initial values to ones from Strava
 
 		if (mapData.distanceInKm) {
-			setDistance(mapData.distanceInKm)
+			setDistance(mapData.distanceInKm);
 		}
 
 		if (routeSelected !== "New route") {
-			setTitle(routeSelected)
+			setTitle(routeSelected);
 		} else {
-			setTitle("")
+			setTitle("");
 		}
-	})
-
+	});
 
 	const newRide = {
 		author: user.username,
@@ -84,23 +81,25 @@ export default function PostRideInfo({ route, navigation }) {
 			navigation.navigate("SingleRide", { ride: newRide, userData });
 		});
 	};
-	
 
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 			<ScrollView style={styles.input}>
-
-				{mapData.shouldDisplayMap &&
+				{mapData.shouldDisplayMap && (
 					<MapView
-					style={styles.map}
-					initialRegion={{
-						latitude: mapData.startLatitude,
-						longitude: mapData.startLongitude,
-						latitudeDelta : 0.0822 ,
-						longitudeDelta: 0.0421,
-					}}>
-					
-						<Marker title="Start" coordinate={mapData.startLatLng} pinColor="green" />
+						style={styles.map}
+						initialRegion={{
+							latitude: mapData.startLatitude,
+							longitude: mapData.startLongitude,
+							latitudeDelta: 0.0822,
+							longitudeDelta: 0.0421,
+						}}
+					>
+						<Marker
+							title="Start"
+							coordinate={mapData.startLatLng}
+							pinColor="green"
+						/>
 
 						<Marker title="End" coordinate={mapData.endLatLng} pinColor="red" />
 
@@ -108,11 +107,10 @@ export default function PostRideInfo({ route, navigation }) {
 							coordinates={mapData.formattedCoords}
 							strokeColor="#FF0000"
 							strokeWidth={3}
-						/> 
+						/>
 					</MapView>
-				}
-				
-			
+				)}
+
 				<Text>Ride name</Text>
 				<TextInput
 					style={styles.text}

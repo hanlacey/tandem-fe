@@ -74,6 +74,7 @@ export default function App({ navigation }) {
 		<View style={styles.container}>
 			<View style={styles.button}>
 				<Paragraph
+					style={{ color: "white" }}
 					disabled={!request}
 					title={"Sign up"}
 					onPress={() => {
@@ -85,6 +86,7 @@ export default function App({ navigation }) {
 			</View>
 			<View style={styles.button}>
 				<Paragraph
+					style={{ color: "white" }}
 					title={"View open rides"}
 					onPress={() => navigation.navigate("OpenRidesList")}
 				>
@@ -104,7 +106,7 @@ export default function App({ navigation }) {
 const styles = StyleSheet.create({
 	container: {
 		marginHorizontal: 20,
-		marginTop: "90%",
+		marginTop: "65%",
 		borderRadius: 10,
 	},
 	button: {
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
 			width: -2,
 		},
 		elevation: 5,
+		borderRadius: 10,
 	},
 });
 

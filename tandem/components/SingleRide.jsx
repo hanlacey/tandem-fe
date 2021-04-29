@@ -24,13 +24,13 @@ export default function SingleRide({ route }) {
 	const [attendees, setAttendees] = React.useState([]);
 	const [disabled, setDisabled] = React.useState(false);
 	const [user, setUser] = React.useState({
-		username: "raofRides",
+		username: "rollingDan",
 		password: "abcde2",
 		email: "example2@gmail.com",
 		avatar_url: "http://clipart-library.com/images/yckAgeMRi.jpg",
-		first_name: "Raof",
+		first_name: "Dan",
 		last_name: "Benaesha",
-		location: "Manchester",
+		location: "Sheffield",
 		routes_data: "routes",
 		bike_type: "Road",
 		rider_level: "Beginner",
