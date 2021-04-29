@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, { useState, useEffect, useRef } from "react";
 import {
 	StyleSheet,
 	View,
@@ -21,8 +21,8 @@ export default function OpenRidesList({ route, navigation }) {
 	const [location, setLocation] = useState("");
 	useEffect(() => {
 		const allFilters = [
-			{value: "mountain", active: mountainRides, category: "ride_type"},
-			{value: "road", active: roadRides, category: "ride_type"},
+			{ value: "mountain", active: mountainRides, category: "ride_type" },
+			{ value: "road", active: roadRides, category: "ride_type" },
 			{
 				value: "beginner",
 				active: beginnerRides,
@@ -38,11 +38,11 @@ export default function OpenRidesList({ route, navigation }) {
 				active: advancedRides,
 				category: "experience_level",
 			},
-		]
-		let query = []
+		];
+		let query = [];
 		allFilters.forEach((filter) => {
 			if (filter.active === true) {
-				query.push(`${filter.category}=${filter.value}`)
+				query.push(`${filter.category}=${filter.value}`);
 			}
 		});
 		if (location) {
@@ -51,8 +51,8 @@ export default function OpenRidesList({ route, navigation }) {
 		const joinedQuery = query.join("&");
 		console.log(joinedQuery);
 		api.getFilteredRides(joinedQuery).then((rides) => {
-			setRides(rides)
-		})
+			setRides(rides);
+		});
 	}, [
 		mountainRides,
 		roadRides,
@@ -68,43 +68,44 @@ export default function OpenRidesList({ route, navigation }) {
 				<View key={ride.ride_id}>
 					<RideCard ride={ride} />
 				</View>
-			)
-		})
-	}
+			);
+		});
+	};
 
 	const toggleMountainRides = () => {
-		setMountainRides(!mountainRides)
-		setRoadRides(false)
-	}
+		setMountainRides(!mountainRides);
+		setRoadRides(false);
+	};
 	const toggleRoadRides = () => {
-		setRoadRides(!roadRides)
-		setMountainRides(false)
-	}
+		setRoadRides(!roadRides);
+		setMountainRides(false);
+	};
 
 	const toggleBeginnerRides = () => {
-		setBeginnerRides(!beginnerRides)
-		setIntermediateRides(false)
-		setAdvancedRides(false)
-	}
+		setBeginnerRides(!beginnerRides);
+		setIntermediateRides(false);
+		setAdvancedRides(false);
+	};
 	const toggleIntermediateRides = () => {
-		setIntermediateRides(!intermediateRides)
-		setBeginnerRides(false)
-		setAdvancedRides(false)
-	}
+		setIntermediateRides(!intermediateRides);
+		setBeginnerRides(false);
+		setAdvancedRides(false);
+	};
 	const toggleAdvancedRides = () => {
-		setAdvancedRides(!advancedRides)
-		setBeginnerRides(false)
-		setIntermediateRides(false)
-	}
+		setAdvancedRides(!advancedRides);
+		setBeginnerRides(false);
+		setIntermediateRides(false);
+	};
 
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
 				style={styles.createRide}
 				onPress={() => {
-					navigation.navigate("PostRide")
-				}}>
-				<Text style={{textAlign: "center"}}>Create Ride</Text>
+					navigation.navigate("PostRide");
+				}}
+			>
+				<Text style={{ textAlign: "center" }}>Create Ride</Text>
 			</TouchableOpacity>
 
 			<ScrollView style={styles.scrollContainer}>
@@ -120,7 +121,6 @@ export default function OpenRidesList({ route, navigation }) {
 					<Picker.Item label="Chester" value="Chester" />
 				</Picker>
 				<View style={styles.filter}>
-					<Text style={{textAlign: "center"}}>Filter Rides</Text>
 					<View style={styles.toggle}>
 						<Switch
 							style={styles.switch}
@@ -162,13 +162,10 @@ export default function OpenRidesList({ route, navigation }) {
 						<Text>Road bike </Text>
 					</View>
 				</View>
-				<View style={styles.rides}>
-				{list()}
-				</View>
-				
+				<View style={styles.rides}>{list()}</View>
 			</ScrollView>
 		</View>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -211,13 +208,11 @@ const styles = StyleSheet.create({
 		color: "black",
 		fontWeight: "bold",
 	},
-	bike: {flexDirection: "row"},
-	difficulty: {
-
-	},
+	bike: { flexDirection: "row" },
+	difficulty: {},
 	rides: {
 		margin: "5%",
 		marginBottom: "3%",
 		borderRadius: 15,
 	},
-})
+});
