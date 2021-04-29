@@ -31,7 +31,9 @@ function RideCard({ ride, route }) {
 			style={styles.card}
 		>
 			<View style={styles.title}>
-				<Text style={styles.title}>{title.toLowerCase()}</Text>
+				<Text style={styles.title}>
+					{title ? title.toLowerCase() : `${author}'s ride`}
+				</Text>
 			</View>
 			<Text style={styles.description}>{description}</Text>
 			<View>
