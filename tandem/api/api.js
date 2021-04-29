@@ -46,7 +46,7 @@ export const postCommentByRideId = (ride_id, commentBody, username) => {
     .post(`/rides/${ride_id}/comments`, newComment)
     .then((response) => {
       console.log(response.data.newComment)
-      return response.data;
+      return response.data.newComment;
     }).catch((err) => {
       console.log(err)
     })
