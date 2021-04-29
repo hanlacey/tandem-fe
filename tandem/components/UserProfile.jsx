@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 		height: 130,
 		borderRadius: 63,
 		borderWidth: 4,
-		borderColor: "#FF4500",
+		borderColor: "#e86b3a",
 		marginBottom: 10,
 	},
 	name: {
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 	},
 	rideListHeader: {
 		textAlign: "center",
-		backgroundColor: "#FF4500",
+		backgroundColor: "#e86b3a",
 		padding: "5%",
 		marginBottom: "5%",
 	},
