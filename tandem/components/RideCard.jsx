@@ -79,6 +79,8 @@ const styles = StyleSheet.create({
 		color: "#292929",
 		textAlign: "center",
 		borderRadius: 10,
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 	},
 	description: {
 		textAlign: "center",
