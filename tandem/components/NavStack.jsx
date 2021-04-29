@@ -10,7 +10,7 @@ import StravaSignup from "./StravaSignup";
 const Stack = createStackNavigator();
 const screenOptionStyle = {
 	headerStyle: {
-		backgroundColor: "#9AC4F8",
+		backgroundColor: "#e86b3a",
 	},
 	headerTintColor: "white",
 	headerBackTitle: "Back",
