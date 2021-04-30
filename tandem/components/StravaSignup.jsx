@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Button } from "react-native";
+import { ImageBackground, StyleSheet, View, Button } from "react-native";
 import { Paragraph } from "react-native-paper";
 import * as WebBrowser from "expo-web-browser";
 import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
@@ -72,6 +72,9 @@ export default function App({ navigation }) {
 
 	return (
 		<View style={styles.container}>
+			<ImageBackground source={require( "../assets/homepage.jpeg" )} style={
+styles.image
+								}>
 			<View style={styles.button}>
 				<Paragraph
 					style={{ color: "white" }}
@@ -93,6 +96,7 @@ export default function App({ navigation }) {
 					View open rides
 				</Paragraph>
 			</View>
+			</ImageBackground>
 			{/* <Button
 		color="#FF4500"
 		margin="50%"
@@ -105,10 +109,17 @@ export default function App({ navigation }) {
 
 const styles = StyleSheet.create({
 	container: {
-		marginHorizontal: 20,
-		marginTop: "65%",
-		borderRadius: 10,
+		// marginHorizontal: 20,
+		// marginTop: "65%",
+		// borderRadius: 10,
+		flex: 1,
+		flexDirection: "column"
 	},
+	image: {
+    flex: 1,
+    resizeMode: "cover",
+		justifyContent: "center"
+  },
 	button: {
 		//color: "white",
 		//fontWeight: "bold",
@@ -118,6 +129,8 @@ const styles = StyleSheet.create({
 		width: 300,
 		padding: "5%",
 		margin: "5%",
+		marginHorizontal: "12%",
+		marginVertical: "10%",
 		borderRadius: 25,
 		backgroundColor: "#e86b3a",
 		shadowColor: "black",

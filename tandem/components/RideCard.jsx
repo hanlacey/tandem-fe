@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
 		marginBottom: "5%",
 		textAlign: "center",
 		borderRadius: 10,
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 		shadowColor: "black",
 		shadowOpacity: 0.2,
 		shadowOffset: {

@@ -116,6 +116,7 @@ export default function OpenRidesList({ route, navigation }) {
 					selectedValue={location}
 					onValueChange={(itemValue, itemIndex) => setLocation(itemValue)}
 					mode="dropdown"
+					style={styles.picker}
 				>
 					<Picker.Item label="All" value="" />
 					<Picker.Item label="London" value="London" />
@@ -174,8 +175,8 @@ export default function OpenRidesList({ route, navigation }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 7,
-		marginTop: "7%",
-		marginBottom: "19%",
+		//marginTop: "-1%",
+		marginBottom: "17%",
 		width: "100%",
 		height: "100%",
 		alignContent: "center",
@@ -184,9 +185,11 @@ const styles = StyleSheet.create({
 	createRide: {
 		backgroundColor: "snow",
 		padding: "5%",
-		margin: "5%",
+		margin: "4%",
 		marginBottom: "3%",
 		borderRadius: 15,
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 		shadowColor: "black",
 		shadowOpacity: 0.2,
 		shadowOffset: {
@@ -195,6 +198,9 @@ const styles = StyleSheet.create({
 		},
 		elevation: 2,
 	},
+	picker: {
+		marginHorizontal: "4%",
+	},
 	filter: {
 		backgroundColor: "white",
 		alignContent: "center",
@@ -202,10 +208,12 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		flexGrow: 5,
 		flexShrink: 5,
-		marginHorizontal: "5%",
+		marginHorizontal: "4%",
 		flexDirection: "row",
 		justifyContent: "space-around",
 		borderRadius: 15,
+		borderBottomRightRadius: 0,
+		borderBottomLeftRadius: 0,
 	},
 	filterLabel: {
 		color: "black",
@@ -214,7 +222,7 @@ const styles = StyleSheet.create({
 	bike: { flexDirection: "row" },
 	difficulty: {},
 	rides: {
-		margin: "5%",
+		margin: "4%",
 		marginBottom: "3%",
 		borderRadius: 15,
 	},

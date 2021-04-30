@@ -111,7 +111,7 @@ export default function PostRideInfo({ route, navigation }) {
 					</MapView>
 				)}
 
-				<Text>Ride name</Text>
+				<Text style={styles.bold}>Ride Name</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -119,7 +119,7 @@ export default function PostRideInfo({ route, navigation }) {
 					defaultValue={routeSelected}
 				/>
 
-				<Text>{"\n"}Ride description</Text>
+				<Text style={styles.bold}>{"\n"}Ride Description</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -128,7 +128,7 @@ export default function PostRideInfo({ route, navigation }) {
 					value={description}
 				/>
 
-				<Text>{"\n"}City</Text>
+				<Text style={styles.bold}>{"\n"}City</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -136,7 +136,7 @@ export default function PostRideInfo({ route, navigation }) {
 					value={location}
 				/>
 
-				<Text>{"\n"}Estimated distance (in km)</Text>
+				<Text style={styles.bold}>{"\n"}Estimated Distance (km)</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -145,8 +145,8 @@ export default function PostRideInfo({ route, navigation }) {
 					defaultValue={mapData.distanceInKm}
 				/>
 
-				<Text>
-					{"\n"}Start date and time{"\n"}
+				<Text style={styles.bold}>
+					{"\n"}Start date and Time{"\n"}
 				</Text>
 				<DateTimePicker
 					style={styles.container}
@@ -156,7 +156,7 @@ export default function PostRideInfo({ route, navigation }) {
 					onChange={onChange}
 				/>
 
-				<Text>{"\n"}Bike type</Text>
+				<Text style={styles.bold}>{"\n"}Bike Type</Text>
 
 				<RadioButton.Group
 					onValueChange={(ride_type) => setRideType(ride_type)}
@@ -167,7 +167,7 @@ export default function PostRideInfo({ route, navigation }) {
 					<RadioButton.Item label="Hybrid" value="hybrid" />
 				</RadioButton.Group>
 
-				<Text>{"\n"}Experience level</Text>
+				<Text style={styles.bold}>{"\n"}Experience Level</Text>
 
 				<RadioButton.Group
 					onValueChange={(experience_level) =>
@@ -180,11 +180,11 @@ export default function PostRideInfo({ route, navigation }) {
 					<RadioButton.Item label="Advanced" value="advanced" />
 				</RadioButton.Group>
 
-				<Button onPress={handleSubmit}>
+				<Button onPress={handleSubmit} style={styles.create}>
+					
 					<Text>Create ride</Text>
 				</Button>
-
-				<Text>{"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}</Text>
+				{/* <Text>{"\n"}</Text> */}
 			</ScrollView>
 		</TouchableWithoutFeedback>
 	);
@@ -193,8 +193,11 @@ export default function PostRideInfo({ route, navigation }) {
 const styles = StyleSheet.create({
 	container: {
 		justifyContent: "center",
+		
 	},
 	input: {
+		marginVertical: "3%",
+		marginBottom: "17%",
 		paddingHorizontal: "5%",
 		paddingVertical: "5%",
 	},
@@ -204,5 +207,12 @@ const styles = StyleSheet.create({
 	map: {
 		width: "100%",
 		height: "25%%",
+	},
+	bold: {
+		fontWeight: "bold",
+	},
+	create: {
+		marginVertical: "3%",
+		marginBottom: "13%",
 	},
 });

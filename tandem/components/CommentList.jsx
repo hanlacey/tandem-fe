@@ -111,18 +111,14 @@ const styles = StyleSheet.create({
 		//flex: 1,
 		width: "80%",
 		padding: "2%",
+		borderBottomColor: "#CCCCCC",
+		borderBottomWidth: 3,
 	},
 	contentHeader: {
 		flexDirection: "column",
 		//justifyContent: "center",
 		marginBottom: 6,
 		//marginTop: 20,
-	},
-	separator: {
-		// height: 6,
-		marginVertical: 8,
-		borderBottomColor: "#CCCCCC",
-		borderBottomWidth: 5,
 	},
 	image: {
 		width: 45,
@@ -139,8 +135,9 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 	},
 	input: {
-		padding: "5%",
+		padding: "3%",
 		margin: "2%",
 		backgroundColor: "#f5f5f5",
+		borderRadius: 5,
 	},
 });
