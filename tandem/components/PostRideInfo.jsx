@@ -36,7 +36,7 @@ export default function PostRideInfo({ route, navigation }) {
 
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [route_data, setRouteData] = useState("");
+	const [route_data, setRouteData] = useState("abcde");
 	const [date, setDate] = useState(new Date());
 	const [experience_level, setExperienceLevel] = useState("");
 	const [ride_type, setRideType] = useState("");
