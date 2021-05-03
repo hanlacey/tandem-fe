@@ -40,7 +40,7 @@ export default rideData = [
     },
     {
         ride_id: "4",
-        author: "rollingDan",
+        author: "nadiaPedals",
         ride_date: 1619324195389,
         route_data: "ynudIr}bJ[aA[}C[MOq@cAyFL[IiAk@}AE_Ae@}B@c@aAoDHe@Ww@IgAHY\\[Po@QGNn@UH[|@y@v@qGt@iAa@y@iASw@YMyBq@kCTiAh@yBXaAx@g@rAe@NMZVpAC|DNzBCbDJ|AEd@FjBPpBMpAn@tETjCLZ?pADV`@\\fBvFx@jENrCPJd@`AnAxDp@vD?h@b@x@x@pFZr@n@lEXpCAtAL\\V~DCfJFf@K`AN|BQr@AjA~AtGVrBz@dCA`AjAhDdAvBNjBFlNPzATLJxA~@x@Sh@i@VNfAGb@{@jAKEgA~As@~BYhHe@dBKfALnDE~C]vGa@hAG~@g@hBW|Cc@xB_BvCi@X_@tBe@jAiAv@qBfH}@dC}@bBUdAa@r@HNKIy@hCy@bAc@`Bk@pAi@|Cy@fD[hDEtAQp@?b@i@d@aAZw@ANRGZ{A@IFH|@FFKt@QCGRWLOQO?AJ@M]Jg@RUZ@n@KLFFGHLfAOXdAnAv@VIB\\|BE~AQ~Aj@zFBjAU|@AjBK`ARxA?xAGEf@bDATGGTnCMRTPLh@JtF_@pCYp@?`@_@XBP]JYb@w@Hc@b@UDIXWDIPYS{BHoBe@ODe@~@u@L{@m@iACa@Ue@Pa@f@QEQZ_BCKTQGKTu@^o@a@q@N]ZWC[p@g@f@mA[[]wAEGPI[IDLKAJIEDFLQZVtCj@~Ay@FY|B?^YRHl@k@bBFPYzAq@xBVr@d@h@I`@{@NEnBf@dAOnAZp@{@jAu@`@AnA}Av@yFGiEc@qE?_AUqAE}DG[@wBZqBA{A]iD@wFCcBQ}@o@Oq@uACc@NsCj@eAnBSI_BFg@dAL\\ET_@R@BXEQ|@c@v@eAR_At@kHvAuGfA}Cj@y@x@oBVcArCkHzBkIpAgAh@kAd@sBpAuAt@iBb@{Bb@{Dx@{Eh@gJGqGr@yDP}F|@eCbCuCHq@ImAh@IJ]_AaAGuAWOMw@GaOKcBoAeCw@eCUiA@s@eAaDIkAi@wBIGAe@e@mBCsATqACuAHgAIq@DgAMy@@iHAYS{AMo@@_AQqBq@iE_@iAkAmGWk@u@qF[m@s@aCm@kAQcCcAwFwAoEo@aA?_AS{@I}Aq@oFCwEQ_@BqHM}ABs@O_@HuCS}AKGg@j@`@u@a@g@",
         distanceInKm: 40,
@@ -76,5 +76,18 @@ export default rideData = [
         experience_level: "challenging",
         created_at: 1601324162389,
         attendees: ['nadia200', 'raofRides', 'hannah12345']
+    },
+    {
+        ride_id: "6",
+        author: "rollingDan",
+        ride_date: 1619324195389,
+        route_data: "ynudIr}bJ[aA[}C[MOq@cAyFL[IiAk@}AE_Ae@}B@c@aAoDHe@Ww@IgAHY\\[Po@QGNn@UH[|@y@v@qGt@iAa@y@iASw@YMyBq@kCTiAh@yBXaAx@g@rAe@NMZVpAC|DNzBCbDJ|AEd@FjBPpBMpAn@tETjCLZ?pADV`@\\fBvFx@jENrCPJd@`AnAxDp@vD?h@b@x@x@pFZr@n@lEXpCAtAL\\V~DCfJFf@K`AN|BQr@AjA~AtGVrBz@dCA`AjAhDdAvBNjBFlNPzATLJxA~@x@Sh@i@VNfAGb@{@jAKEgA~As@~BYhHe@dBKfALnDE~C]vGa@hAG~@g@hBW|Cc@xB_BvCi@X_@tBe@jAiAv@qBfH}@dC}@bBUdAa@r@HNKIy@hCy@bAc@`Bk@pAi@|Cy@fD[hDEtAQp@?b@i@d@aAZw@ANRGZ{A@IFH|@FFKt@QCGRWLOQO?AJ@M]Jg@RUZ@n@KLFFGHLfAOXdAnAv@VIB\\|BE~AQ~Aj@zFBjAU|@AjBK`ARxA?xAGEf@bDATGGTnCMRTPLh@JtF_@pCYp@?`@_@XBP]JYb@w@Hc@b@UDIXWDIPYS{BHoBe@ODe@~@u@L{@m@iACa@Ue@Pa@f@QEQZ_BCKTQGKTu@^o@a@q@N]ZWC[p@g@f@mA[[]wAEGPI[IDLKAJIEDFLQZVtCj@~Ay@FY|B?^YRHl@k@bBFPYzAq@xBVr@d@h@I`@{@NEnBf@dAOnAZp@{@jAu@`@AnA}Av@yFGiEc@qE?_AUqAE}DG[@wBZqBA{A]iD@wFCcBQ}@o@Oq@uACc@NsCj@eAnBSI_BFg@dAL\\ET_@R@BXEQ|@c@v@eAR_At@kHvAuGfA}Cj@y@x@oBVcArCkHzBkIpAgAh@kAd@sBpAuAt@iBb@{Bb@{Dx@{Eh@gJGqGr@yDP}F|@eCbCuCHq@ImAh@IJ]_AaAGuAWOMw@GaOKcBoAeCw@eCUiA@s@eAaDIkAi@wBIGAe@e@mBCsATqACuAHgAIq@DgAMy@@iHAYS{AMo@@_AQqBq@iE_@iAkAmGWk@u@qF[m@s@aCm@kAQcCcAwFwAoEo@aA?_AS{@I}Aq@oFCwEQ_@BqHM}ABs@O_@HuCS}AKGg@j@`@u@a@g@",
+        distanceInKm: 60,
+        ride_type: "mountain",
+        title: "Sheffield to the Peaks",
+        description: "Join me!",
+        experience_level: "advanced",
+        created_at: 1601324162389,
+        attendees: ['rollingDan']
     },
 ]

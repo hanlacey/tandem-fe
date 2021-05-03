@@ -12,16 +12,15 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 import MapView, { Marker, Polyline } from "react-native-maps";
 
-import {formatPolylineData} from "../utils/formatPolylineData"
+import { formatPolylineData } from "../utils/formatPolylineData";
 
 import { Picker } from "@react-native-picker/picker";
 
 import * as api from "../api/api";
 
-import userData from "../assets/userData"
+import userData from "../assets/userData";
 
 export default function PostRide({ route, navigation }) {
-
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [date, setDate] = useState(new Date());
@@ -39,35 +38,33 @@ export default function PostRide({ route, navigation }) {
 	const [routeSelected, setRouteData] = useState("Route title");
 
 	const [mapData, setMapData] = useState({
-			shouldDisplayMap: false,
-			formattedCoords: "",
-			startLatLng: "",
-			startLatitude: 100,
-			startLongitude: 0,
-			endLatLng: "",
-			endLatitude: "",
-			endLongitude: "",	
-			distanceInKm: 0,
-			routePolyline: "",
-		})
+		shouldDisplayMap: false,
+		formattedCoords: "",
+		startLatLng: "",
+		startLatitude: 100,
+		startLongitude: 0,
+		endLatLng: "",
+		endLatitude: "",
+		endLongitude: "",
+		distanceInKm: 0,
+		routePolyline: "",
+	});
 
 	const handleNextButtonPress = () => {
-		navigation.navigate("PostRideInfo", {routeSelected, mapData})
+		navigation.navigate("PostRideInfo", { routeSelected, mapData });
 	};
 
 	const handleRouteSelection = async (routeSelected) => {
-		
 		if (routeSelected !== "" && routeSelected !== "Route title") {
-			
-			setRouteData(routeSelected)
-			
-			const [routeData] = userData.routes_data.filter((route) => {			
+			setRouteData(routeSelected);
+
+			const [routeData] = userData.routes_data.filter((route) => {
 				if (route.routeName === routeSelected) {
-					return routeSelected
+					return routeSelected;
 				}
-			})
-	
-			const formattedMapData = formatPolylineData(routeData.routePolyline)			
+			});
+
+			const formattedMapData = formatPolylineData(routeData.routePolyline);
 
 			const {
 				formattedCoords,
@@ -76,9 +73,9 @@ export default function PostRide({ route, navigation }) {
 				startLongitude,
 				endLatLng,
 				endLatitude,
-				endLongitude, 
-			} = formattedMapData
-	
+				endLongitude,
+			} = formattedMapData;
+
 			await setMapData({
 				shouldDisplayMap: true,
 				formattedCoords,
@@ -89,10 +86,10 @@ export default function PostRide({ route, navigation }) {
 				endLatitude,
 				endLongitude,
 				distanceInKm: routeData.distanceInKm.toFixed(0).toString(),
-				routePolyline: routeData.routePolyline
-			})
+				routePolyline: routeData.routePolyline,
+			});
 		} else {
-			setRouteData("")
+			setRouteData("");
 
 			setMapData({
 				shouldDisplayMap: false,
@@ -102,72 +99,68 @@ export default function PostRide({ route, navigation }) {
 				startLongitude: 0,
 				endLatLng: "",
 				endLatitude: "",
-				endLongitude: "",	
+				endLongitude: "",
 				distanceInKm: "",
-			})
+			});
 		}
-	}
+	};
 
 	return (
 		<View style={styles.container}>
-		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-			<ScrollView style={styles.input}>
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+				<ScrollView style={styles.input}>
+					<Text style={styles.select}>
+						Select one from your Strava routes or create a new route
+					</Text>
 
-			
-					<Text style={styles.select}>Select one from your Strava routes or create a new route</Text>
+					<RadioButton.Group
+						onValueChange={(routeSelected) =>
+							handleRouteSelection(routeSelected)
+						}
+						value={routeSelected}
+					>
+						{userData.routes_data.map((route) => {
+							return (
+								<RadioButton.Item
+									label={route.routeName}
+									value={route.routeName}
+									key={route.routeName}
+								/>
+							);
+						})}
 
-				<RadioButton.Group
-					onValueChange={(routeSelected) => handleRouteSelection(routeSelected)}
-					value={routeSelected}
-				>
+						<RadioButton.Item label="New route" value="" />
+					</RadioButton.Group>
 
-					{userData.routes_data.map((route => {
-						return (
-							<RadioButton.Item label={route.routeName} value={route.routeName} key={route.routeName}/>
-						)
-					}))}
-					
-					<RadioButton.Item label="New route" value="" />
-				</RadioButton.Group>
-
-				<Button onPress={() => handleNextButtonPress()}>
-					<Text>Next</Text>
-				</Button>
-
-			</ScrollView>
-		</TouchableWithoutFeedback>
+					<Button onPress={() => handleNextButtonPress()}>
+						<Text style={{ color: "#292929" }}>Next</Text>
+					</Button>
+				</ScrollView>
+			</TouchableWithoutFeedback>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: "40%",
+		marginTop: "30%",
 		padding: 2,
-		width: "95%",
+		width: "100%",
 		alignContent: "center",
 		justifyContent: "center",
 		backgroundColor: "#ffffff",
-		marginLeft: 10,
+		height: "70%",
 	},
 	input: {
 		paddingHorizontal: "5%",
 		paddingVertical: "5%",
 	},
-	text: {
-		marginVertical: "0%",
-	},
-	bold: {
-		fontWeight: "bold"
-	},
 	select: {
-		backgroundColor: "#CCCCCC",
-		padding: "3%",
-		fontSize: 22,
+		backgroundColor: "#e8e8e8",
+		padding: "5%",
+		fontSize: 14,
 		color: "#292929",
 		textAlign: "center",
 		borderRadius: 10,
-		borderBottomRightRadius: 0,
-		borderBottomLeftRadius: 0,
-	}
+	},
 });

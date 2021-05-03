@@ -18,6 +18,11 @@ export const getFilteredRides = (query) => {
     return data.rides
   })
 }
+export const getRideByRideId = (ride_id) => {
+  return thandemApi.get(`/rides/${ride_id}`).then(({ data }) => {
+    return data.ride
+  })
+}
 export const getAttendeesByRideId = (ride_id) => {
   return thandemApi.get(`/rides/${ride_id}/attendees`).then((response) => {
     return response.data.attendees
@@ -66,8 +71,6 @@ export const postRide = (newRide) => {
   })
 }
 
-
-
 export const postUserToRideAttendees = (attendee, ride_id) => {
   console.log(attendee, ride_id)
   return thandemApi.post(`/rides/${ride_id}/attendees`, attendee).then(({ data }) => {
@@ -80,3 +83,4 @@ export const deleteUserFromRideAttendees = (attendee_id) => {
   console.log(attendee_id)
   return thandemApi.post(`/api/attendees/${attendee_id}`)
 }
+

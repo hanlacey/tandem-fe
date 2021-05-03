@@ -36,7 +36,7 @@ export default function PostRideInfo({ route, navigation }) {
 
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [route_data, setRouteData] = useState("abcde");
+	const [route_data, setRouteData] = useState("");
 	const [date, setDate] = useState(new Date());
 	const [experience_level, setExperienceLevel] = useState("");
 	const [ride_type, setRideType] = useState("");
@@ -111,7 +111,7 @@ export default function PostRideInfo({ route, navigation }) {
 					</MapView>
 				)}
 
-				<Text style={styles.bold}>Ride Name</Text>
+				<Text>Ride name</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -119,7 +119,7 @@ export default function PostRideInfo({ route, navigation }) {
 					defaultValue={routeSelected}
 				/>
 
-				<Text style={styles.bold}>{"\n"}Ride Description</Text>
+				<Text>{"\n"}Ride description</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -128,7 +128,7 @@ export default function PostRideInfo({ route, navigation }) {
 					value={description}
 				/>
 
-				<Text style={styles.bold}>{"\n"}City</Text>
+				<Text>{"\n"}City</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -136,7 +136,7 @@ export default function PostRideInfo({ route, navigation }) {
 					value={location}
 				/>
 
-				<Text style={styles.bold}>{"\n"}Estimated Distance (km)</Text>
+				<Text>{"\n"}Estimated distance (in km)</Text>
 				<TextInput
 					style={styles.text}
 					mode="outlined"
@@ -145,8 +145,8 @@ export default function PostRideInfo({ route, navigation }) {
 					defaultValue={mapData.distanceInKm}
 				/>
 
-				<Text style={styles.bold}>
-					{"\n"}Start date and Time{"\n"}
+				<Text>
+					{"\n"}Start date and time{"\n"}
 				</Text>
 				<DateTimePicker
 					style={styles.container}
@@ -156,7 +156,7 @@ export default function PostRideInfo({ route, navigation }) {
 					onChange={onChange}
 				/>
 
-				<Text style={styles.bold}>{"\n"}Bike Type</Text>
+				<Text>{"\n"}Bike type</Text>
 
 				<RadioButton.Group
 					onValueChange={(ride_type) => setRideType(ride_type)}
@@ -167,7 +167,7 @@ export default function PostRideInfo({ route, navigation }) {
 					<RadioButton.Item label="Hybrid" value="hybrid" />
 				</RadioButton.Group>
 
-				<Text style={styles.bold}>{"\n"}Experience Level</Text>
+				<Text>{"\n"}Experience level</Text>
 
 				<RadioButton.Group
 					onValueChange={(experience_level) =>
@@ -180,11 +180,11 @@ export default function PostRideInfo({ route, navigation }) {
 					<RadioButton.Item label="Advanced" value="advanced" />
 				</RadioButton.Group>
 
-				<Button onPress={handleSubmit} style={styles.create}>
-					
+				<Button onPress={handleSubmit}>
 					<Text>Create ride</Text>
 				</Button>
-				{/* <Text>{"\n"}</Text> */}
+
+				<Text>{"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}</Text>
 			</ScrollView>
 		</TouchableWithoutFeedback>
 	);
@@ -193,11 +193,8 @@ export default function PostRideInfo({ route, navigation }) {
 const styles = StyleSheet.create({
 	container: {
 		justifyContent: "center",
-		
 	},
 	input: {
-		marginVertical: "3%",
-		marginBottom: "17%",
 		paddingHorizontal: "5%",
 		paddingVertical: "5%",
 	},
@@ -206,13 +203,6 @@ const styles = StyleSheet.create({
 	},
 	map: {
 		width: "100%",
-		height: "25%%",
-	},
-	bold: {
-		fontWeight: "bold",
-	},
-	create: {
-		marginVertical: "3%",
-		marginBottom: "13%",
+		height: "16%",
 	},
 });

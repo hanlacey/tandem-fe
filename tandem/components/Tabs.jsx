@@ -21,14 +21,13 @@ export default function Tabs() {
 				showLabel: false,
 				style: {
 					position: "absolute",
-					bottom: 4,
-					left: 10,
 					right: 10,
-					elevation: 0,
-					paddingBottom: 17,
+					padding: 10,
+					paddingBottom: 25,
 					backgroundColor: "#ffffff",
 					borderRadius: 15,
-					height: 65,
+					height: 70,
+					width: "100%",
 				},
 				showLabel: true,
 			}}
@@ -53,27 +52,28 @@ export default function Tabs() {
 					),
 				}}
 			/>
-				<Tab.Screen
-					name="Rides"
-					component={rideStack}
-					options={{
-						tabBarLabel: "Rides",
-						
-						tabBarIcon: ({ focused }) => (
-							<View>
-								<Image
-									source={require("../assets/tab-icons/bike.png")}
-									resizeMode="contain"
-									style={{
-										width: 30,
-										height: 30,
-										tintColor: focused ? "#e86b3a" : "#748c94",
-									}}
-								/>
-							</View>
-						),
-					}}
-				/>
+			<Tab.Screen
+				name="UserProfile"
+				component={hardcodeProfile}
+				options={{
+					tabBarLabel: "Profile",
+
+					tabBarIcon: ({ focused }) => (
+						<View>
+							<Image
+								source={require("../assets/tab-icons/user.png")}
+								resizeMode="contain"
+								style={{
+									width: 30,
+									height: 30,
+									tintColor: focused ? "#e86b3a" : "#748c94",
+								}}
+							/>
+						</View>
+					),
+				}}
+			/>
+
 			<Tab.Screen
 				name="Post a ride"
 				component={PostRide}
@@ -90,37 +90,32 @@ export default function Tabs() {
 									height: 30,
 									tintColor: focused ? "#e86b3a" : "#748c94",
 								}}
-								/>
+							/>
 						</View>
 					),
 				}}
-				/>
-				<Tab.Screen
-					name="UserProfile"
-					component={hardcodeProfile}
-					options={{
-						tabBarLabel: "Profile",
-	
-						tabBarIcon: ({ focused }) => (
-							<View>
-								<Image
-									source={require("../assets/tab-icons/user.png")}
-									resizeMode="contain"
-									style={{
-										width: 30,
-										height: 30,
-										tintColor: focused ? "#e86b3a" : "#748c94",
-									}}
-								/>
-								{/* <Text
-									style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
-								>
-									Profile
-								</Text> */}
-							</View>
-						),
-					}}
-				/>
+			/>
+			<Tab.Screen
+				name="Rides"
+				component={rideStack}
+				options={{
+					tabBarLabel: "Rides",
+
+					tabBarIcon: ({ focused }) => (
+						<View>
+							<Image
+								source={require("../assets/tab-icons/bike.png")}
+								resizeMode="contain"
+								style={{
+									width: 30,
+									height: 30,
+									tintColor: focused ? "#e86b3a" : "#748c94",
+								}}
+							/>
+						</View>
+					),
+				}}
+			/>
 		</Tab.Navigator>
 	);
 }

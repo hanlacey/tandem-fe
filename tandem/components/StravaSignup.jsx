@@ -72,22 +72,25 @@ export default function App({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<ImageBackground source={require( "../assets/homepage.jpeg" )} style={
-styles.image
-								}>
-			<View style={styles.button}>
-				<Paragraph
-					style={{ color: "white" }}
-					disabled={!request}
-					title={"Sign up"}
-					onPress={() => {
-						promptAsync();
-					}}
-				>
-					Sign up
-				</Paragraph>
-			</View>
-			<View style={styles.button}>
+			<ImageBackground
+				source={require("../assets/homepage.jpeg")}
+				style={styles.image}
+			>
+				<View style={styles.overlay} />
+
+				<View style={styles.button}>
+					<Paragraph
+						style={{ color: "white", fontSize: 17 }}
+						disabled={!request}
+						title={"Sign up"}
+						onPress={() => {
+							promptAsync();
+						}}
+					>
+						Log in with Strava
+					</Paragraph>
+				</View>
+				{/* <View style={styles.button}>
 				<Paragraph
 					style={{ color: "white" }}
 					title={"View open rides"}
@@ -95,7 +98,7 @@ styles.image
 				>
 					View open rides
 				</Paragraph>
-			</View>
+			</View> */}
 			</ImageBackground>
 			{/* <Button
 		color="#FF4500"
@@ -113,26 +116,25 @@ const styles = StyleSheet.create({
 		// marginTop: "65%",
 		// borderRadius: 10,
 		flex: 1,
-		flexDirection: "column"
+		flexDirection: "column",
 	},
 	image: {
-    flex: 1,
-    resizeMode: "cover",
-		justifyContent: "center"
-  },
+		flex: 1,
+		resizeMode: "cover",
+		justifyContent: "center",
+	},
 	button: {
 		//color: "white",
 		//fontWeight: "bold",
-		height: 55,
+		height: 70,
 		justifyContent: "center",
 		alignItems: "center",
 		width: 300,
 		padding: "5%",
 		margin: "5%",
-		marginHorizontal: "12%",
+		marginHorizontal: "10%",
 		marginVertical: "10%",
-		borderRadius: 25,
-		backgroundColor: "#e86b3a",
+		backgroundColor: "rgba(232, 107, 58, 0.9)",
 		shadowColor: "black",
 		shadowOpacity: 0.2,
 		shadowOffset: {
@@ -140,7 +142,16 @@ const styles = StyleSheet.create({
 			width: -2,
 		},
 		elevation: 5,
-		borderRadius: 10,
+		borderRadius: 4,
+	},
+	overlay: {
+		position: "absolute",
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
+		backgroundColor: "white",
+		opacity: 0.1,
 	},
 });
 

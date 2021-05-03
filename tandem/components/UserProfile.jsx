@@ -26,12 +26,6 @@ export default class UserProfile extends Component {
 
 		const username = this.props.username;
 
-		this.getUserInfo = () => {
-			const user = users.filter((user) => {
-				return user.username === username;
-			});
-			return user[0];
-		};
 		this.getUserRides = () => {
 			const rides = rideData.filter((ride) => {
 				return ride.attendees.includes(username);
@@ -42,11 +36,26 @@ export default class UserProfile extends Component {
 
 	componentDidMount() {
 		//make fetch request to db by username instead of getUserInfo()
-		this.setState({ user: this.getUserInfo() });
+		this.setState({
+			user: {
+				username: "rollingDan",
+				password: "abcde3",
+				email: "example3@gmail.com",
+				avatar_url:
+					"https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fdgalywyr863hv.cloudfront.net%2Fpictures%2Fathletes%2F29656122%2F8899811%2F1%2Flarge.jpg",
+				first_name: "Daniel",
+				last_name: "Stevenson",
+				location: "Sheffield",
+				routes_data: "routes",
+				bike_type: "Mountain bike",
+				experience_level: "Advanced",
+			},
+		});
 		this.setState({ rides: this.getUserRides() });
 	}
 
 	render() {
+		console.log(this.state.user);
 		const { rides, user } = this.state;
 		const { navigation } = this.props;
 
@@ -57,6 +66,7 @@ export default class UserProfile extends Component {
 						{/* <TouchableHighlight>
 							<Text>Hi</Text>
 						</TouchableHighlight> */}
+						<Text style={styles.rideTitle}>{ride.title}</Text>
 						<Text style={styles.rideDescription}>
 							{ride.author} - {parseDate(ride.ride_date)} -{" "}
 							{ride.attendees.length} riders
@@ -131,7 +141,7 @@ const styles = StyleSheet.create({
 		borderRadius: 3,
 	},
 	rideTitle: {
-		color: "red",
+		color: "#e86b3a",
 	},
 	rideDescription: {},
 });

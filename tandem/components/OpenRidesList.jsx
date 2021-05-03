@@ -12,7 +12,6 @@ import RideCard from "./RideCard";
 import * as api from "../api/api";
 
 export default function OpenRidesList({ route, navigation }) {
-
 	const refHook = useRef(false);
 
 	const [rides, setRides] = useState([]);
@@ -187,9 +186,9 @@ const styles = StyleSheet.create({
 		padding: "5%",
 		margin: "4%",
 		marginBottom: "3%",
-		borderRadius: 15,
-		borderBottomRightRadius: 0,
-		borderBottomLeftRadius: 0,
+		borderRadius: 5,
+		borderBottomRightRadius: 5,
+		borderBottomLeftRadius: 5,
 		shadowColor: "black",
 		shadowOpacity: 0.2,
 		shadowOffset: {
@@ -209,11 +208,10 @@ const styles = StyleSheet.create({
 		flexGrow: 5,
 		flexShrink: 5,
 		marginHorizontal: "4%",
+		marginVertical: "1%",
 		flexDirection: "row",
 		justifyContent: "space-around",
-		borderRadius: 15,
-		borderBottomRightRadius: 0,
-		borderBottomLeftRadius: 0,
+		borderRadius: 5,
 	},
 	filterLabel: {
 		color: "black",
